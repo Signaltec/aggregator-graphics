@@ -1085,6 +1085,67 @@
   
 
   
+  
+  
+  
+    <div class="aggregator-graphics">
+
+    <!-- Aside panel with optional ports navigation -->
+    <aside>
+      <div class="">
+        <input type="checkbox" onClick="toggleEmpty()"> Суммировать
+      </div>
+      
+      <div class="port-navigator">
+        …
+      </div>  
+    </aside>
+
+    <!-- Main graphic -->
+    <div class="main-graphic">
+    </div>
+
+    <!-- Toolbar with work modes -->
+    <div class="toolbar shift-left">
+      <span>
+      <a class="pseudo-link">Реалтайм</a>
+      <a class="pseudo-link">Дни</a>
+      <a class="pseudo-link">Месяцы</a>
+      </span>
+
+      <span>
+      <a class="pseudo-link">Максимальные</a>
+      <a class="pseudo-link">Средние</a>
+      </span>
+    
+      <input type="checkbox" onClick="toggleEmpty()"> Скрыть порты без трафика
+    </div>
+    
+    <!-- Time navigation -->
+    <div class="time-navigator shift-left">
+      <div class="time-navigator-dates"></div>
+      <div class="time-navigator-line"></div>
+      <div class="point-wrapper point-one"><div class="point"></div></div>
+      <div class="point-wrapper point-two"><div class="point"></div></div>
+    </div>    
+
+    <!-- All ports microcharts -->
+    <div class="ports-microcharts">
+    </div>   
+    
+  </div>
+  
+  
+  
+  <link href="./style.css" rel="stylesheet" type="text/css" />
+  <script src="app.js"></script>
+  
+  
+  
+  
+  
+  
+  
 
 
         </article>
@@ -1098,8 +1159,6 @@
   </div>
 
   <!-- Scripts -->
-  <!--only needed if you support upload progress/abort or non HTML5 FormData browsers.-->
-  <!-- NOTE: angular.file-upload-shim.js MUST BE PLACED BEFORE angular.js-->
   <script src="./index_files/angular.min.js"></script>
   <script src="./index_files/angular-sanitize.min.js"></script>
   <script src="./index_files/angular-messages.min.js"></script>
@@ -1109,10 +1168,7 @@
   <script src="./index_files/roundProgress.min.js"></script>
   <script src="./index_files/moment-with-locales.min.js"></script>
 
-  <!-- это не файл, см. src/server/web.coffee -->
   <script src="./index_files/configuration.js"></script>
-
-  <!--script src="./index_files/all.js"></script-->
 
   <noscript>
     &lt;h1&gt;

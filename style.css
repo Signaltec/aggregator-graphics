@@ -1,0 +1,26 @@
+  .aggregator-graphics {background: white; padding:3em;}
+  
+  .toolbar {padding-left:70px; margin-bottom:1em}
+  .toolbar span {margin-right: 1em;}
+  .toolbar span a {padding: 0 5px;}
+  
+  .port-wrapper {height:30px; line-height: 30px; width:800px; background: white; border-bottom: solid 1px #eee; padding-left: 20px; position:relative}
+  .port-wrapper .port-name {position:absolute; width:40px;}
+  
+  .port-graph {position:absolute; left: 70px; height:30px; line-height: 30px; width:750px;}
+
+  .dot {
+    fill: rgba(255,0,0,0.4);
+  }
+  
+  .time-navigator {height: 30px; position:relative; width:750px; padding-left:70px}
+  .time-navigator-line {width:750px; position:absolute; top:10px; height:2px; background:#ddd;}
+  .point-wrapper {position:absolute; width:15px; height:15px; top:8px;}
+  .point-one {right: 0}
+  .point-two {right: 100px}
+  .point {background: black; border-radius:100%; width:6px; height:6px;}
+  
+  
+  .aggregator-graphics .main-graphic {height:500px; width:800px; background:#eee; margin-bottom: 1em;}
+  .aggregator-graphics aside {float:right; width: 200px; background: #ffeeee;}
+  
