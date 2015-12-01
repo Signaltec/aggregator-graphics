@@ -1,0 +1,30 @@
+{
+  "name": "sanitize.css",
+  "version": "2.0.0",
+  "author": "Zlatan Vasović",
+  "description": "Minimal CSS normalization library",
+  "homepage": "https://github.com/ZDroid/sanitize.css",
+  "main": "sanitize.css",
+  "keywords": [
+    "css",
+    "normalize",
+    "sanitize",
+    "sanitize.css"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "Gruntfile.js",
+    "package.json",
+    "src"
+  ],
+  "_release": "2.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.0.0",
+    "commit": "372db3ef5b6a3582e5a590d1536cea6739bafb19"
+  },
+  "_source": "git://github.com/ZDroid/sanitize.css.git",
+  "_target": "~2.0.0",
+  "_originalSource": "sanitize.css"
+}

@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'pt_sans-regular';
+    src: url('../fonts/pt_sans/regular/PTS55F.eot');
+    src: url('../fonts/pt_sans/regular/PTS55F.eot?#iefix') format('embedded-opentype'),
+url('../fonts/pt_sans/regular/PTS55F.woff') format('woff'),
+url('../fonts/pt_sans/regular/PTS55F.ttf') format('truetype'),
+url('../fonts/pt_sans/regular/PTS55F.svg#pt_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

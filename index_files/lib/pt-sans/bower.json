@@ -1,0 +1,25 @@
+{
+  "name": "bower-pt-sans",
+  "version": "0.0.1",
+  "homepage": "https://github.com/stones/bower-pt-sans",
+  "authors": [
+    "Tom Stones <tom@tomstones.com.au>"
+  ],
+  "description": "The Paratype PT sans font webkit",
+  "main": "styles/pt_sans.css",
+  "keywords": [
+    "font",
+    "sans-serif",
+    "paratype",
+    "pt-sans",
+    "fonts"
+  ],
+  "license": "DBYD",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

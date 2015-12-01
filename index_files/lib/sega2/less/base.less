@@ -1,0 +1,109 @@
+@import "colors.less";
+
+@dx: 2em;
+
+// Колонки
+.c1 { width: @dx; }
+.c2 { width: 2*@dx; }
+.c3 { width: 3*@dx; }
+.c4 { width: 4*@dx; }
+.c5 { width: 5*@dx; }
+.c6 { width: 6*@dx; }
+.c7 { width: 7*@dx; }
+
+// Размеры
+.-mid { height: 7*@dx; }
+.-big { height: 15*@dx; }
+.-extra { height: 30*@dx; }
+
+// Отступы
+.-nomargins { margin: 0 !important; }
+
+.-indent-top { margin-top: @dx/2 !important; }
+.-indent-bottom { margin-bottom: @dx/2 !important; }
+.-indent { .-indent-top(); .-indent-bottom(); }
+
+.-indent-top-small { margin-top: @dx/4 !important; }
+.-indent-bottom-small { margin-bottom: @dx/4 !important; }
+.-indent-small { .-indent-top-small(); .-indent-bottom-small(); }
+
+.-indent-big { margin-top: @dx !important; margin-bottom: @dx !important; }
+
+.-nopaddings { padding: 0 !important; }
+.-paddings { padding: @dx !important; }
+.-paddings-small { padding: @dx/2 !important; }
+
+// Бордеры
+.-border-top { border-top: solid 1px @border-color; }
+.-border-bottom { border-bottom: solid 1px @border-color; }
+.-border-dashed { border: dashed 1px @border-color; }
+
+// Flexbox
+.flexbox {
+    display: -webkit-flex;
+    display: flex;
+    > div { flex: 1; } }
+
+.-flex-wrap { flex-wrap: wrap; }
+
+// Z-indexes
+.-z1 {
+    z-index: 1;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+
+.-z2 {
+    z-index: 2;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); }
+
+.-z3 {
+    z-index: 3;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); }
+
+// Тени
+.shadow {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+
+// Базовые модификаторы
+.-open { display: block; }
+
+.-hide { display: none; }
+
+.-collapsed { display: none; }
+
+.-pseudo-link, .pseudo-link, a.pseudo-link { border-bottom-style: dotted; }
+
+.-clickable { cursor: pointer !important; }
+
+// Модификаторы положения
+.-block { display: block; }
+
+.-relative { position: relative; }
+
+.-absolute { position: absolute; }
+
+.-fixed { position: fixed; top: 0; }
+
+.-nowrap { white-space: nowrap; }
+
+.-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+
+.-overhead { margin-top: -2*@dx; }
+
+.-fly { box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); }
+
+// Модификаторы состояния
+.-disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed;
+    &:hover { opacity: 0.5; } }
+
+.-muted { opacity: 0.4 !important; }
+
+.-misc { font-size: 70%; }
+
+// AngularJS
+[ng-cloak], .ng-cloak { display: none; }
+[ng-click] { cursor: pointer; }

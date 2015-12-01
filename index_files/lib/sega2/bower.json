@@ -1,0 +1,30 @@
+{
+  "name": "sega2",
+  "version": "0.0.2",
+  "description": "SEGA2 css framework",
+  "main": "dist/sega2.css",
+  "authors": [
+    "ildarka"
+  ],
+  "license": "FREE",
+  "homepage": "signaltech.ru",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "tests",
+    ".bowerrc",
+    ".gitignore",
+    ".jshintignore",
+    ".jshintrc",
+    "bower.json",
+    "sega2-csscomb.json",
+    "gulpfile.js",
+    "package.json"
+  ],
+  "dependencies": {
+    "sanitize.css": "~2.0.0",
+    "pt-sans": "*",
+    "mdi": "*"
+  }
+}

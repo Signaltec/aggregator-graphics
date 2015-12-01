@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="sega2.css" />
+</head>
+
+<body ng-app="app">
+  <header class="-mid">
+   
+  </header>
+  
+  <main class="-overhead">
+
+    <section class="paper -waste z3">
+        <h2>Модификаторы тега &lt;header&gt;</h2>
+        
+         <form name="header">
+         <ul class="-unstyled">
+           <li><input type="radio" name="h_size" value="" onclick="setMod('header',this.value)" /> Обычный размер</li>
+           <li><input type="radio" name="h_size" value="-mid" onclick="setMod('header',this.value)"/> Средний размер -mid</li>
+           <li><input type="radio" name="h_size" value="-big" onclick="setMod('header',this.value)" /> Большой размер -big</li>
+           <li><input type="radio" name="h_size" value="-extra" onclick="setMod('header',this.value)" /> Супер-большой размер -extra</li>
+         </ul>
+         </form>   
+    </section>  
+    
+    <hgroup style="background: #eee; padding:10px">
+      <h1 style="text-align:center">sega2 css framework</h1>
+    </hgroup>
+    
+    <section class="paper">
+
+      <h2>О sega2</h2>
+      <p>
+      Sega2 — небольшая css-библиотека.
+		  
+      Базовый элемент — компонент, верстается тегом или классом, стили задаются в components.less.
+      Для сброса оформления по-умолчанию используется sanitize.css.
+      </p>  
+      <p>
+      Вариации элемента задаются модификаторами (класс с префиксом «-»).
+      </p>
+
+      Базовые модификаторы:
+	<ul>
+       <li>Размера: -small, -mid, -big, -extra</li>
+       <li>Состояния: -disabled, -active, -selected, -open, -collapsed, -hide, -visible</li>
+       <li>Положения: -fixed</li>
+       <li>Перекрытия: -ellipsis, -overflow-hidden</li>
+       <li>Приоритета: -misc</li>
+       <li class="-indent-top">Колонки: c1, c2, c3,…, -full</li>
+      </ul>
+
+      <cite>
+        При создании кастомного модификатора, например, для -fixed используется след. порядок: -fixed-header.
+      </cite>  
+	<p>	
+      Зависимости:
+	</p>
+	<ul>
+		<li><a href="https://github.com/ZDroid/sanitize.css">Sanitize.css</a></li>
+		<li><a href="https://github.com/stones/bower-pt-sans">PT-Sans</a></li>
+		<li><a href="https://materialdesignicons.com/">Material design icons</a></li>
+		<li>ios7switch</li>
+
+      </ul>
+		
+      <p>
+      Библиотека построена на less-файлах:
+      </p>
+      <ul>
+       <li>less/colors.less — цветовая гамма</li>
+       <li>less/grid.less — сетка, отступы</li>
+       <li>less/typographic.less — заголовки и прочее</li>
+       <li>less/components.less — таблицы, формы, хидер, футер, кнопки и т. д.</li>
+     </ul>
+     
+    </section>  
+
+    
+    
+    <section class="paper">
+
+      <h2>Установка</h2>
+
+      <code>
+        bower install sega2
+      </code>
+      
+      Подключите на своей странице sega2.css
+      
+      <code>
+      &lt;link rel="stylesheet" href="bower_components/sega2/sega2.css" /&gt;
+      </code>
+      
+      или импортируйте себе файл sega2.less,
+      скорее всего придётся в файле sega2.less поправить пути импорта css-файлов.
+      
+      <code>
+      @import "bower_components/sega2/less/sega2.less";
+      </code>
+    </section>  
+
+    
+    <section class="paper">
+  
+      <h2>Типографика</h2>
+      
+      <p>
+        Минимальное количество стилей для заголовков, параграфа,
+        тегов cite, code, ul.
+      </p>
+  
+      <h3>И разные штучки</h3>
+		
+        <cite>
+          Если вы не можете объяснить это просто — значит, вы сами не понимаете этого до конца.
+          <author>А. Энштейн</author>
+        </cite>
+        
+    </section>  
+    
+    <section class="paper">
+  
+      <h2>Таблицы <b>.table</b></h2>
+      
+      <table class="table -hover">
+        <colgroup>
+            <col class="c1">
+            <col class="c1">
+            <col class="c2">
+            <col class="c5">
+            <col class="c5">            
+            <col>
+            <col>
+        </colgroup>
+      
+      <thead>
+      <tr class="headers">
+          <th>№</th> 
+          <th>&nbsp;</th> 
+          <th>Тип</th> 
+          <th>RX</th>
+          <th>TX</th>
+          <th>CRC</th>
+          <th>Dropped</th>
+      </tr>
+      </thead>
+
+      <tbody>        
+      <tr>
+
+        <td>1</td>
+
+        <td>
+          <label class="ios7-switch">
+              <input type="checkbox" checked>
+              <span></span>
+          </label>
+        </td>
+
+        <td>
+          <select><option value="10G" label="10G">10G</option><option value="1G" selected="selected" label="1G">1G</option><option value="40G" label="40G">40G</option></select>
+        </td>
+
+        <td>
+          <span>—</span>
+          <div class="-misc">
+          100
+          </div>  
+        </td>
+
+        <td>
+          <span>—</span>
+          <div class="-misc">
+          L3
+          </div>  
+        </td>
+
+        <td>
+        </td>
+
+        <td>
+        </td>
+        
+      </tr>
+      <tr>
+
+        <td>2</td>
+
+        <td>
+          <label class="ios7-switch">
+              <input type="checkbox" checked>
+              <span></span>
+          </label>
+        </td>
+
+        <td>
+          <select><option value="10G" label="10G">10G</option><option value="1G" selected="selected" label="1G">1G</option><option value="40G" label="40G">40G</option></select>
+        </td>
+
+        <td>
+          <span>—</span>
+          <div class="-misc">
+          100
+          </div>  
+        </td>
+
+        <td>
+          <span>—</span>
+          <div class="-misc">
+          L3
+          </div>  
+        </td>
+
+        <td>
+        </td>
+
+        <td>
+        </td>
+        
+      </tr>        
+      </tbody>
+    </table>
+        
+        <p>
+          <form>
+          Модификаторы: 
+          <ul class="-unstyled -indent-top">
+            <li><input type="checkbox" onclick="setMod('.table', '-auto', this.checked)"> -auto</li>
+            <li><input type="checkbox" checked onclick="setMod('.table', '-hover', this.checked)"> -hover</li>
+            <li><input type="checkbox" onclick="setMod('.table', '-split', this.checked)"> -split</li>
+            <li><input type="checkbox" onclick="setMod('.table', '-table-fixed', this.checked)"> -table-fixed</li>
+          </ul>
+
+		  <p>	  
+          Ширина колонок: c1, c2, …
+		  </p>
+			  
+          </form>  
+            
+        </p>
+        
+    </section>      
+
+    <section class="paper">
+  
+      <h2>Кнопки <b>button, . button, [type=submit]</b></h2>
+
+		<button>Привет</button>
+
+		<button class="-yellow">-yellow</button>
+		<button class="-blue">-blue</button>
+		<button class="-green -rounded"><i class="mdi mdi-check"></i> -green -rounded</button>
+		<button class="-yellow -round"><i class="mdi mdi-plus"></i></button>
+		
+		<a class="button">.button</a>
+
+		<input type="submit" value="Сохранить" />
+        
+   		<button class="-small">-small</button>
+
+
+		<div class="buttons -indent-big -block">
+				<button>1</button><button class="-active">2</button><button>3</button>
+		</div>
+	
+		<p class="-indent-top">
+			<span class="tap">
+				<a>Выбери .tap</a>
+			</span>
+	
+			<span class="tap -active">
+				.tap -active
+			</span>	
+		</p>
+	
+	
+		<p>
+      Переключатель в стиле iOS 
+      <label class="ios7-switch">
+        <input type="checkbox" checked>
+        <span></span>
+      </label>
+      
+      <code style="">
+      &lt;label class="ios7-switch"&gt;
+        &lt;input type="checkbox" checked&gt;
+        &lt;span&gt;&lt;/span&gt;
+      &lt;/label&gt;
+      &lt;/code&gt;
+	  </code>	  
+		</p>
+	
+    </section>
+	
+	
+	
+    <section class="paper">
+  
+      <h2>Формы <b>.form</b></h2>
+      
+      <form class="form">
+        <div class="field">
+          <label>IP-адрес</label>
+          <input value="192.168.0.1" class="c6" type="text"/>
+          <span class="error">Неверный IP-адрес</span>
+        </div>
+
+        <div class="field">
+          <label>Пароль</label>
+          <input value="192.168.0.1" class="c6" type="password"/>
+        </div>
+
+        <div class="field">
+          <label>Маска подсети</label>
+          <select class="c6">
+            <option>
+                255.255.255.0
+            </option>
+          </select>
+        </div>
+        
+        <div class="field">
+          <label></label>
+          <input type="submit" value="Сохранить" />
+        </div>
+        
+        
+      </form>
+
+        
+        <p>
+          Модификаторы: 
+          <ul class="-unstyled">
+            <li><input type="checkbox" onclick="setMod('.table', '-inline', this.checked)"> -inline</li>
+          </ul>
+
+        </p>
+        
+    </section>      
+ 
+   <section class="paper">
+  
+      <h2>Tooltip</h2>
+      
+        <div class="tooltip" style="max-width:500px">
+             <a class="-pseudo-link">Tooltip покажись</a>
+             <div class="tooltip-text">
+               Привет. А вот и я! Можешь в меня html пихать…
+             </div>
+        </div>  
+
+     
+    </section>  
+  
+   <section class="paper">
+  
+      <h2>Прочие компоненты</h2>
+      
+    </section>
+  
+  
+
+	<section class="paper -waste -nopaddings -indent-big" >
+		<hgroup class="-border-bottom">
+			<h1>Верстка для блока содержащего несколько paper'ов</h1>
+			<p>
+			Используется в правилах pussy_switch
+			</p>
+		</hgroup>
+
+		<hgroup class="-border-bottom">		
+			<h1>Правила</h1>
+
+			<div class="actions" style="left: 14em; min-width:500px">
+				<button class="-round -yellow" ng-click="RULE.add()" title="Новое правило"><i class="mdi mdi-plus"></i></button>
+
+				<button class="-rounded" ng-class="{ '-green': any_changes }"><i class="mdi mdi-check"></i> Применить</button>
+
+				<a ng-click="RULE.remove_all()" class="pseudo-link" ng-show="model.rules.length">
+					<i class="mdi mdi-recycle"></i> Удалить всё
+				</a>
+			</div>
+		</hgroup>
+		
+		
+		<article class="paper rule0 -paddings-small -relative" style="position:relative">
+			<h2 class="-nomargins">Правило № 0</h2>
+			<div style="position:absolute; right:15px; top:15px; width:170px">
+					<ul class="-unstyled -misc">
+					<li class="-indent-bottom">
+					<label class="ios7-switch">
+					  <input type="checkbox" checked onclick="setMod('.rule0', '-disabled', !this.checked)">
+					  <span></span>
+						</label> Выключено
+						</li>
+					</ul>	
+			</div>
+			
+			<div class="flexbox -flex-wrap -full -indent-top">
+				<div style="width: 30%;">
+					<div class="-misc">Входные порты</div>
+				</div>
+				
+				<div style="width: 30%;">
+					<a class="pseudo-link">Агрегация</a>
+				</div>
+				<div style="width: 30%;">
+					<div class="-misc">Выходные порты</div>
+				</div>
+			</div>
+		</article>
+		
+		<article class="paper -selected -paddings-small" style="position: relative">
+			<h2 class="-nomargins">Правило № 1</h2>
+
+			<div style="position:absolute; right:15px; top:15px; width:170px">
+					<ul class="-unstyled -misc">
+					<li class="-indent-bottom">
+					<label class="ios7-switch">
+					  <input type="checkbox" checked>
+					  <span></span>
+						</label> 
+						</li>
+						<li><a class="pseudo-link"><i class="mdi mdi-arrow-up"></i> Больше приоритет</a><li>
+						<li><a class="pseudo-link"><i class="mdi mdi-arrow-down"></i> Меньше приоритет</a><li>
+						<li><a class="pseudo-link"><i class="mdi mdi-content-copy"></i> Дублировать</a><li>
+						<li class="-indent-top"><a class="pseudo-link"><i class="mdi mdi-delete"></i> Удалить</a><li>
+						
+					</ul>	
+			</div>
+			
+			<div class="flexbox -flex-wrap -indent-top" style="padding-right:170px">
+				<div style="padding-right:15px; width: 30%;">
+					<div class="-misc">Входные порты</div>
+					<div class="-border-dashed -paddings -indent-top" class="margin-right:10px">
+					
+					</div>	
+					
+				</div>
+				
+				<div style="padding-right:15px; width: 30%;">
+					<a class="pseudo-link">Агрегация</a>
+				</div>
+				<div  style="padding-right:15px; width: 30%;">
+
+					<div class="-misc">Выходные порты</div>
+					
+					<div class="-border-dashed -paddings -indent-top" class="margin-right:10px">
+					
+					</div>	
+					
+					
+				</div>
+			</div>	
+		</article>
+		<article class="paper -disabled" style="position:relative">
+			<h2 class="-nomargins">Правило № 2</h2>
+			<div style="position:absolute; right:15px; top:15px; width:170px">
+					<ul class="-unstyled -misc">
+					<li class="-indent-bottom">
+					<label class="ios7-switch">
+					  <input type="checkbox">
+					  <span></span>
+						</label> Выключено
+						</li>
+					</ul>	
+			</div>
+
+			<div class="flexbox -flex-wrap -full -indent-top">
+				<div>
+					<div class="-misc">Входные порты</div>
+				</div>
+				
+				<div>
+					<a class="pseudo-link">Агрегация</a>
+				</div>
+				<div>
+					<div class="-misc">Выходные порты</div>
+				</div>
+			</div>
+			
+		</article>
+		
+	
+	</section>  
+
+  
+  
+  <section class="paper -waste -indent-big" >
+    <h1>Анимация кнопки</h1>
+    
+    <button class="-round -yellow -animated addButton" onClick="toggle('.addButton','moveDown')"><i class="mdi mdi-plus"></i></button>
+
+    
+    <div style="height:100px">
+    </div>
+    
+    <style>
+  
+.-animated { 
+    -webkit-animation-duration: 0.5s; 
+    animation-duration: 0.5s; 
+    -webkit-animation-timing-function: ease-in-out; 
+    animation-timing-function: ease-in-out; 
+} 
+
+@-webkit-keyframes moveDown { 
+    0% { -webkit-transform: translateY(0); } 
+    100% { -webkit-transform: translateY(80px); } 
+} 
+
+@keyframes moveDown { 
+    0% { transform: translateY(0); } 
+    100% { transform: translateY(80px); } 
+} 
+
+.moveDown { 
+    -webkit-animation-name: moveDown; 
+    animation-name: moveDown; 
+}
+    
+    </style>
+    
+    <script>
+      function animateButton(el) {
+        //el = document.querySelector(el);
+        toggle(el,'moveDown');
+      }
+    </script>
+    
+  </section>
+  
+  
+  
+	
+    
+  </div>
+  
+  </main>
+  
+  <footer>
+    © Signaltech 2015
+  </footer>
+
+  
+  <script>
+    
+    function toggle(el, className) {
+      if(el) {
+        el = document.querySelector(el);
+        if(el.className.indexOf(className)!= -1) {
+          el.className = el.className.replace(className, '');
+        } else {
+          el.className += ' ' + className;
+        }
+        //el.className = className;
+        console.log('toggle:', el.className);
+      }
+    }
+
+  function setMod(el, className, flag) {
+      el = document.querySelector(el);
+      console.log(flag);
+      if (typeof flag == 'undefined') {
+        el.className = ' ' + className;
+      } else {
+        if (flag)  el.className += ' ' + className; else el.className = el.className.replace(className, '');
+      }
+      
+    }
+
+    
+  </script>
+</body>
+</html>

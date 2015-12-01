@@ -1,0 +1,82 @@
+@import "base.less";
+@import "colors.less";
+
+.clearfix {
+    zoom: 1;
+    &:before { display: block; content: ""; }
+    &:after { display: table; clear: both; content: ""; } }
+
+// --------------------------------
+html {
+    vertical-align: baseline;
+    font-size: 1.1em; }
+
+body { -webkit-font-smoothing: subpixel-antialiased; }
+
+h1, h2 { font-weight: normal; }
+
+h1 {
+    margin: 0 0 0.8em 0;
+    font-size: 2.4em; }
+
+h2 {
+    margin: 1.2em 0 0.8em 0;
+    font-size: 1.7em; }
+
+h3 {
+    margin: 1em 0 0.4em 0;
+    font-size: 1.2em; }
+
+cite {
+    display: block;
+    margin: 0;
+    padding: 1em 1em 1em 2*@dx;
+    max-width: 36*@dx;
+    color: @lite;
+    font-style: normal;
+
+    author {
+        display: block;
+        margin-top: 1em;
+        font-style: italic; } }
+
+code {
+    display: block;
+    margin: 0 0 1em 1em;
+    white-space: pre-line;
+    font-size: 1.2em; }
+
+hr {
+    height: 1px;
+    border: 0;
+    background: rgba(0,0,0,0.2); }
+
+p { margin-bottom: 1em;line-height: 1.4em; }
+
+a {
+    border-bottom: solid 1px;
+    text-decoration: none;
+    cursor: pointer;
+    &:link {
+        color: @link; }
+    &:hover {
+        opacity: 1; } }
+
+// Списки
+li {
+    padding-top: 0.3em;
+    padding-bottom: 0.3em; }
+
+ul.-unstyled { margin: 0; padding: 0; }
+
+.-unstyled li { list-style-type: none; }
+
+dl {
+    padding: 5px 0 5px 0; .clearfix();
+
+    dt {
+        float: left;
+        margin-right: @dx/2;
+        min-height: 1em; }
+
+    dd { min-height: 1.4em; } }
