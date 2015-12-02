@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <!-- saved from url=(0028)https://localhost:3001/ports -->
-<html ng-app="app" data-ng-app="app" class="ng-scope"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+<html ng-app="app" data-ng-app="app"><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
   <meta charset="UTF-8">
-  <!--<base href="/">--><base href=".">
-
-  <link rel="icon" href="https://localhost:3001/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="./index_files/jsoneditor.min.css">
+  <base href=".">
 
   <link href="./index_files/sega2.css" rel="stylesheet" type="text/css">
 
@@ -15,25 +14,20 @@
   <script src="./index_files/tsg.js"></script>
 
   <link rel="stylesheet" href="./index_files/all.css">
-
   <title ng-bind="this_page.title" class="ng-binding">Статистика</title>
 
-  <link rel="shortcut icon" href="https://localhost:3001/i/favicon.ico">
-<style id="ace_editor.css">.ace_editor {position: relative;overflow: hidden;font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;direction: ltr;}.ace_scroller {position: absolute;overflow: hidden;top: 0;bottom: 0;background-color: inherit;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;cursor: text;}.ace_content {position: absolute;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;min-width: 100%;}.ace_dragging .ace_scroller:before{position: absolute;top: 0;left: 0;right: 0;bottom: 0;content: '';background: rgba(250, 250, 250, 0.01);z-index: 1000;}.ace_dragging.ace_dark .ace_scroller:before{background: rgba(0, 0, 0, 0.01);}.ace_selecting, .ace_selecting * {cursor: text !important;}.ace_gutter {position: absolute;overflow : hidden;width: auto;top: 0;bottom: 0;left: 0;cursor: default;z-index: 4;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;}.ace_gutter-active-line {position: absolute;left: 0;right: 0;}.ace_scroller.ace_scroll-left {box-shadow: 17px 0 16px -16px rgba(0, 0, 0, 0.4) inset;}.ace_gutter-cell {padding-left: 19px;padding-right: 6px;background-repeat: no-repeat;}.ace_gutter-cell.ace_error {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABOFBMVEX/////////QRswFAb/Ui4wFAYwFAYwFAaWGAfDRymzOSH/PxswFAb/SiUwFAYwFAbUPRvjQiDllog5HhHdRybsTi3/Tyv9Tir+Syj/UC3////XurebMBIwFAb/RSHbPx/gUzfdwL3kzMivKBAwFAbbvbnhPx66NhowFAYwFAaZJg8wFAaxKBDZurf/RB6mMxb/SCMwFAYwFAbxQB3+RB4wFAb/Qhy4Oh+4QifbNRcwFAYwFAYwFAb/QRzdNhgwFAYwFAbav7v/Uy7oaE68MBK5LxLewr/r2NXewLswFAaxJw4wFAbkPRy2PyYwFAaxKhLm1tMwFAazPiQwFAaUGAb/QBrfOx3bvrv/VC/maE4wFAbRPBq6MRO8Qynew8Dp2tjfwb0wFAbx6eju5+by6uns4uH9/f36+vr/GkHjAAAAYnRSTlMAGt+64rnWu/bo8eAA4InH3+DwoN7j4eLi4xP99Nfg4+b+/u9B/eDs1MD1mO7+4PHg2MXa347g7vDizMLN4eG+Pv7i5evs/v79yu7S3/DV7/498Yv24eH+4ufQ3Ozu/v7+y13sRqwAAADLSURBVHjaZc/XDsFgGIBhtDrshlitmk2IrbHFqL2pvXf/+78DPokj7+Fz9qpU/9UXJIlhmPaTaQ6QPaz0mm+5gwkgovcV6GZzd5JtCQwgsxoHOvJO15kleRLAnMgHFIESUEPmawB9ngmelTtipwwfASilxOLyiV5UVUyVAfbG0cCPHig+GBkzAENHS0AstVF6bacZIOzgLmxsHbt2OecNgJC83JERmePUYq8ARGkJx6XtFsdddBQgZE2nPR6CICZhawjA4Fb/chv+399kfR+MMMDGOQAAAABJRU5ErkJggg==");background-repeat: no-repeat;background-position: 2px center;}.ace_gutter-cell.ace_warning {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAmVBMVEX///8AAAD///8AAAAAAABPSzb/5sAAAAB/blH/73z/ulkAAAAAAAD85pkAAAAAAAACAgP/vGz/rkDerGbGrV7/pkQICAf////e0IsAAAD/oED/qTvhrnUAAAD/yHD/njcAAADuv2r/nz//oTj/p064oGf/zHAAAAA9Nir/tFIAAAD/tlTiuWf/tkIAAACynXEAAAAAAAAtIRW7zBpBAAAAM3RSTlMAABR1m7RXO8Ln31Z36zT+neXe5OzooRDfn+TZ4p3h2hTf4t3k3ucyrN1K5+Xaks52Sfs9CXgrAAAAjklEQVR42o3PbQ+CIBQFYEwboPhSYgoYunIqqLn6/z8uYdH8Vmdnu9vz4WwXgN/xTPRD2+sgOcZjsge/whXZgUaYYvT8QnuJaUrjrHUQreGczuEafQCO/SJTufTbroWsPgsllVhq3wJEk2jUSzX3CUEDJC84707djRc5MTAQxoLgupWRwW6UB5fS++NV8AbOZgnsC7BpEAAAAABJRU5ErkJggg==");background-position: 2px center;}.ace_gutter-cell.ace_info {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAJ0Uk5TAAB2k804AAAAPklEQVQY02NgIB68QuO3tiLznjAwpKTgNyDbMegwisCHZUETUZV0ZqOquBpXj2rtnpSJT1AEnnRmL2OgGgAAIKkRQap2htgAAAAASUVORK5CYII=");background-position: 2px center;}.ace_dark .ace_gutter-cell.ace_info {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAJFBMVEUAAAChoaGAgIAqKiq+vr6tra1ZWVmUlJSbm5s8PDxubm56enrdgzg3AAAAAXRSTlMAQObYZgAAAClJREFUeNpjYMAPdsMYHegyJZFQBlsUlMFVCWUYKkAZMxZAGdxlDMQBAG+TBP4B6RyJAAAAAElFTkSuQmCC");}.ace_scrollbar {position: absolute;right: 0;bottom: 0;z-index: 6;}.ace_scrollbar-inner {position: absolute;cursor: text;left: 0;top: 0;}.ace_scrollbar-v{overflow-x: hidden;overflow-y: scroll;top: 0;}.ace_scrollbar-h {overflow-x: scroll;overflow-y: hidden;left: 0;}.ace_print-margin {position: absolute;height: 100%;}.ace_text-input {position: absolute;z-index: 0;width: 0.5em;height: 1em;opacity: 0;background: transparent;-moz-appearance: none;appearance: none;border: none;resize: none;outline: none;overflow: hidden;font: inherit;padding: 0 1px;margin: 0 -1px;text-indent: -1em;-ms-user-select: text;-moz-user-select: text;-webkit-user-select: text;user-select: text;}.ace_text-input.ace_composition {background: inherit;color: inherit;z-index: 1000;opacity: 1;text-indent: 0;}.ace_layer {z-index: 1;position: absolute;overflow: hidden;word-wrap: normal;white-space: pre;height: 100%;width: 100%;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;pointer-events: none;}.ace_gutter-layer {position: relative;width: auto;text-align: right;pointer-events: auto;}.ace_text-layer {font: inherit !important;}.ace_cjk {display: inline-block;text-align: center;}.ace_cursor-layer {z-index: 4;}.ace_cursor {z-index: 4;position: absolute;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;border-left: 2px solid}.ace_slim-cursors .ace_cursor {border-left-width: 1px;}.ace_overwrite-cursors .ace_cursor {border-left-width: 0;border-bottom: 1px solid;}.ace_hidden-cursors .ace_cursor {opacity: 0.2;}.ace_smooth-blinking .ace_cursor {-webkit-transition: opacity 0.18s;transition: opacity 0.18s;}.ace_editor.ace_multiselect .ace_cursor {border-left-width: 1px;}.ace_marker-layer .ace_step, .ace_marker-layer .ace_stack {position: absolute;z-index: 3;}.ace_marker-layer .ace_selection {position: absolute;z-index: 5;}.ace_marker-layer .ace_bracket {position: absolute;z-index: 6;}.ace_marker-layer .ace_active-line {position: absolute;z-index: 2;}.ace_marker-layer .ace_selected-word {position: absolute;z-index: 4;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}.ace_line .ace_fold {-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;display: inline-block;height: 11px;margin-top: -2px;vertical-align: middle;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACJJREFUeNpi+P//fxgTAwPDBxDxD078RSX+YeEyDFMCIMAAI3INmXiwf2YAAAAASUVORK5CYII=");background-repeat: no-repeat, repeat-x;background-position: center center, top left;color: transparent;border: 1px solid black;border-radius: 2px;cursor: pointer;pointer-events: auto;}.ace_dark .ace_fold {}.ace_fold:hover{background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACBJREFUeNpi+P//fz4TAwPDZxDxD5X4i5fLMEwJgAADAEPVDbjNw87ZAAAAAElFTkSuQmCC");}.ace_tooltip {background-color: #FFF;background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.1));background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1));border: 1px solid gray;border-radius: 1px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);color: black;max-width: 100%;padding: 3px 4px;position: fixed;z-index: 999999;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;cursor: default;white-space: pre;word-wrap: break-word;line-height: normal;font-style: normal;font-weight: normal;letter-spacing: normal;pointer-events: none;}.ace_folding-enabled > .ace_gutter-cell {padding-right: 13px;}.ace_fold-widget {-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;margin: 0 -12px 0 1px;display: none;width: 11px;vertical-align: top;background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42mWKsQ0AMAzC8ixLlrzQjzmBiEjp0A6WwBCSPgKAXoLkqSot7nN3yMwR7pZ32NzpKkVoDBUxKAAAAABJRU5ErkJggg==");background-repeat: no-repeat;background-position: center;border-radius: 3px;border: 1px solid transparent;cursor: pointer;}.ace_folding-enabled .ace_fold-widget {display: inline-block;   }.ace_fold-widget.ace_end {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42m3HwQkAMAhD0YzsRchFKI7sAikeWkrxwScEB0nh5e7KTPWimZki4tYfVbX+MNl4pyZXejUO1QAAAABJRU5ErkJggg==");}.ace_fold-widget.ace_closed {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAGCAYAAAAG5SQMAAAAOUlEQVR42jXKwQkAMAgDwKwqKD4EwQ26sSOkVWjgIIHAzPiCgaqiqnJHZnKICBERHN194O5b9vbLuAVRL+l0YWnZAAAAAElFTkSuQmCCXA==");}.ace_fold-widget:hover {border: 1px solid rgba(0, 0, 0, 0.3);background-color: rgba(255, 255, 255, 0.2);box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);}.ace_fold-widget:active {border: 1px solid rgba(0, 0, 0, 0.4);background-color: rgba(0, 0, 0, 0.05);box-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);}.ace_dark .ace_fold-widget {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQIW2P4//8/AzoGEQ7oGCaLLAhWiSwB146BAQCSTPYocqT0AAAAAElFTkSuQmCC");}.ace_dark .ace_fold-widget.ace_end {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAH0lEQVQIW2P4//8/AxQ7wNjIAjDMgC4AxjCVKBirIAAF0kz2rlhxpAAAAABJRU5ErkJggg==");}.ace_dark .ace_fold-widget.ace_closed {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFCAYAAACAcVaiAAAAHElEQVQIW2P4//+/AxAzgDADlOOAznHAKgPWAwARji8UIDTfQQAAAABJRU5ErkJggg==");}.ace_dark .ace_fold-widget:hover {box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);background-color: rgba(255, 255, 255, 0.1);}.ace_dark .ace_fold-widget:active {box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);}.ace_fold-widget.ace_invalid {background-color: #FFB4B4;border-color: #DE5555;}.ace_fade-fold-widgets .ace_fold-widget {-webkit-transition: opacity 0.4s ease 0.05s;transition: opacity 0.4s ease 0.05s;opacity: 0;}.ace_fade-fold-widgets:hover .ace_fold-widget {-webkit-transition: opacity 0.05s ease 0.05s;transition: opacity 0.05s ease 0.05s;opacity:1;}.ace_underline {text-decoration: underline;}.ace_bold {font-weight: bold;}.ace_nobold .ace_bold {font-weight: normal;}.ace_italic {font-style: italic;}.ace_error-marker {background-color: rgba(255, 0, 0,0.2);position: absolute;z-index: 9;}.ace_highlight-marker {background-color: rgba(255, 255, 0,0.2);position: absolute;z-index: 8;}</style><style id="ace-tm">.ace-tm .ace_gutter {background: #f0f0f0;color: #333;}.ace-tm .ace_print-margin {width: 1px;background: #e8e8e8;}.ace-tm .ace_fold {background-color: #6B72E6;}.ace-tm {background-color: #FFFFFF;color: black;}.ace-tm .ace_cursor {color: black;}.ace-tm .ace_invisible {color: rgb(191, 191, 191);}.ace-tm .ace_storage,.ace-tm .ace_keyword {color: blue;}.ace-tm .ace_constant {color: rgb(197, 6, 11);}.ace-tm .ace_constant.ace_buildin {color: rgb(88, 72, 246);}.ace-tm .ace_constant.ace_language {color: rgb(88, 92, 246);}.ace-tm .ace_constant.ace_library {color: rgb(6, 150, 14);}.ace-tm .ace_invalid {background-color: rgba(255, 0, 0, 0.1);color: red;}.ace-tm .ace_support.ace_function {color: rgb(60, 76, 114);}.ace-tm .ace_support.ace_constant {color: rgb(6, 150, 14);}.ace-tm .ace_support.ace_type,.ace-tm .ace_support.ace_class {color: rgb(109, 121, 222);}.ace-tm .ace_keyword.ace_operator {color: rgb(104, 118, 135);}.ace-tm .ace_string {color: rgb(3, 106, 7);}.ace-tm .ace_comment {color: rgb(76, 136, 107);}.ace-tm .ace_comment.ace_doc {color: rgb(0, 102, 255);}.ace-tm .ace_comment.ace_doc.ace_tag {color: rgb(128, 159, 191);}.ace-tm .ace_constant.ace_numeric {color: rgb(0, 0, 205);}.ace-tm .ace_variable {color: rgb(49, 132, 149);}.ace-tm .ace_xml-pe {color: rgb(104, 104, 91);}.ace-tm .ace_entity.ace_name.ace_function {color: #0000A2;}.ace-tm .ace_heading {color: rgb(12, 7, 255);}.ace-tm .ace_list {color:rgb(185, 6, 144);}.ace-tm .ace_meta.ace_tag {color:rgb(0, 22, 142);}.ace-tm .ace_string.ace_regex {color: rgb(255, 0, 0)}.ace-tm .ace_marker-layer .ace_selection {background: rgb(181, 213, 255);}.ace-tm.ace_multiselect .ace_selection.ace_start {box-shadow: 0 0 3px 0px white;border-radius: 2px;}.ace-tm .ace_marker-layer .ace_step {background: rgb(252, 255, 0);}.ace-tm .ace_marker-layer .ace_stack {background: rgb(164, 229, 101);}.ace-tm .ace_marker-layer .ace_bracket {margin: -1px 0 0 -1px;border: 1px solid rgb(192, 192, 192);}.ace-tm .ace_marker-layer .ace_active-line {background: rgba(0, 0, 0, 0.07);}.ace-tm .ace_gutter-active-line {background-color : #dcdcdc;}.ace-tm .ace_marker-layer .ace_selected-word {background: rgb(250, 250, 255);border: 1px solid rgb(200, 200, 250);}.ace-tm .ace_indent-guide {background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;}</style><style>    .error_widget_wrapper {        background: inherit;        color: inherit;        border:none    }    .error_widget {        border-top: solid 2px;        border-bottom: solid 2px;        margin: 5px 0;        padding: 10px 40px;        white-space: pre-wrap;    }    .error_widget.ace_error, .error_widget_arrow.ace_error{        border-color: #ff5a5a    }    .error_widget.ace_warning, .error_widget_arrow.ace_warning{        border-color: #F1D817    }    .error_widget.ace_info, .error_widget_arrow.ace_info{        border-color: #5a5a5a    }    .error_widget.ace_ok, .error_widget_arrow.ace_ok{        border-color: #5aaa5a    }    .error_widget_arrow {        position: absolute;        border: solid 5px;        border-top-color: transparent!important;        border-right-color: transparent!important;        border-left-color: transparent!important;        top: -5px;    }</style><style id="ace_editor">.ace_editor {	position: relative;	overflow: hidden;	font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;	direction: ltr;	}	.ace_scroller {	position: absolute;	overflow: hidden;	top: 0;	bottom: 0;	background-color: inherit;	-ms-user-select: none;	-moz-user-select: none;	-webkit-user-select: none;	user-select: none;	cursor: text;	}	.ace_content {	position: absolute;	-moz-box-sizing: border-box;	-webkit-box-sizing: border-box;	box-sizing: border-box;	min-width: 100%;	}	.ace_dragging .ace_scroller:before{	position: absolute;	top: 0;	left: 0;	right: 0;	bottom: 0;	content: '';	background: rgba(250, 250, 250, 0.01);	z-index: 1000;	}	.ace_dragging.ace_dark .ace_scroller:before{	background: rgba(0, 0, 0, 0.01);	}	.ace_selecting, .ace_selecting * {	cursor: text !important;	}	.ace_gutter {	position: absolute;	overflow : hidden;	width: auto;	top: 0;	bottom: 0;	left: 0;	cursor: default;	z-index: 4;	-ms-user-select: none;	-moz-user-select: none;	-webkit-user-select: none;	user-select: none;	}	.ace_gutter-active-line {	position: absolute;	left: 0;	right: 0;	}	.ace_scroller.ace_scroll-left {	box-shadow: 17px 0 16px -16px rgba(0, 0, 0, 0.4) inset;	}	.ace_gutter-cell {	padding-left: 19px;	padding-right: 6px;	background-repeat: no-repeat;	}	.ace_gutter-cell.ace_error {	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABOFBMVEX/////////QRswFAb/Ui4wFAYwFAYwFAaWGAfDRymzOSH/PxswFAb/SiUwFAYwFAbUPRvjQiDllog5HhHdRybsTi3/Tyv9Tir+Syj/UC3////XurebMBIwFAb/RSHbPx/gUzfdwL3kzMivKBAwFAbbvbnhPx66NhowFAYwFAaZJg8wFAaxKBDZurf/RB6mMxb/SCMwFAYwFAbxQB3+RB4wFAb/Qhy4Oh+4QifbNRcwFAYwFAYwFAb/QRzdNhgwFAYwFAbav7v/Uy7oaE68MBK5LxLewr/r2NXewLswFAaxJw4wFAbkPRy2PyYwFAaxKhLm1tMwFAazPiQwFAaUGAb/QBrfOx3bvrv/VC/maE4wFAbRPBq6MRO8Qynew8Dp2tjfwb0wFAbx6eju5+by6uns4uH9/f36+vr/GkHjAAAAYnRSTlMAGt+64rnWu/bo8eAA4InH3+DwoN7j4eLi4xP99Nfg4+b+/u9B/eDs1MD1mO7+4PHg2MXa347g7vDizMLN4eG+Pv7i5evs/v79yu7S3/DV7/498Yv24eH+4ufQ3Ozu/v7+y13sRqwAAADLSURBVHjaZc/XDsFgGIBhtDrshlitmk2IrbHFqL2pvXf/+78DPokj7+Fz9qpU/9UXJIlhmPaTaQ6QPaz0mm+5gwkgovcV6GZzd5JtCQwgsxoHOvJO15kleRLAnMgHFIESUEPmawB9ngmelTtipwwfASilxOLyiV5UVUyVAfbG0cCPHig+GBkzAENHS0AstVF6bacZIOzgLmxsHbt2OecNgJC83JERmePUYq8ARGkJx6XtFsdddBQgZE2nPR6CICZhawjA4Fb/chv+399kfR+MMMDGOQAAAABJRU5ErkJggg==");	background-repeat: no-repeat;	background-position: 2px center;	}	.ace_gutter-cell.ace_warning {	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAmVBMVEX///8AAAD///8AAAAAAABPSzb/5sAAAAB/blH/73z/ulkAAAAAAAD85pkAAAAAAAACAgP/vGz/rkDerGbGrV7/pkQICAf////e0IsAAAD/oED/qTvhrnUAAAD/yHD/njcAAADuv2r/nz//oTj/p064oGf/zHAAAAA9Nir/tFIAAAD/tlTiuWf/tkIAAACynXEAAAAAAAAtIRW7zBpBAAAAM3RSTlMAABR1m7RXO8Ln31Z36zT+neXe5OzooRDfn+TZ4p3h2hTf4t3k3ucyrN1K5+Xaks52Sfs9CXgrAAAAjklEQVR42o3PbQ+CIBQFYEwboPhSYgoYunIqqLn6/z8uYdH8Vmdnu9vz4WwXgN/xTPRD2+sgOcZjsge/whXZgUaYYvT8QnuJaUrjrHUQreGczuEafQCO/SJTufTbroWsPgsllVhq3wJEk2jUSzX3CUEDJC84707djRc5MTAQxoLgupWRwW6UB5fS++NV8AbOZgnsC7BpEAAAAABJRU5ErkJggg==");	background-position: 2px center;	}	.ace_gutter-cell.ace_info {	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAJ0Uk5TAAB2k804AAAAPklEQVQY02NgIB68QuO3tiLznjAwpKTgNyDbMegwisCHZUETUZV0ZqOquBpXj2rtnpSJT1AEnnRmL2OgGgAAIKkRQap2htgAAAAASUVORK5CYII=");	background-position: 2px center;	}	.ace_dark .ace_gutter-cell.ace_info {	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAJFBMVEUAAAChoaGAgIAqKiq+vr6tra1ZWVmUlJSbm5s8PDxubm56enrdgzg3AAAAAXRSTlMAQObYZgAAAClJREFUeNpjYMAPdsMYHegyJZFQBlsUlMFVCWUYKkAZMxZAGdxlDMQBAG+TBP4B6RyJAAAAAElFTkSuQmCC");	}	.ace_scrollbar {	position: absolute;	right: 0;	bottom: 0;	z-index: 6;	}	.ace_scrollbar-inner {	position: absolute;	cursor: text;	left: 0;	top: 0;	}	.ace_scrollbar-v{	overflow-x: hidden;	overflow-y: scroll;	top: 0;	}	.ace_scrollbar-h {	overflow-x: scroll;	overflow-y: hidden;	left: 0;	}	.ace_print-margin {	position: absolute;	height: 100%;	}	.ace_text-input {	position: absolute;	z-index: 0;	width: 0.5em;	height: 1em;	opacity: 0;	background: transparent;	-moz-appearance: none;	appearance: none;	border: none;	resize: none;	outline: none;	overflow: hidden;	font: inherit;	padding: 0 1px;	margin: 0 -1px;	text-indent: -1em;	-ms-user-select: text;	-moz-user-select: text;	-webkit-user-select: text;	user-select: text;	}	.ace_text-input.ace_composition {	background: inherit;	color: inherit;	z-index: 1000;	opacity: 1;	text-indent: 0;	}	.ace_layer {	z-index: 1;	position: absolute;	overflow: hidden;	white-space: pre;	height: 100%;	width: 100%;	-moz-box-sizing: border-box;	-webkit-box-sizing: border-box;	box-sizing: border-box;	pointer-events: none;	}	.ace_gutter-layer {	position: relative;	width: auto;	text-align: right;	pointer-events: auto;	}	.ace_text-layer {	font: inherit !important;	}	.ace_cjk {	display: inline-block;	text-align: center;	}	.ace_cursor-layer {	z-index: 4;	}	.ace_cursor {	z-index: 4;	position: absolute;	-moz-box-sizing: border-box;	-webkit-box-sizing: border-box;	box-sizing: border-box;	border-left: 2px solid	}	.ace_slim-cursors .ace_cursor {	border-left-width: 1px;	}	.ace_overwrite-cursors .ace_cursor {	border-left-width: 0;	border-bottom: 1px solid;	}	.ace_hidden-cursors .ace_cursor {	opacity: 0.2;	}	.ace_smooth-blinking .ace_cursor {	-webkit-transition: opacity 0.18s;	transition: opacity 0.18s;	}	.ace_editor.ace_multiselect .ace_cursor {	border-left-width: 1px;	}	.ace_marker-layer .ace_step, .ace_marker-layer .ace_stack {	position: absolute;	z-index: 3;	}	.ace_marker-layer .ace_selection {	position: absolute;	z-index: 5;	}	.ace_marker-layer .ace_bracket {	position: absolute;	z-index: 6;	}	.ace_marker-layer .ace_active-line {	position: absolute;	z-index: 2;	}	.ace_marker-layer .ace_selected-word {	position: absolute;	z-index: 4;	-moz-box-sizing: border-box;	-webkit-box-sizing: border-box;	box-sizing: border-box;	}	.ace_line .ace_fold {	-moz-box-sizing: border-box;	-webkit-box-sizing: border-box;	box-sizing: border-box;	display: inline-block;	height: 11px;	margin-top: -2px;	vertical-align: middle;	background-image:	url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),	url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACJJREFUeNpi+P//fxgTAwPDBxDxD078RSX+YeEyDFMCIMAAI3INmXiwf2YAAAAASUVORK5CYII=");	background-repeat: no-repeat, repeat-x;	background-position: center center, top left;	color: transparent;	border: 1px solid black;	border-radius: 2px;	cursor: pointer;	pointer-events: auto;	}	.ace_dark .ace_fold {	}	.ace_fold:hover{	background-image:	url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),	url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACBJREFUeNpi+P//fz4TAwPDZxDxD5X4i5fLMEwJgAADAEPVDbjNw87ZAAAAAElFTkSuQmCC");	}	.ace_tooltip {	background-color: #FFF;	background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.1));	background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1));	border: 1px solid gray;	border-radius: 1px;	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);	color: black;	max-width: 100%;	padding: 3px 4px;	position: fixed;	z-index: 999999;	-moz-box-sizing: border-box;	-webkit-box-sizing: border-box;	box-sizing: border-box;	cursor: default;	white-space: pre;	word-wrap: break-word;	line-height: normal;	font-style: normal;	font-weight: normal;	letter-spacing: normal;	pointer-events: none;	}	.ace_folding-enabled > .ace_gutter-cell {	padding-right: 13px;	}	.ace_fold-widget {	-moz-box-sizing: border-box;	-webkit-box-sizing: border-box;	box-sizing: border-box;	margin: 0 -12px 0 1px;	display: none;	width: 11px;	vertical-align: top;	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42mWKsQ0AMAzC8ixLlrzQjzmBiEjp0A6WwBCSPgKAXoLkqSot7nN3yMwR7pZ32NzpKkVoDBUxKAAAAABJRU5ErkJggg==");	background-repeat: no-repeat;	background-position: center;	border-radius: 3px;	border: 1px solid transparent;	cursor: pointer;	}	.ace_folding-enabled .ace_fold-widget {	display: inline-block;   	}	.ace_fold-widget.ace_end {	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42m3HwQkAMAhD0YzsRchFKI7sAikeWkrxwScEB0nh5e7KTPWimZki4tYfVbX+MNl4pyZXejUO1QAAAABJRU5ErkJggg==");	}	.ace_fold-widget.ace_closed {	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAGCAYAAAAG5SQMAAAAOUlEQVR42jXKwQkAMAgDwKwqKD4EwQ26sSOkVWjgIIHAzPiCgaqiqnJHZnKICBERHN194O5b9vbLuAVRL+l0YWnZAAAAAElFTkSuQmCCXA==");	}	.ace_fold-widget:hover {	border: 1px solid rgba(0, 0, 0, 0.3);	background-color: rgba(255, 255, 255, 0.2);	box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);	}	.ace_fold-widget:active {	border: 1px solid rgba(0, 0, 0, 0.4);	background-color: rgba(0, 0, 0, 0.05);	box-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);	}	.ace_dark .ace_fold-widget {	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQIW2P4//8/AzoGEQ7oGCaLLAhWiSwB146BAQCSTPYocqT0AAAAAElFTkSuQmCC");	}	.ace_dark .ace_fold-widget.ace_end {	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAH0lEQVQIW2P4//8/AxQ7wNjIAjDMgC4AxjCVKBirIAAF0kz2rlhxpAAAAABJRU5ErkJggg==");	}	.ace_dark .ace_fold-widget.ace_closed {	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFCAYAAACAcVaiAAAAHElEQVQIW2P4//+/AxAzgDADlOOAznHAKgPWAwARji8UIDTfQQAAAABJRU5ErkJggg==");	}	.ace_dark .ace_fold-widget:hover {	box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);	background-color: rgba(255, 255, 255, 0.1);	}	.ace_dark .ace_fold-widget:active {	box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);	}	.ace_fold-widget.ace_invalid {	background-color: #FFB4B4;	border-color: #DE5555;	}	.ace_fade-fold-widgets .ace_fold-widget {	-webkit-transition: opacity 0.4s ease 0.05s;	transition: opacity 0.4s ease 0.05s;	opacity: 0;	}	.ace_fade-fold-widgets:hover .ace_fold-widget {	-webkit-transition: opacity 0.05s ease 0.05s;	transition: opacity 0.05s ease 0.05s;	opacity:1;	}	.ace_underline {	text-decoration: underline;	}	.ace_bold {	font-weight: bold;	}	.ace_nobold .ace_bold {	font-weight: normal;	}	.ace_italic {	font-style: italic;	}	.ace_error-marker {	background-color: rgba(255, 0, 0,0.2);	position: absolute;	z-index: 9;	}	.ace_highlight-marker {	background-color: rgba(255, 255, 0,0.2);	position: absolute;	z-index: 8;	}	</style><style>	    .error_widget_wrapper {	        background: inherit;	        color: inherit;	        border:none	    }	    .error_widget {	        border-top: solid 2px;	        border-bottom: solid 2px;	        margin: 5px 0;	        padding: 10px 40px;	        white-space: pre-wrap;	    }	    .error_widget.ace_error, .error_widget_arrow.ace_error{	        border-color: #ff5a5a	    }	    .error_widget.ace_warning, .error_widget_arrow.ace_warning{	        border-color: #F1D817	    }	    .error_widget.ace_info, .error_widget_arrow.ace_info{	        border-color: #5a5a5a	    }	    .error_widget.ace_ok, .error_widget_arrow.ace_ok{	        border-color: #5aaa5a	    }	    .error_widget_arrow {	        position: absolute;	        border: solid 5px;	        border-top-color: transparent!important;	        border-right-color: transparent!important;	        border-left-color: transparent!important;	        top: -5px;	    }	</style><style id="ace_searchbox">	.ace_search {	background-color: #ddd;	border: 1px solid #cbcbcb;	border-top: 0 none;	max-width: 325px;	overflow: hidden;	margin: 0;	padding: 4px;	padding-right: 6px;	padding-bottom: 0;	position: absolute;	top: 0px;	z-index: 99;	white-space: normal;	}	.ace_search.left {	border-left: 0 none;	border-radius: 0px 0px 5px 0px;	left: 0;	}	.ace_search.right {	border-radius: 0px 0px 0px 5px;	border-right: 0 none;	right: 0;	}	.ace_search_form, .ace_replace_form {	border-radius: 3px;	border: 1px solid #cbcbcb;	float: left;	margin-bottom: 4px;	overflow: hidden;	}	.ace_search_form.ace_nomatch {	outline: 1px solid red;	}	.ace_search_field {	background-color: white;	border-right: 1px solid #cbcbcb;	border: 0 none;	-webkit-box-sizing: border-box;	-moz-box-sizing: border-box;	box-sizing: border-box;	float: left;	height: 22px;	outline: 0;	padding: 0 7px;	width: 214px;	margin: 0;	}	.ace_searchbtn,	.ace_replacebtn {	background: #fff;	border: 0 none;	border-left: 1px solid #dcdcdc;	cursor: pointer;	float: left;	height: 22px;	margin: 0;	padding: 0;	position: relative;	}	.ace_searchbtn:last-child,	.ace_replacebtn:last-child {	border-top-right-radius: 3px;	border-bottom-right-radius: 3px;	}	.ace_searchbtn:disabled {	background: none;	cursor: default;	}	.ace_searchbtn {	background-position: 50% 50%;	background-repeat: no-repeat;	width: 27px;	}	.ace_searchbtn.prev {	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADFJREFUeNpiSU1NZUAC/6E0I0yACYskCpsJiySKIiY0SUZk40FyTEgCjGgKwTRAgAEAQJUIPCE+qfkAAAAASUVORK5CYII=);    	}	.ace_searchbtn.next {	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADRJREFUeNpiTE1NZQCC/0DMyIAKwGJMUAYDEo3M/s+EpvM/mkKwCQxYjIeLMaELoLMBAgwAU7UJObTKsvAAAAAASUVORK5CYII=);    	}	.ace_searchbtn_close {	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAcCAYAAABRVo5BAAAAZ0lEQVR42u2SUQrAMAhDvazn8OjZBilCkYVVxiis8H4CT0VrAJb4WHT3C5xU2a2IQZXJjiQIRMdkEoJ5Q2yMqpfDIo+XY4k6h+YXOyKqTIj5REaxloNAd0xiKmAtsTHqW8sR2W5f7gCu5nWFUpVjZwAAAABJRU5ErkJggg==) no-repeat 50% 0;	border-radius: 50%;	border: 0 none;	color: #656565;	cursor: pointer;	float: right;	font: 16px/16px Arial;	height: 14px;	margin: 5px 1px 9px 5px;	padding: 0;	text-align: center;	width: 14px;	}	.ace_searchbtn_close:hover {	background-color: #656565;	background-position: 50% 100%;	color: white;	}	.ace_replacebtn.prev {	width: 54px	}	.ace_replacebtn.next {	width: 27px	}	.ace_button {	margin-left: 2px;	cursor: pointer;	-webkit-user-select: none;	-moz-user-select: none;	-o-user-select: none;	-ms-user-select: none;	user-select: none;	overflow: hidden;	opacity: 0.7;	border: 1px solid rgba(100,100,100,0.23);	padding: 1px;	-moz-box-sizing: border-box;	box-sizing:    border-box;	color: black;	}	.ace_button:hover {	background-color: #eee;	opacity:1;	}	.ace_button:active {	background-color: #ddd;	}	.ace_button.checked {	border-color: #3399ff;	opacity:1;	}	.ace_search_options{	margin-bottom: 3px;	text-align: right;	-webkit-user-select: none;	-moz-user-select: none;	-o-user-select: none;	-ms-user-select: none;	user-select: none;	}</style></head>
 
-<body ng-controller="AppCtrl" ng-class="{ &#39;not_authenticated&#39;: Login.is_authenticated === false }" x-lvl-drop-target="true" x-on-drop="GUI.remove_port(elements)" ng-mousemove="Device_GUI.mouse_moved($event)" ng-mouseup="Device_GUI.end_selection($event)" scroll-by="window_scroll_by" scroll-to="scroll_to" class="ng-scope ports_page" id="0f822101-5ab7-6e0b-08e6-6521cfc9489c">
+<body ng-controller="AppCtrl">
 
   <!-- вроде как вытягивает body по вертикали (вроде как-то связано с fixed-head) -->
   <div class="body_stretcher"></div>
 
   <!-- показывается, когда приложение загружено -->
-  <div class="main_content" ng-show="application_view_ready">
+  <div class="main_content">
 
     <img src="./index_files/multiple.png" id="dragimage" class="">
 
-    <div class="fixed-head ng-isolate-scope" sg-output-height-to="top_panel_height" ng-mousedown="Device_GUI.start_selection($event)">
-
-      <div id="selection" ng-show="Device_GUI.selection.start" class="ng-hide"></div>
+    <div class="fixed-head" sg-output-height-to="top_panel_height" ng-mousedown="Device_GUI.start_selection($event)">
 
       <ul class="menu">
         <!-- логотип -->
@@ -82,995 +76,19 @@
       <!-- Строка статуса и сообщений об ошибках -->
       <div class="default-status-place">
         
-      <table class="status blank idle" sg-status="status" sg-status-codes="idle, busy, error" style="opacity: 0;">
-          <tbody><tr>
-            <td class="icon">
-              <!-- крутилка "крутится, идёт процесс" -->
-              <div class="la-ball-clip-rotate busy"><div></div></div>
-
-              <!-- иконка ошибки -->
-              <span class="mdi mdi-circle-error"></span>
-
-              <!-- иконка "идёт процесс" с прогресс баром -->
-              <div class="round_progress_bar ng-hide" ng-show="countdown">
-                <div class="progress ng-binding"></div>
-                <!-- color="#2285e1" -->
-                <div class="round-progress-wrapper ng-isolate-scope" round-progress="" max="waiting_for_connection_estimated" current="waiting_for_connection_elapsed" color="#ffffff" bgcolor="#007BED" radius="12" stroke="4" semi="false" style="width: auto; position: relative; padding-bottom: 0px;">
-<svg class="round-progress" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="top: 0px; left: 0px; position: static; width: 24px; height: 24px; overflow: hidden;">
-<circle fill="none" cx="12" cy="12" r="10" style="stroke: rgb(0, 123, 237); stroke-width: 4px;"></circle>
-<path fill="none" transform="" d="M 12 2 A 10 10 0 0 0 12 2" style="stroke: rgb(255, 255, 255); stroke-width: 4px; stroke-linecap: butt;"></path>
-<g ng-transclude="">
-                </g>
-</svg>
-</div>
-              </div>
-            </td>
-
-            <td>
-              <label></label>
-            </td>
-
-            <td class="close_container">
-              <span class="close">×</span>
-            </td>
-          </tr>
-        </tbody></table></div>
-
-      <!-- Показывается предупреждение "Вы собираетесь покинуть страницу", если что-то выполняется -->
-      <div class="navigating-from-page-confirmation ng-binding ng-hide" ng-show="show_navigation_confirmation()">
-        Вы собираетесь покинуть страницу, на которой не закончена работа. Вы уверены, что желаете отменить всё и уйти с этой страницы?
-        <button class="-rounded -green -small ng-scope" ng-click="navigate_away()" translate="">Да</button>
-        <button class="-rounded -small cancel ng-scope" ng-click="dont_navigate_away()" translate="">Отмена</button>
       </div>
 
       <!-- Панель устройства -->
       <div class="device_container">
 
         <!-- Картинка свича -->
-        <table class="device" ng-class="{ hidden: !Device_GUI.ready }"><tbody><tr>
-          <td class="device-left"></td>
-          <td class="device-body">
-            <div class="ports">
-              <!-- Группы из 12-ти портов -->
-              <!-- ngRepeat: group in groups --><div class="port-group ng-scope" ng-repeat="group in groups" ng-style="{ width: (ceiling(group.length / 2.0) * Device_GUI.port_width + (ceiling(group.length / 2.0) - 1) * Device_GUI.inter_port_spacing) + &#39;px&#39;, &#39;margin-right&#39;: (($last &amp;&amp; &#39;0&#39;) || Device_GUI.port_group_spacing) + &#39;px&#39; }" style="width: 239px; margin-right: 10px;">
-              <!-- !$last &&  -->
-                <!-- Порт № {{port.id}} -->
-                <!-- Этот элемент, вероятно, должен быть примерно идентичен такому же элементу для 40-гигабитных оптических портов -->
-                <!-- ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="2" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="40d0c108-f28a-d53d-0520-32e8367ad972" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">2</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope no_sfp" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="4" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="c5d56c79-4e82-084a-7e49-438b4ef7e8b0" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">4</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope no_sfp up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="6" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="9ae09649-e1f9-3733-5999-a8b293e97025" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">6</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="8" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="5cc42e56-9ce9-a089-3ba3-02545d358f03" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">8</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope no_sfp up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="10" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="9b2e598b-5b68-3aaf-e161-b44a76d3b374" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">10</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="12" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="feab4047-502a-b25a-341c-eb2c221699a7" draggable="true">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">12</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd no_sfp up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="1" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="b7ca7a28-3e2c-f115-f178-f685a2aa748b" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">1</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="3" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="a37a8813-c72c-c189-c9e1-bdf37b7905d7" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">3</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="5" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="5b88c056-a668-4691-09de-edf81f2c4286" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">5</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="7" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="6f9f2f33-78e5-3172-af1b-8262c0dcb616" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">7</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd no_sfp up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="9" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="36b45892-ee67-da99-a94e-eab7551ab05e" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">9</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd no_sfp up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="11" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="dbc0baf5-03e9-e1fa-a093-b900323d6079" draggable="true">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">11</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first -->
-              </div><!-- end ngRepeat: group in groups --><div class="port-group ng-scope" ng-repeat="group in groups" ng-style="{ width: (ceiling(group.length / 2.0) * Device_GUI.port_width + (ceiling(group.length / 2.0) - 1) * Device_GUI.inter_port_spacing) + &#39;px&#39;, &#39;margin-right&#39;: (($last &amp;&amp; &#39;0&#39;) || Device_GUI.port_group_spacing) + &#39;px&#39; }" style="width: 239px; margin-right: 10px;">
-              <!-- !$last &&  -->
-                <!-- Порт № {{port.id}} -->
-                <!-- Этот элемент, вероятно, должен быть примерно идентичен такому же элементу для 40-гигабитных оптических портов -->
-                <!-- ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope no_sfp up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="14" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="706309fd-6a5c-9f31-fa73-e0bb2cacb67f" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">14</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="16" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="7ecfc8dc-233c-892e-aeab-952cd92b3c6e" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">16</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="18" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="4287fd44-bbc1-42fa-853b-a76895014f70" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">18</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope no_sfp" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="20" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="7115f35f-7e04-6ec6-5cd4-587ffdc3fa94" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">20</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope no_sfp" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="22" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="7553389f-617a-3691-5eb3-116abdbbe342" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">22</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope no_sfp" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="24" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="c2675fe4-e674-14b6-f353-14be7f106d9d" draggable="true">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">24</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd no_sfp" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="13" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="3bd15118-fcc3-00ad-fe3e-c4b4782dee35" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">13</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="15" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="3748f2b2-9200-3161-cb35-59b1f6f07574" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">15</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="17" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="f3079f2c-9af1-4b4d-bc6a-8c5f1c2c2d71" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">17</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="19" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="56be8288-4164-236a-88d5-701c1b83cf76" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">19</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd no_sfp up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="21" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="c9efb6a3-2643-0de2-fa58-38b9ac565bb6" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">21</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="23" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="d5d31da5-c213-2c69-d0fd-57ca301abae7" draggable="true">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">23</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first -->
-              </div><!-- end ngRepeat: group in groups --><div class="port-group ng-scope" ng-repeat="group in groups" ng-style="{ width: (ceiling(group.length / 2.0) * Device_GUI.port_width + (ceiling(group.length / 2.0) - 1) * Device_GUI.inter_port_spacing) + &#39;px&#39;, &#39;margin-right&#39;: (($last &amp;&amp; &#39;0&#39;) || Device_GUI.port_group_spacing) + &#39;px&#39; }" style="width: 239px; margin-right: 10px;">
-              <!-- !$last &&  -->
-                <!-- Порт № {{port.id}} -->
-                <!-- Этот элемент, вероятно, должен быть примерно идентичен такому же элементу для 40-гигабитных оптических портов -->
-                <!-- ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="26" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="00abca44-18b6-9f52-6263-eabb5f56d092" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">26</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope no_sfp" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="28" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="9605304b-ee60-746b-d685-0b21ccba6235" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">28</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope no_sfp up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="30" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="0ef01e04-4373-c70a-7186-54087e22678f" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">30</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="32" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="9dd7190e-bf15-6129-0472-f7f3498e9979" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">32</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="34" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="703d8e7f-fc72-38aa-c3dc-2e1c95fbc973" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">34</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="36" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="49bc6a2d-400b-4e18-9b03-c3bd7ee8c492" draggable="true">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">36</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="25" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="22552e4c-2170-2c0f-0792-9c4535ef0127" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">25</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="27" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="88c7c126-3e58-993c-ff71-0690b9b40781" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">27</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="29" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="499ea79d-08fb-13a0-921b-6b2d2c125087" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">29</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="31" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="03ee33d4-d064-af61-e40c-9c057e7c30fb" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">31</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="33" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="80059ef6-82f2-ae87-9334-df0a9c5e7d8d" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">33</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="35" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="0ce34ca6-c68f-16e9-6efd-a0ce1556e16a" draggable="true">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">35</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first -->
-              </div><!-- end ngRepeat: group in groups --><div class="port-group ng-scope" ng-repeat="group in groups" ng-style="{ width: (ceiling(group.length / 2.0) * Device_GUI.port_width + (ceiling(group.length / 2.0) - 1) * Device_GUI.inter_port_spacing) + &#39;px&#39;, &#39;margin-right&#39;: (($last &amp;&amp; &#39;0&#39;) || Device_GUI.port_group_spacing) + &#39;px&#39; }" style="width: 239px; margin-right: 0px;">
-              <!-- !$last &&  -->
-                <!-- Порт № {{port.id}} -->
-                <!-- Этот элемент, вероятно, должен быть примерно идентичен такому же элементу для 40-гигабитных оптических портов -->
-                <!-- ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope no_sfp up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="38" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="cd7d6f2f-7f94-896f-8220-0d3fccd92c5e" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">38</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="40" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="7f0a1a07-8aa7-b5e6-60b5-0a0431ebc240" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">40</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="42" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="cf95b1e6-fdc1-c4e9-0809-37eb2fae8e77" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">42</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="44" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="12fa7e5a-908a-c347-dc84-4f65007bce95" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">44</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="46" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="1385b7e6-c148-41de-c24e-4bcb06b06b6b" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">46</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="48" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="351569a4-8edd-d0dc-df90-a5d3972d295c" draggable="true">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &lt; group.length / 2">48</span><!-- end ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="37" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="80d71447-4ff9-5874-9670-93045a20be89" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">37</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd no_sfp" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="39" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="a323891f-c3d5-1932-9067-c2dc6c22ba72" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">39</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd no_sfp up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="41" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="ea5606ad-52b3-7622-bb62-97b666dcdc49" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">41</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="43" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="8e15bf85-e752-d9d0-f852-c2595edf415f" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">43</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd up" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="45" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="0223ad99-9724-68a1-ca0e-dbf6cf98d2eb" draggable="true" style="margin-right: 1px;">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">45</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first --><div class="port ng-scope ng-isolate-scope odd" ng-repeat="port in group | odd_first" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="47" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(group.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="fae62e77-ebf0-75ca-4626-0a10c93d6302" draggable="true">
-
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < group.length / 2 -->
-
-                  <!-- Дырка -->
-                  <div class="hole">
-                    <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                    <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                  </div>
-
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= group.length / 2 --><span class="num ng-binding ng-scope" ng-if="$index &gt;= group.length / 2">47</span><!-- end ngIf: $index >= group.length / 2 -->
-                </div><!-- end ngRepeat: port in group | odd_first -->
-              </div><!-- end ngRepeat: group in groups -->
-
-              <!-- Четыре сорокагигабитных оптических порта справа -->
-
-              <!-- Группы из 4-рёх портов -->
-              <!-- ngIf: model.joint_ports --><div ng-if="model.joint_ports" class="port-group joint-ports ng-scope" ng-show="model.joint_ports.not_empty()" ng-style="{ width: (Device_GUI.joint_port_width() + Device_GUI.joint_port_group_spacing) * ceiling(model.joint_ports.length / 2.0) - Device_GUI.joint_port_group_spacing + &#39;px&#39;, &#39;margin-left&#39;: Device_GUI.port_group_spacing + &#39;px&#39; }" style="width: 181px; margin-left: 10px;">
-
-                <!-- ngRepeat: joint_port in model.joint_ports | odd_first --><div class="joint-port ng-scope up" ng-repeat="joint_port in model.joint_ports | odd_first" ng-style="{ width: Device_GUI.joint_port_width() + &#39;px&#39;, &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(model.joint_ports.length / 2.0) - 1 &amp;&amp; Device_GUI.joint_port_group_spacing) + &#39;px&#39; }" ng-class="{ up: Port_view.is_joint_port_up(joint_port) }" style="width: 87px; margin-right: 7px;">
-
-                  <!-- Номер 40-гигабитного порта -->
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < model.joint_ports.length / 2 --><div class="joint-port-number ng-binding ng-scope" ng-if="$index &lt; model.joint_ports.length / 2">50</div><!-- end ngIf: $index < model.joint_ports.length / 2 -->
-
-                  <!-- Группа из 4-рёх портов -->
-                  <!-- (40-гигабитный оптический порт) -->
-                  <div class="port-group" ng-class="{ joint: joint_port.mode == &#39;40G&#39; }">
-
-                    <!-- Этот элемент, вероятно, должен быть примерно идентичен такому же элементу для обычных портов -->
-                    <!-- ngRepeat: port in joint_port.ports --><div class="port inside_joint_port ng-scope ng-isolate-scope odd no_sfp" ng-repeat="port in joint_port.ports" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="53" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(joint_port.ports.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="3982c17f-7939-04f0-bc50-7397ebb95bb8" draggable="true" style="margin-right: 1px;">
-
-                      <!-- Нечётные порты - сверху -->
-                      <!-- ngIf: port.id % 2 --><span class="num ng-binding ng-scope" ng-if="port.id % 2">1</span><!-- end ngIf: port.id % 2 --><!--
-
-                      --><!-- Дырка --><!--
-                      --><div class="hole">
-                        <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                        <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                      </div><!--
-
-                      --><!-- Чётные порты - снизу --><!--
-                      --><!-- ngIf: port.id % 2 == 0 -->
-                    </div><!-- end ngRepeat: port in joint_port.ports --><div class="port inside_joint_port ng-scope ng-isolate-scope no_sfp up" ng-repeat="port in joint_port.ports" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="54" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(joint_port.ports.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="134c5fac-5382-3149-732b-7ce95573675e" draggable="true">
-
-                      <!-- Нечётные порты - сверху -->
-                      <!-- ngIf: port.id % 2 --><!--
-
-                      --><!-- Дырка --><!--
-                      --><div class="hole">
-                        <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                        <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                      </div><!--
-
-                      --><!-- Чётные порты - снизу --><!--
-                      --><!-- ngIf: port.id % 2 == 0 --><span class="num ng-binding ng-scope" ng-if="port.id % 2 == 0">2</span><!-- end ngIf: port.id % 2 == 0 -->
-                    </div><!-- end ngRepeat: port in joint_port.ports --><div class="port inside_joint_port ng-scope ng-isolate-scope odd no_sfp" ng-repeat="port in joint_port.ports" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="55" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(joint_port.ports.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="49198c04-5640-e7f3-a39c-21a60cc2afee" draggable="true" style="margin-right: 1px;">
-
-                      <!-- Нечётные порты - сверху -->
-                      <!-- ngIf: port.id % 2 --><span class="num ng-binding ng-scope" ng-if="port.id % 2">3</span><!-- end ngIf: port.id % 2 --><!--
-
-                      --><!-- Дырка --><!--
-                      --><div class="hole">
-                        <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                        <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                      </div><!--
-
-                      --><!-- Чётные порты - снизу --><!--
-                      --><!-- ngIf: port.id % 2 == 0 -->
-                    </div><!-- end ngRepeat: port in joint_port.ports --><div class="port inside_joint_port ng-scope ng-isolate-scope no_sfp" ng-repeat="port in joint_port.ports" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="56" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(joint_port.ports.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="b45f1b99-7e54-c4ff-71b7-4c2809632b88" draggable="true">
-
-                      <!-- Нечётные порты - сверху -->
-                      <!-- ngIf: port.id % 2 --><!--
-
-                      --><!-- Дырка --><!--
-                      --><div class="hole">
-                        <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                        <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                      </div><!--
-
-                      --><!-- Чётные порты - снизу --><!--
-                      --><!-- ngIf: port.id % 2 == 0 --><span class="num ng-binding ng-scope" ng-if="port.id % 2 == 0">4</span><!-- end ngIf: port.id % 2 == 0 -->
-                    </div><!-- end ngRepeat: port in joint_port.ports -->
-                  </div>
-
-                  <!-- Номер 40-гигабитного порта -->
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= model.joint_ports.length / 2 -->
-                </div><!-- end ngRepeat: joint_port in model.joint_ports | odd_first --><div class="joint-port ng-scope up" ng-repeat="joint_port in model.joint_ports | odd_first" ng-style="{ width: Device_GUI.joint_port_width() + &#39;px&#39;, &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(model.joint_ports.length / 2.0) - 1 &amp;&amp; Device_GUI.joint_port_group_spacing) + &#39;px&#39; }" ng-class="{ up: Port_view.is_joint_port_up(joint_port) }" style="width: 87px;">
-
-                  <!-- Номер 40-гигабитного порта -->
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < model.joint_ports.length / 2 --><div class="joint-port-number ng-binding ng-scope" ng-if="$index &lt; model.joint_ports.length / 2">52</div><!-- end ngIf: $index < model.joint_ports.length / 2 -->
-
-                  <!-- Группа из 4-рёх портов -->
-                  <!-- (40-гигабитный оптический порт) -->
-                  <div class="port-group" ng-class="{ joint: joint_port.mode == &#39;40G&#39; }">
-
-                    <!-- Этот элемент, вероятно, должен быть примерно идентичен такому же элементу для обычных портов -->
-                    <!-- ngRepeat: port in joint_port.ports --><div class="port inside_joint_port ng-scope ng-isolate-scope odd" ng-repeat="port in joint_port.ports" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="61" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(joint_port.ports.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="39d385be-8d3f-d37c-fafa-c94d5a4757e1" draggable="true" style="margin-right: 1px;">
-
-                      <!-- Нечётные порты - сверху -->
-                      <!-- ngIf: port.id % 2 --><span class="num ng-binding ng-scope" ng-if="port.id % 2">1</span><!-- end ngIf: port.id % 2 --><!--
-
-                      --><!-- Дырка --><!--
-                      --><div class="hole">
-                        <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                        <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                      </div><!--
-
-                      --><!-- Чётные порты - снизу --><!--
-                      --><!-- ngIf: port.id % 2 == 0 -->
-                    </div><!-- end ngRepeat: port in joint_port.ports --><div class="port inside_joint_port ng-scope ng-isolate-scope no_sfp" ng-repeat="port in joint_port.ports" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="62" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(joint_port.ports.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="798e0cd7-27da-65c2-dd1d-e3d0fb6ca9b6" draggable="true">
-
-                      <!-- Нечётные порты - сверху -->
-                      <!-- ngIf: port.id % 2 --><!--
-
-                      --><!-- Дырка --><!--
-                      --><div class="hole">
-                        <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                        <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                      </div><!--
-
-                      --><!-- Чётные порты - снизу --><!--
-                      --><!-- ngIf: port.id % 2 == 0 --><span class="num ng-binding ng-scope" ng-if="port.id % 2 == 0">2</span><!-- end ngIf: port.id % 2 == 0 -->
-                    </div><!-- end ngRepeat: port in joint_port.ports --><div class="port inside_joint_port ng-scope ng-isolate-scope odd up" ng-repeat="port in joint_port.ports" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="63" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(joint_port.ports.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="cd3c7c28-dcf3-cc24-9ae0-40cd0909573d" draggable="true" style="margin-right: 1px;">
-
-                      <!-- Нечётные порты - сверху -->
-                      <!-- ngIf: port.id % 2 --><span class="num ng-binding ng-scope" ng-if="port.id % 2">3</span><!-- end ngIf: port.id % 2 --><!--
-
-                      --><!-- Дырка --><!--
-                      --><div class="hole">
-                        <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                        <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                      </div><!--
-
-                      --><!-- Чётные порты - снизу --><!--
-                      --><!-- ngIf: port.id % 2 == 0 -->
-                    </div><!-- end ngRepeat: port in joint_port.ports --><div class="port inside_joint_port ng-scope ng-isolate-scope" ng-repeat="port in joint_port.ports" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="64" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(joint_port.ports.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="827a3c93-6ee8-b981-3b95-c8147689b8d8" draggable="true">
-
-                      <!-- Нечётные порты - сверху -->
-                      <!-- ngIf: port.id % 2 --><!--
-
-                      --><!-- Дырка --><!--
-                      --><div class="hole">
-                        <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                        <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                      </div><!--
-
-                      --><!-- Чётные порты - снизу --><!--
-                      --><!-- ngIf: port.id % 2 == 0 --><span class="num ng-binding ng-scope" ng-if="port.id % 2 == 0">4</span><!-- end ngIf: port.id % 2 == 0 -->
-                    </div><!-- end ngRepeat: port in joint_port.ports -->
-                  </div>
-
-                  <!-- Номер 40-гигабитного порта -->
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= model.joint_ports.length / 2 -->
-                </div><!-- end ngRepeat: joint_port in model.joint_ports | odd_first --><div class="joint-port ng-scope up" ng-repeat="joint_port in model.joint_ports | odd_first" ng-style="{ width: Device_GUI.joint_port_width() + &#39;px&#39;, &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(model.joint_ports.length / 2.0) - 1 &amp;&amp; Device_GUI.joint_port_group_spacing) + &#39;px&#39; }" ng-class="{ up: Port_view.is_joint_port_up(joint_port) }" style="width: 87px; margin-right: 7px;">
-
-                  <!-- Номер 40-гигабитного порта -->
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < model.joint_ports.length / 2 -->
-
-                  <!-- Группа из 4-рёх портов -->
-                  <!-- (40-гигабитный оптический порт) -->
-                  <div class="port-group" ng-class="{ joint: joint_port.mode == &#39;40G&#39; }">
-
-                    <!-- Этот элемент, вероятно, должен быть примерно идентичен такому же элементу для обычных портов -->
-                    <!-- ngRepeat: port in joint_port.ports --><div class="port inside_joint_port ng-scope ng-isolate-scope odd up" ng-repeat="port in joint_port.ports" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="49" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(joint_port.ports.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="7542c175-8ef8-9142-5ed2-213351919fdc" draggable="true" style="margin-right: 1px;">
-
-                      <!-- Нечётные порты - сверху -->
-                      <!-- ngIf: port.id % 2 --><span class="num ng-binding ng-scope" ng-if="port.id % 2">1</span><!-- end ngIf: port.id % 2 --><!--
-
-                      --><!-- Дырка --><!--
-                      --><div class="hole">
-                        <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                        <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                      </div><!--
-
-                      --><!-- Чётные порты - снизу --><!--
-                      --><!-- ngIf: port.id % 2 == 0 -->
-                    </div><!-- end ngRepeat: port in joint_port.ports --><div class="port inside_joint_port ng-scope ng-isolate-scope up" ng-repeat="port in joint_port.ports" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="50" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(joint_port.ports.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="cc6463f6-4168-ba13-c2eb-3a2e14f825d5" draggable="true">
-
-                      <!-- Нечётные порты - сверху -->
-                      <!-- ngIf: port.id % 2 --><!--
-
-                      --><!-- Дырка --><!--
-                      --><div class="hole">
-                        <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                        <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                      </div><!--
-
-                      --><!-- Чётные порты - снизу --><!--
-                      --><!-- ngIf: port.id % 2 == 0 --><span class="num ng-binding ng-scope" ng-if="port.id % 2 == 0">2</span><!-- end ngIf: port.id % 2 == 0 -->
-                    </div><!-- end ngRepeat: port in joint_port.ports --><div class="port inside_joint_port ng-scope ng-isolate-scope odd up" ng-repeat="port in joint_port.ports" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="51" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(joint_port.ports.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="0830752f-aa65-959e-d7a6-7fe83c344a8e" draggable="true" style="margin-right: 1px;">
-
-                      <!-- Нечётные порты - сверху -->
-                      <!-- ngIf: port.id % 2 --><span class="num ng-binding ng-scope" ng-if="port.id % 2">3</span><!-- end ngIf: port.id % 2 --><!--
-
-                      --><!-- Дырка --><!--
-                      --><div class="hole">
-                        <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                        <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                      </div><!--
-
-                      --><!-- Чётные порты - снизу --><!--
-                      --><!-- ngIf: port.id % 2 == 0 -->
-                    </div><!-- end ngRepeat: port in joint_port.ports --><div class="port inside_joint_port ng-scope ng-isolate-scope no_sfp" ng-repeat="port in joint_port.ports" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="52" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(joint_port.ports.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="51acbc65-3078-3f7b-ba08-a3b92cc55ab0" draggable="true">
-
-                      <!-- Нечётные порты - сверху -->
-                      <!-- ngIf: port.id % 2 --><!--
-
-                      --><!-- Дырка --><!--
-                      --><div class="hole">
-                        <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                        <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                      </div><!--
-
-                      --><!-- Чётные порты - снизу --><!--
-                      --><!-- ngIf: port.id % 2 == 0 --><span class="num ng-binding ng-scope" ng-if="port.id % 2 == 0">4</span><!-- end ngIf: port.id % 2 == 0 -->
-                    </div><!-- end ngRepeat: port in joint_port.ports -->
-                  </div>
-
-                  <!-- Номер 40-гигабитного порта -->
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= model.joint_ports.length / 2 --><div class="joint-port-number ng-binding ng-scope" ng-if="$index &gt;= model.joint_ports.length / 2">49</div><!-- end ngIf: $index >= model.joint_ports.length / 2 -->
-                </div><!-- end ngRepeat: joint_port in model.joint_ports | odd_first --><div class="joint-port ng-scope up" ng-repeat="joint_port in model.joint_ports | odd_first" ng-style="{ width: Device_GUI.joint_port_width() + &#39;px&#39;, &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(model.joint_ports.length / 2.0) - 1 &amp;&amp; Device_GUI.joint_port_group_spacing) + &#39;px&#39; }" ng-class="{ up: Port_view.is_joint_port_up(joint_port) }" style="width: 87px;">
-
-                  <!-- Номер 40-гигабитного порта -->
-                  <!-- Нечётные порты - сверху -->
-                  <!-- ngIf: $index < model.joint_ports.length / 2 -->
-
-                  <!-- Группа из 4-рёх портов -->
-                  <!-- (40-гигабитный оптический порт) -->
-                  <div class="port-group" ng-class="{ joint: joint_port.mode == &#39;40G&#39; }">
-
-                    <!-- Этот элемент, вероятно, должен быть примерно идентичен такому же элементу для обычных портов -->
-                    <!-- ngRepeat: port in joint_port.ports --><div class="port inside_joint_port ng-scope ng-isolate-scope odd no_sfp" ng-repeat="port in joint_port.ports" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="57" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(joint_port.ports.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="4dd48e8b-7569-da2b-3e87-fc0be84f0b94" draggable="true" style="margin-right: 1px;">
-
-                      <!-- Нечётные порты - сверху -->
-                      <!-- ngIf: port.id % 2 --><span class="num ng-binding ng-scope" ng-if="port.id % 2">1</span><!-- end ngIf: port.id % 2 --><!--
-
-                      --><!-- Дырка --><!--
-                      --><div class="hole">
-                        <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                        <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                      </div><!--
-
-                      --><!-- Чётные порты - снизу --><!--
-                      --><!-- ngIf: port.id % 2 == 0 -->
-                    </div><!-- end ngRepeat: port in joint_port.ports --><div class="port inside_joint_port ng-scope ng-isolate-scope no_sfp" ng-repeat="port in joint_port.ports" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="58" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(joint_port.ports.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="7d258de2-23cf-583a-1f60-1fd3c51aef50" draggable="true">
-
-                      <!-- Нечётные порты - сверху -->
-                      <!-- ngIf: port.id % 2 --><!--
-
-                      --><!-- Дырка --><!--
-                      --><div class="hole">
-                        <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                        <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                      </div><!--
-
-                      --><!-- Чётные порты - снизу --><!--
-                      --><!-- ngIf: port.id % 2 == 0 --><span class="num ng-binding ng-scope" ng-if="port.id % 2 == 0">2</span><!-- end ngIf: port.id % 2 == 0 -->
-                    </div><!-- end ngRepeat: port in joint_port.ports --><div class="port inside_joint_port ng-scope ng-isolate-scope odd up" ng-repeat="port in joint_port.ports" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="59" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(joint_port.ports.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="d5cd39c3-224f-e7fa-92c4-e61fb1a85592" draggable="true" style="margin-right: 1px;">
-
-                      <!-- Нечётные порты - сверху -->
-                      <!-- ngIf: port.id % 2 --><span class="num ng-binding ng-scope" ng-if="port.id % 2">3</span><!-- end ngIf: port.id % 2 --><!--
-
-                      --><!-- Дырка --><!--
-                      --><div class="hole">
-                        <div class="lamp state-lamp up" ng-class="{ up: stats.ports[port.id].state }"></div>
-                        <div class="lamp data-lamp active" ng-class="{ active: stats.ports[port.id].active }"></div>
-                      </div><!--
-
-                      --><!-- Чётные порты - снизу --><!--
-                      --><!-- ngIf: port.id % 2 == 0 -->
-                    </div><!-- end ngRepeat: port in joint_port.ports --><div class="port inside_joint_port ng-scope ng-isolate-scope no_sfp" ng-repeat="port in joint_port.ports" ng-class="{ inactive: !Login.is_authenticated, selected: view.ports[port.id].selected, odd: port.id % 2, selected_in: view.ports[port.id].selectedIn, selected_out: view.ports[port.id].selectedOut, in: view.ports[port.id].in, out: view.ports[port.id].out, up: stats.ports[port.id].state, no_sfp: !stats.ports[port.id].sfp_present }" x-lvl-draggable="Login.is_authenticated" data-port-id="60" x-multiple="Device_GUI.multiple_ports_selected" ng-click="block_event($event)" ng-style="{ &#39;margin-right&#39;: (!$last &amp;&amp; $index != ceiling(joint_port.ports.length / 2.0) - 1 &amp;&amp; Device_GUI.inter_port_spacing) + &#39;px&#39; }" id="6e90bab2-12c0-e347-aceb-916f942296bc" draggable="true">
-
-                      <!-- Нечётные порты - сверху -->
-                      <!-- ngIf: port.id % 2 --><!--
-
-                      --><!-- Дырка --><!--
-                      --><div class="hole">
-                        <div class="lamp state-lamp" ng-class="{ up: stats.ports[port.id].state }"></div>
-                        <div class="lamp data-lamp" ng-class="{ active: stats.ports[port.id].active }"></div>
-                      </div><!--
-
-                      --><!-- Чётные порты - снизу --><!--
-                      --><!-- ngIf: port.id % 2 == 0 --><span class="num ng-binding ng-scope" ng-if="port.id % 2 == 0">4</span><!-- end ngIf: port.id % 2 == 0 -->
-                    </div><!-- end ngRepeat: port in joint_port.ports -->
-                  </div>
-
-                  <!-- Номер 40-гигабитного порта -->
-                  <!-- Чётные порты - снизу -->
-                  <!-- ngIf: $index >= model.joint_ports.length / 2 --><div class="joint-port-number ng-binding ng-scope" ng-if="$index &gt;= model.joint_ports.length / 2">51</div><!-- end ngIf: $index >= model.joint_ports.length / 2 -->
-                </div><!-- end ngRepeat: joint_port in model.joint_ports | odd_first -->
-              </div><!-- end ngIf: model.joint_ports -->
-            </div>
-          </td>
-          <td class="device-right"></td>
-        </tr></tbody></table>
+  
       </div>
       <div class="login-form-head-stretcher"></div>
     </div>
 
     <!-- Содержимое -->
-    <section class="layout" ng-show="Login.is_authenticated" ng-class="{ nodesign: thispage.nodesign }">
+    <section class="layout" ng-class="{ nodesign: thispage.nodesign }">
 
       <!-- Текущая страница -->
       <div class="paper minwidth maxwidth" ng-class="{&#39;-nopaddings&#39;: this_page.nopaddings}">
@@ -1081,29 +99,33 @@
         </hgroup>
 
         <!-- Содержимое страницы -->
-        <article ng-view="" id="view" autoscroll="true" class="ng-scope">
+        <article autoscroll="true" class="ng-scope">
   
+          
+    <div class="aggregator-graphics" ng-controller="aggregatorGraphicsCtrl">
 
-  
-  
-  
-  
-    <div class="aggregator-graphics">
+    <div class="main-graph-wrapper clearfix -clearfix">  
+      <!-- Aside panel with optional ports navigation -->
+      <aside>
+        
+        <a ng-click="reload()">Reload</a>
 
-    <!-- Aside panel with optional ports navigation -->
-    <aside>
-      <div class="">
-        <input type="checkbox" onClick="toggleEmpty()"> Суммировать
+        <div class="">
+          <input type="checkbox" onClick="toggleEmpty()"> Суммировать
+        </div>
+
+        <div class="port-navigator">
+          <div ng-repeat="port in ports track by $index" class="port port-legend">
+            <input type="checkbox" ng-model="port.checked" /> {{port.num}} <span class="colorline"></span>
+          </div>
+        </div>
+        
+      </aside>
+
+      <!-- Main graphic -->
+      <div class="main-graphic" ng-show="hasSelectedPorts">
       </div>
-      
-      <div class="port-navigator">
-        …
-      </div>  
-    </aside>
-
-    <!-- Main graphic -->
-    <div class="main-graphic">
-    </div>
+    </div>  
 
     <!-- Toolbar with work modes -->
     <div class="toolbar shift-left">
@@ -1129,11 +151,36 @@
       <div class="point-wrapper point-two"><div class="point"></div></div>
     </div>    
 
+
+    <div class="ports-microcharts">
+      <div ng-repeat="port in ports track by $index" class="port-wrapper port-wrapper{{port.num}}">
+        <div class="port-name">
+        <input type="checkbox" ng-model="port.checked" /> {{port.num}}
+        </div>
+        <div class="port-graph port-graph{{port.num}}" ng-init="microChart(port)">
+        </div>
+      </div>
+    </div>   
+    
+      
+      
     <!-- All ports microcharts -->
     <div class="ports-microcharts">
     </div>   
     
   </div>
+  
+  
+  <!-- Scripts -->
+  <script src="./index_files/lib/angular/angular.js"></script>
+  <script src="./index_files/lib/angular-sanitize/angular-sanitize.js"></script>
+  <script src="./index_files/lib/angular-messages/angular-messages.js"></script>
+  <script src="./index_files/lib/angular-animate/angular-animate.js"></script>
+  <script src="./index_files/lib/angular-route/angular-route.js"></script>
+  <script src="./index_files/lib/angular-translate/angular-translate.js"></script>
+  <script src="./index_files/roundProgress.min.js"></script>
+
+  <script src="./index_files/configuration.js"></script>
   
   
   
@@ -1158,17 +205,7 @@
     </footer>
   </div>
 
-  <!-- Scripts -->
-  <script src="./index_files/angular.min.js"></script>
-  <script src="./index_files/angular-sanitize.min.js"></script>
-  <script src="./index_files/angular-messages.min.js"></script>
-  <script src="./index_files/angular-animate.min.js"></script>
-  <script src="./index_files/ui-bootstrap-tpls.js"></script>
-  <script src="./index_files/angular-translate.min.js"></script>
-  <script src="./index_files/roundProgress.min.js"></script>
-  <script src="./index_files/moment-with-locales.min.js"></script>
 
-  <script src="./index_files/configuration.js"></script>
 
   <noscript>
     &lt;h1&gt;

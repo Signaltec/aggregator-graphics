@@ -1,0 +1,332 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="../bower_components/sega2/sega2.css" />
+  <title>Aggregator graphics playground</title>
+</head>
+
+  
+<style>
+
+  .aggregator-graphics {background: white; padding:3em;}
+  
+  .toolbar {padding-left:70px; margin-bottom:1em}
+  .toolbar span {margin-right: 1em;}
+  .toolbar span a {padding: 0 5px;}
+  
+  .port-wrapper {height:30px; line-height: 30px; width:800px; background: white; border-bottom: solid 1px #eee; padding-left: 20px; position:relative}
+  .port-wrapper .port-name {position:absolute; width:40px;}
+  
+  .port-graph {position:absolute; left: 70px; height:30px; line-height: 30px; width:750px;}
+
+  .dot {
+    fill: rgba(255,0,0,0.4);
+  }
+  
+  .time-navigator {height: 30px; position:relative; width:750px; padding-left:70px}
+  .time-navigator-line {width:750px; position:absolute; top:10px; height:2px; background:#ddd;}
+  .point-wrapper {position:absolute; width:15px; height:15px; top:8px;}
+  .point-one {right: 0}
+  .point-two {right: 100px}
+  .point {background: black; border-radius:100%; width:6px; height:6px;}
+  
+  
+  .aggregator-graphics .main-graphic {height:500px; width:800px; background:#eee; margin-bottom: 1em;}
+  .aggregator-graphics aside {float:right; width: 200px; background: #ffeeee;}
+  
+  
+  
+</style>
+  
+<body>
+
+  <div class="aggregator-graphics">
+
+    <!-- Aside panel with optional ports navigation -->
+    <aside>
+      <div class="">
+        <input type="checkbox" onClick="toggleEmpty()"> Суммировать
+      </div>
+      
+      <div class="port-navigator">
+        …
+      </div>  
+    </aside>
+
+    <!-- Main graphic -->
+    <div class="main-graphic">
+    </div>
+
+    <!-- Toolbar with work modes -->
+    <div class="toolbar shift-left">
+      <span>
+      <a class="pseudo-link">Реалтайм</a>
+      <a class="pseudo-link">Дни</a>
+      <a class="pseudo-link">Месяцы</a>
+      </span>
+
+      <span>
+      <a class="pseudo-link">Максимальные</a>
+      <a class="pseudo-link">Средние</a>
+      </span>
+    
+      <input type="checkbox" onClick="toggleEmpty()"> Скрыть порты без трафика
+    </div>
+    
+    <!-- Time navigation -->
+    <div class="time-navigator shift-left">
+      <div class="time-navigator-dates"></div>
+      <div class="time-navigator-line"></div>
+      <div class="point-wrapper point-one"><div class="point"></div></div>
+      <div class="point-wrapper point-two"><div class="point"></div></div>
+    </div>    
+
+    <!-- All ports microcharts -->
+    <div class="ports-microcharts">
+    </div>   
+    
+  </div>
+  
+  
+  
+  
+  
+
+  
+
+
+
+
+
+
+  
+  
+</body>
+  
+<script src="../bower_components/angularjs/angular.js"></script>
+<script src="../bower_components/ngstorage/ngStorage.min.js"></script>
+<script src="../bower_components/angular-route/angular-route.min.js"></script>
+<script src="../bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="../bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="../bower_components/angular-mass-autocomplete/massautocomplete.min.js"></script>
+<script src="../bower_components/d3/d3.min.js"></script>
+<script src="../src/tsg09.js">;</script>
+
+  
+<script>
+
+function portHistoryGraph(options) {
+  
+    function prepareURL(q) {
+      var u = 'http://localhost:8086/query?q=' + q;
+      u += '&db=' + options.db;
+      return u; 
+    }
+
+    function buildQuery() {
+      var q = 'SELECT ';
+      options.columns.forEach(function(i, index) {
+        if (i.agg) {
+          q += i.agg + '(' + i.name + ')';
+        } else {
+          q += name;
+        }
+        
+        if (index < options.columns.length-1) q+= ', ';
+      });
+      q += ' FROM ' + options.measurment;
+      q += ' WHERE time > now() - ' + options.last;
+      q += ' AND port = \'' + options.port + '\'';
+      q += ' GROUP BY time(' + options.timegroup + ')';
+      return q;
+    }
+  
+    function convertHex(hex, opacity) {
+        hex = hex.replace('#','');
+        r = parseInt(hex.substring(0,2), 16);
+        g = parseInt(hex.substring(2,4), 16);
+        b = parseInt(hex.substring(4,6), 16);
+
+        result = 'rgba('+r+','+g+','+b+','+opacity+')';
+        return result;
+    }
+  
+    var self = {
+      init: function(container) {
+          
+          self.element = document.querySelector(container);
+        
+          self.width = self.element.offsetWidth;
+          self.height = self.element.offsetHeight;
+          
+          self.x = d3.time.scale().range([0, self.width]);
+          self.y = d3.scale.linear().range([self.height/2, 0]);
+
+          self.rx = d3.svg.area()
+              .interpolate("basis")
+              .x(function(d) { return self.x(d[0]); })
+              .y0(self.height/2)
+              .y1(function(d) { return self.y(d[1]); });
+
+          self.tx = d3.svg.area()
+              .interpolate("basis")
+              .x(function(d) { return self.x(d[0]); })
+              .y0(self.height/2)
+              .y1(function(d) { return self.y(-d[2]); });
+        
+          // clear
+          d3.select(container).select('svg').remove();
+        
+          self.svg = d3.select(container).append("svg")
+              .attr("width", self.width)
+              .attr("height", self.height)
+              .append("g");
+
+
+      },
+      isEmpty: function() {
+        return !Boolean(d3.max(self.portData, function(d) { return d3.max([d[1],d[2]]); }));
+      },
+      render: function(data) {
+
+        if (!data.length) return;
+        
+        var portData = data[0].values;
+            
+        portData.forEach(function(d) {
+          d[0] = new Date(d[0])
+        });
+        
+        self.portData = portData;
+
+        self.x.domain(d3.extent(portData, function(d) { return d[0]; }));
+
+        self.y.domain([
+          0,
+          d3.max(portData, function(d) { return d3.max([d[1],d[2]]); })
+        ]);
+
+        var elem = self.svg.append("g")
+          .attr("class", "elem");
+
+        // Draw RX
+        elem.append("path")
+          .attr("class", "area")
+          .attr("d", function(d) { return self.rx(portData); })
+          .attr("fill", convertHex(options.color, 0.4));
+
+        // Draw TX
+        elem.append("path")
+          .attr("class", "area tx")
+          .attr("d", function(d) { return self.tx(portData); })
+          .attr("fill", convertHex(options.color, 0.4));
+
+        // Draw errors
+        self.svg.selectAll(".dot")
+       .data(portData)
+       .enter().append("circle")
+       .attr("class", "dot")
+       .attr("r", function(d) { return (d[2] + d[3])* self.height * (options.errorPower || 1); })
+       .attr("cx", function(d) { return self.x(d[0]); })
+       .attr("cy", self.height/2 );
+        
+      
+      }
+    };    
+  
+    self.options = options;
+    self.init(options.container);
+    
+    var q = prepareURL(buildQuery());
+    console.log(q);
+  
+    d3.json(q, function(error, data) {
+        console.log(data);
+        graph = data.results[0].series;
+        self.render(graph);
+    });
+
+    return self;
+  }
+  
+  
+  
+  
+// Init portColors
+var portColors = d3.scale.category20();
+var portNames = [];
+for(var i = 0; i < 64; i++) {
+  var num = i + 1;
+  portNames.push('port' + num);
+}
+  
+portColors.domain(portNames);  
+
+  
+// Toggle empty  
+var showEmpty = true;
+function toggleEmpty() {
+  showEmpty = !showEmpty;
+  
+  portsM.forEach(function(m) {
+    console.log(m.options.num, m.isEmpty() );
+    var c = document.querySelector('.port-wrapper' + m.options.num);
+
+    if (m.isEmpty() && !showEmpty) {
+      c.style.display = 'none';
+    } else {
+      c.style.display = 'block';
+    }
+    
+  });
+}
+  
+
+var microcharts = document.querySelector('.ports-microcharts');
+
+var portsM = [];
+
+for(var i = 0; i < 64; i++) {
+  var num = i + 1;
+
+  // append div elements 
+
+  var wrap = document.createElement("div");
+  wrap.className = 'port-wrapper' + num + ' port-wrapper';
+  
+  var c1 = document.createElement("div");
+  c1.className = 'port-name';
+  c1.innerHTML = '<input type="checkbox" /> ' + num;
+  
+  var c = document.createElement("div");
+  c.className = 'port-graph' + num + ' port-graph';
+
+  wrap.appendChild(c1);
+  wrap.appendChild(c);
+  
+  microcharts.appendChild(wrap);
+
+  var m = new portHistoryGraph({
+   db: 'monitoring',
+   measurment: 'traffic',
+   num: num,
+   port: 'port' + num,
+   columns: [
+     {name: 'rx_rate_mean', agg: 'mean'},
+     {name: 'tx_rate_mean', agg: 'mean'},
+     {name: 'drops_rate_mean', agg: 'mean'}
+   ],
+   last: '14d', // 10 days
+   timegroup: '1h',
+/*   color: '07a919', */
+   color: portColors('port' + num),
+    
+   errorPower: 0.1,
+   container: '.port-graph' + num
+ });
+  
+ portsM.push(m);
+}
+
+</script>
+</html>
