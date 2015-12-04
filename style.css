@@ -4,10 +4,11 @@
   .toolbar span {margin-right: 1em;}
   .toolbar span a {padding: 0 5px;}
   
-  .port-wrapper {height:30px; line-height: 30px; width:800px; background: white; border-bottom: solid 1px #eee; padding-left: 20px; position:relative}
+  micro-port-chart {display: block;}
+  .port-wrapper {height:60px; line-height: 60px; width:800px; background: white; border-bottom: solid 1px #eee; padding-left: 20px; position:relative}
   .port-wrapper .port-name {position:absolute; width:40px;}
   
-  .port-graph {position:absolute; left: 70px; height:30px; line-height: 30px; width:750px;}
+  .port-graph {position:absolute; left: 70px; height:60px; line-height: 30px; width:800px;}
 
   .dot {
     fill: rgba(255,0,0,0.4);
@@ -22,5 +23,7 @@
   
   
   .aggregator-graphics .main-graphic {height:500px; width:800px; background:#eee; margin-bottom: 1em;}
-  .aggregator-graphics aside {float:right; width: 200px; background: #ffeeee;}
+
+
+  .aggregator-graphics aside {float:right; width: 200px; background: #ffeeee; padding: 15px;}
   

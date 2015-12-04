@@ -140,7 +140,7 @@
       <a class="pseudo-link">Средние</a>
       </span>
     
-      <input type="checkbox" onClick="toggleEmpty()"> Скрыть порты без трафика
+      <input type="checkbox" ng-model="hideEmpty" ng-change="toggleEmpty()"/> Скрыть порты без трафика
     </div>
     
     <!-- Time navigation -->
@@ -153,13 +153,18 @@
 
 
     <div class="ports-microcharts">
-      <div ng-repeat="port in ports track by $index" class="port-wrapper port-wrapper{{port.num}}">
+      <micro-port-chart  ng-repeat="port in ports track by $index" class="port-wrapper" port="port" color="portColors(port.name)" ng-hide="port.hide">
+
+      </micro-port-chart>
+
+      
+      <!--div ng-repeat="port in ports track by $index" class="port-wrapper port-wrapper{{port.num}}">
         <div class="port-name">
         <input type="checkbox" ng-model="port.checked" /> {{port.num}}
         </div>
         <div class="port-graph port-graph{{port.num}}" ng-init="microChart(port)">
         </div>
-      </div>
+      </div-->
     </div>   
     
       

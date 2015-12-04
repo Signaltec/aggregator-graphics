@@ -65,7 +65,7 @@ function portQuery(ports, from, to, aggregate) {
   
   // calculate timegroup
   timegroup = '10m';
-  timegroup = '10h';
+  timegroup = '1h';
 
   
   var result = '';
@@ -80,7 +80,7 @@ function portQuery(ports, from, to, aggregate) {
 }
 
 
-function PortsCharts(container) {
+function PortsCharts(container, color) {
 
     function convertHex(hex, opacity) {
         hex = hex.replace('#','');
@@ -93,11 +93,15 @@ function PortsCharts(container) {
     }
   
     var self = {
-      init: function(container) {
-          
-          self.element = document.querySelector(container);
+      init: function(container, color) {
+          if (typeof container === 'string' ) {
+            self.element = document.querySelector(container);
+          } else {
+           self.element = container;
+          }
         
-          console.log(container, self.element)
+          //console.log(container, self.element);
+          self.color = color;
         
           self.width = self.element.offsetWidth;
           self.height = self.element.offsetHeight;
@@ -126,18 +130,11 @@ function PortsCharts(container) {
               .append("g");
 
       },
-      isEmpty: function() {
-        return !Boolean(d3.max(self.portData, function(d) { return d3.max([d[1],d[2]]); }));
-      },
-      microChart: function(data) {
-        console.log('1----', data);
+      microChart: function(portData) {
 
-        if (!data) return;
-        
-        var portData = data.series[0].values;
+        if (!portData || !portData.length) return;
         self.portData = portData;
-        
-        console.log('2----', portData);
+        //console.log('1----', portData);
         
         portData.forEach(function(d) {
           d[0] = new Date(d[0])
@@ -156,20 +153,20 @@ function PortsCharts(container) {
         elem.append("path")
           .attr("class", "area")
           .attr("d", function(d) { return self.rx(portData); })
-          .attr("fill", convertHex(options.color, 0.4));
+          .attr("fill", convertHex(self.color, 0.4));
 
         // Draw TX
         elem.append("path")
           .attr("class", "area tx")
           .attr("d", function(d) { return self.tx(portData); })
-          .attr("fill", convertHex(options.color, 0.4));
+          .attr("fill", convertHex(self.color, 0.4));
 
         // Draw errors
         self.svg.selectAll(".dot")
        .data(portData)
        .enter().append("circle")
        .attr("class", "dot")
-       .attr("r", function(d) { return (d[2] + d[3])* self.height * (options.errorPower || 1); })
+       .attr("r", function(d) { return (d[2] + d[3])* self.height * (0.1); })
        .attr("cx", function(d) { return self.x(d[0]); })
        .attr("cy", self.height/2 );
         
@@ -177,7 +174,7 @@ function PortsCharts(container) {
       }
     };    
   
-    self.init(container);
+    self.init(container, color);
     return self;
   }
 
@@ -191,12 +188,9 @@ app.controller("AppCtrl", function($rootScope, $window, $location, $filter, $htt
 
 app.controller("aggregatorGraphicsCtrl", function($scope, $location, $route, $window) {
   
-  var influx = new Influx('monitoring');
-  var charts = []; 
-  var chart, query;
   
   function getPorts() {
-    var count = 2;
+    var count = 10;
     var result = [], num;
     for(var i = 0; i < count; i++) {
       num = i + 1;
@@ -209,26 +203,57 @@ app.controller("aggregatorGraphicsCtrl", function($scope, $location, $route, $wi
     return result;
   }
   
+  $scope.toggleEmpty = function() {
+    $scope.ports.map(function(i) {
+      console.log(i);
+      if ($scope.hideEmpty && i.empty) {
+        i.hide = true;
+      } else {
+        i.hide = false;
+      }
+    });
+  };
+    
   $scope.reload = function() {
     $window.location.reload();
   };
   
-  $scope.microChart = function(port, event) {
-      chart = new PortsCharts('.port-graph' + port.num);
-      query = portQuery([port.name],'now() - 14d','now()','mean');
-      
-      influx.query(query, function(result) {
-        chart.microChart(result);
-      });
-  };
-  
   // Init
+  
   $scope.ports = getPorts();
+  $scope.portColors = d3.scale.category20();
+  $scope.portColors.domain( $scope.ports.map(function(i) {return i.name;}) );
   
 });
 
+// microPortChart
+app.directive("microPortChart", function() {
+  'use strict';
 
-
+  return {
+    restrict: "E",
+    scope: {
+      port: '=',
+      color: '='
+    },
+    template: '<div class="port-name"><input type="checkbox" ng-model="port.checked" /> {{port.num}}</div>' +
+        '<div class="port-graph"></div>',
+    link: function(scope, element, attrs) {
+      
+      var influx = new Influx('monitoring');
+      var chartContainer = element[0].querySelector('.port-graph');
+      
+      var chart = new PortsCharts(chartContainer, scope.color);
+      var query = portQuery([scope.port.name],'now() - 14d','now()','mean');
+      
+      influx.query(query, function(result) {
+        result = result.series[0].values;
+        scope.port.empty = result.every(function(i) {return (i[1] + i[2]) === 0;});
+        chart.microChart(result);
+      });
+    }
+  }
+});
 
 
 
