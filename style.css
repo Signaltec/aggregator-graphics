@@ -5,7 +5,7 @@
   .toolbar span a {padding: 0 5px;}
   
   micro-port-chart {display: block;}
-  .port-wrapper {height:60px; line-height: 60px; width:800px; background: white; border-bottom: solid 1px #eee; padding-left: 20px; position:relative}
+  .port-wrapper {height:60px; line-height: 60px; width:860px; background: white; border-bottom: solid 1px #eee; padding-left: 20px; position:relative}
   .port-wrapper .port-name {position:absolute; width:40px;}
   
   .port-graph {position:absolute; left: 70px; height:60px; line-height: 30px; width:800px;}
@@ -22,8 +22,40 @@
   .point {background: black; border-radius:100%; width:6px; height:6px;}
   
   
-  .aggregator-graphics .main-graphic {height:500px; width:800px; background:#eee; margin-bottom: 1em;}
+.aggregator-graphics .main-graphic {height:500px; width:800px; background:#eee; margin-bottom: 1em;}
+.aggregator-graphics aside {float:right; width: 200px; background: #ffeeee; padding: 15px;}
 
+ .time-axis-container {padding-left:70px; width:810px;}
 
-  .aggregator-graphics aside {float:right; width: 200px; background: #ffeeee; padding: 15px;}
-  
+      /* selection on microcharts */
+      .ports-microcharts {position:relative;}
+      .ports-microcharts .selection {
+        position:absolute; 
+        left:-1; 
+        top:-1; 
+        z-index: 5;
+        width: 0px;
+        height: 0px;
+        border: solid 1px #13b6ff;
+        border-top: none;
+        border-bottom: none;
+
+      }
+      
+      /* time-axis */
+      time-axis {
+        display: block;
+        height: 24px;
+        font-size: 0.7em;
+      }
+      
+      time-axis .axis path {
+        fill: none;
+        stroke: none;
+      }
+
+      time-axis .axis line {
+        fill: none;
+        stroke: #ccc;
+        shape-rendering: crispEdges;
+      }

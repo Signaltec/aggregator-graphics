@@ -142,37 +142,28 @@
     
       <input type="checkbox" ng-model="hideEmpty" ng-change="toggleEmpty()"/> Скрыть порты без трафика
     </div>
-    
-    <!-- Time navigation -->
-    <div class="time-navigator shift-left">
-      <div class="time-navigator-dates"></div>
-      <div class="time-navigator-line"></div>
-      <div class="point-wrapper point-one"><div class="point"></div></div>
-      <div class="point-wrapper point-two"><div class="point"></div></div>
-    </div>    
 
+    <!-- Time Slider + Axis -->
+    <div class="time-axis-container shift-left">  
+      <slider floor="{{timeNav.floor}}" ceiling="{{timeNav.ceiling}}" step="1" precision="1" ng-model-low="timeNav.start" ng-model-high="timeNav.end" translate="timeNav.formatDate" change="timeNavChange()"></slider>
 
+      <time-axis now="timeNav.now" floor="timeNav.floor"></time-axis>
+    </div>
+
+    <!-- Ports Microcharts -->
     <div class="ports-microcharts">
+      <div class="selection"></div>
       <micro-port-chart  ng-repeat="port in ports track by $index" class="port-wrapper" port="port" color="portColors(port.name)" ng-hide="port.hide">
-
       </micro-port-chart>
+    </div>   
+      
+    <!-- Time Slider + Axis -->
+    <div class="time-axis-container shift-left">  
+      <slider floor="{{timeNav.floor}}" ceiling="{{timeNav.ceiling}}" step="1" precision="1" ng-model-low="timeNav.start" ng-model-high="timeNav.end" translate="timeNav.formatDate" change="timeNavChange()"></slider>
 
+      <time-axis now="timeNav.now" floor="timeNav.floor"></time-axis>
+    </div>
       
-      <!--div ng-repeat="port in ports track by $index" class="port-wrapper port-wrapper{{port.num}}">
-        <div class="port-name">
-        <input type="checkbox" ng-model="port.checked" /> {{port.num}}
-        </div>
-        <div class="port-graph port-graph{{port.num}}" ng-init="microChart(port)">
-        </div>
-      </div-->
-    </div>   
-    
-      
-      
-    <!-- All ports microcharts -->
-    <div class="ports-microcharts">
-    </div>   
-    
   </div>
   
   
@@ -185,13 +176,15 @@
   <script src="./index_files/lib/angular-translate/angular-translate.js"></script>
   <script src="./index_files/roundProgress.min.js"></script>
 
+  <!-- slider -->
+  <link href="./angular-slider.css" rel="stylesheet" type="text/css">
+  <script src="./index_files/lib/moment/moment.js"></script>
+  <script src="./angular-slider.js"></script>
+
   <script src="./index_files/configuration.js"></script>
-  
-  
   
   <link href="./style.css" rel="stylesheet" type="text/css" />
   <script src="app.js"></script>
-  
   
   
   
