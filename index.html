@@ -125,6 +125,10 @@
       <!-- Main graphic -->
       <div class="main-graphic" ng-show="hasSelectedPorts">
       </div>
+      
+      <big-port-chart port="ports[2]" color="portColors(ports[2].name)">
+      </big-port-chart>
+      
     </div>  
 
     <!-- Toolbar with work modes -->
@@ -145,7 +149,7 @@
 
     <!-- Time Slider + Axis -->
     <div class="time-axis-container shift-left">  
-      <slider floor="{{timeNav.floor}}" ceiling="{{timeNav.ceiling}}" step="1" precision="1" ng-model-low="timeNav.start" ng-model-high="timeNav.end" translate="timeNav.formatDate" change="timeNavChange()"></slider>
+      <slider floor="{{timeNav.floor}}" ceiling="{{timeNav.ceiling}}" step="1" precision="1" ng-model-low="timeNav.start" ng-model-high="timeNav.end" translate="timeNav.formatDate" change="timeNav.changed()"></slider>
 
       <time-axis now="timeNav.now" floor="timeNav.floor"></time-axis>
     </div>
@@ -153,16 +157,17 @@
     <!-- Ports Microcharts -->
     <div class="ports-microcharts">
       <div class="selection"></div>
-      <micro-port-chart  ng-repeat="port in ports track by $index" class="port-wrapper" port="port" color="portColors(port.name)" ng-hide="port.hide">
+      <micro-port-chart ng-repeat="port in ports track by $index" class="port-wrapper" port="port" color="portColors(port.name)" ng-hide="port.hide">
       </micro-port-chart>
     </div>   
       
-    <!-- Time Slider + Axis -->
+    <!-- Time Slider + Axis >
     <div class="time-axis-container shift-left">  
       <slider floor="{{timeNav.floor}}" ceiling="{{timeNav.ceiling}}" step="1" precision="1" ng-model-low="timeNav.start" ng-model-high="timeNav.end" translate="timeNav.formatDate" change="timeNavChange()"></slider>
 
       <time-axis now="timeNav.now" floor="timeNav.floor"></time-axis>
     </div>
+    -->
       
   </div>
   

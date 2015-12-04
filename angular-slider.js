@@ -137,7 +137,8 @@
 
             boundToInputs = false;
             ngDocument = angularize(document);
-            if (!attributes.translate) {
+            
+            if (!attributes.translate) {              
               scope.translate = function(value) {
                 return value.value;
               };
@@ -250,15 +251,16 @@
                 }
               };
               bindToInputEvents = function(pointer, ref, events) {
-                var onEnd, onMove, onStart;
-
+                var onEnd, onMove, onStartm;
+                
                 onEnd = function() {
+                  
                   pointer.removeClass('active');
                   ngDocument.unbind(events.move);
-                  
+
                   // ILDARKA
                   if (typeof scope.change == 'function') {
-                    //console.log(1);
+                    console.log('onEnd', pointer, ref);
                     scope.change();
                   }
                   
@@ -266,7 +268,7 @@
                 };
                 onMove = function(event) {
                   var eventX, newOffset, newPercent, newValue;
-
+                  
                   eventX = event.clientX || event.touches[0].clientX;
                   newOffset = eventX - element[0].getBoundingClientRect().left - pointerHalfWidth;
                   newOffset = Math.max(Math.min(newOffset, maxOffset), minOffset);
@@ -297,6 +299,7 @@
                   event.stopPropagation();
                   event.preventDefault();
                   ngDocument.bind(events.move, onMove);
+                  
                   return ngDocument.bind(events.end, onEnd);
                 };
                 return pointer.bind(events.start, onStart);

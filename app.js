@@ -47,7 +47,7 @@ function Influx(db, connection) {
 /*
   Function for prepare InfluxDB query
 */
-function portQuery(ports, from, to, aggregate) {  
+function portQuery(ports, from, to, aggregate, timegroup) {  
   
   var measurment = 'traffic';
   
@@ -64,9 +64,7 @@ function portQuery(ports, from, to, aggregate) {
   if (!(aggregate in values)) throw new Error("Unsupported aggregate function " + aggregate);
   
   // calculate timegroup
-  timegroup = '10m';
-  timegroup = '1h';
-
+  if (!timegroup) timegroup = '1h';
   
   var result = '';
   result += ' SELECT ' + aggregate + '(' + values[aggregate].join('), ' + aggregate + '(') + ') ';
@@ -97,7 +95,7 @@ function PortsCharts(container, color) {
           if (typeof container === 'string' ) {
             self.element = document.querySelector(container);
           } else {
-           self.element = container;
+            self.element = container;
           }
         
           //console.log(container, self.element);
@@ -147,6 +145,14 @@ function PortsCharts(container, color) {
           d3.max(portData, function(d) { return d3.max([d[1],d[2]]); })
         ]);
 
+        // HARD clear
+        d3.select(self.element).select('svg').remove();
+        self.svg = d3.select(container).append("svg")
+              .attr("width", self.width)
+              .attr("height", self.height)
+              .append("g");
+        
+        
         var elem = self.svg.append("g").attr("class", "elem");
 
         // Draw RX
@@ -245,13 +251,21 @@ app.controller("aggregatorGraphicsCtrl", function($scope, $window, $timeout) {
       var res = new Date(this.now - (-delta * this.hour));
       res = moment(res).format(this.format); 
       return res;
+    },
+    changed: function() {
+      console.log('changed timeNav');
+      drawSelection();
+      $scope.$broadcast('timeNavChanged', {start: $scope.timeNav.start, end: $scope.timeNav.end});
     }
   };  
 
-  $scope.timeNavChange = function() {
-    console.log('changed');
+  /*
+  $scope.timeNavChanged = function() {
+    console.log('changed timeNav');
+    $scope.$broadcast('timeNavChanged', {start: $scope.timeNav.start, end: $scope.timeNav.end});
     drawSelection();
   };
+  */
   
   $scope.ports = getPorts();
   $scope.portColors = d3.scale.category20();
@@ -259,7 +273,7 @@ app.controller("aggregatorGraphicsCtrl", function($scope, $window, $timeout) {
   
   // Wait 500 ms before show selection  
   $timeout(function() {
-    drawSelection();
+    $scope.timeNav.changed();
   }, 500);  
 });
 
@@ -288,6 +302,51 @@ app.directive("microPortChart", function() {
         scope.port.empty = result.every(function(i) {return (i[1] + i[2]) === 0;});
         chart.microChart(result);
       });
+    }
+  }
+});
+
+// bigPortChart
+app.directive("bigPortChart", function() {
+  'use strict';
+
+  return {
+    restrict: "E",
+    scope: {
+      port: '=',
+      color: '='
+    },
+    template: '<div class="port-graph"></div>',
+    link: function(scope, element, attrs) {
+      
+      var influx = new Influx('monitoring');
+      var chartContainer = element[0].querySelector('.port-graph');
+      var chart = new PortsCharts(chartContainer, scope.color);
+      var timegroup;
+      
+      scope.$on('timeNavChanged', function (event, data) {
+        
+        if (Math.abs(+data.start + (+data.end)) > 0) {
+          
+            console.log('Update --');
+          
+            // calculate timegroup for min 300 points in minutes
+            timegroup = Math.floor(Math.abs(data.end - data.start) * 60 / 200 );
+            if (timegroup < 10) {
+              timegroup = 10;
+            }
+            timegroup += 'm';
+          
+            var query = portQuery([scope.port.name],'now() - ' + Math.abs(+data.start) + 'h' ,'now() - ' + Math.abs(+data.end) + 'h', 'mean', timegroup);
+            console.log(query, timegroup);
+
+            influx.query(query, function(result) {
+              result = result.series[0].values;
+              chart.microChart(result);
+            });
+        }
+      });
+
     }
   }
 });
