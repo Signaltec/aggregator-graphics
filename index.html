@@ -102,31 +102,43 @@
         <article autoscroll="true" class="ng-scope">
   
           
+          
+          
+          
+          
+          
+          
+          
+          
     <div class="aggregator-graphics" ng-controller="aggregatorGraphicsCtrl">
 
     <div class="main-graph-wrapper clearfix -clearfix">  
       <!-- Aside panel with optional ports navigation -->
       <aside>
         
-        <a ng-click="reload()">Reload</a>
-
-        <div class="">
-          <input type="checkbox" onClick="toggleEmpty()"> Суммировать
-        </div>
+        <input type="checkbox" ng-model="summarize" ng-change = "updateBigPortChart('summarize')"> Суммировать
 
         <div class="port-navigator">
-          <div ng-repeat="port in ports track by $index" class="port port-legend">
-            <input type="checkbox" ng-model="port.checked" /> {{port.num}} <span class="colorline"></span>
-          </div>
+          <label ng-repeat="port in ports track by $index" class="port">
+              <input type="checkbox" 
+                ng-model="port.checked" 
+                ng-change="updateBigPortChart()" /> 
+
+              {{port.num}}
+
+              <div class="legend" ng-style="{'background':portColors(port.name)}"></div>
+
+          </label>  
         </div>
         
       </aside>
+      <br clear="all" />
 
       <!-- Main graphic -->
       <div class="main-graphic" ng-show="hasSelectedPorts">
       </div>
       
-      <big-port-chart port="ports[2]" color="portColors(ports[2].name)">
+      <big-port-chart ports="ports" color="portColors" time-nav="timeNav">
       </big-port-chart>
       
     </div>  
@@ -157,7 +169,7 @@
     <!-- Ports Microcharts -->
     <div class="ports-microcharts">
       <div class="selection"></div>
-      <micro-port-chart ng-repeat="port in ports track by $index" class="port-wrapper" port="port" color="portColors(port.name)" ng-hide="port.hide">
+      <micro-port-chart ng-repeat="port in ports track by $index" class="port-wrapper" port="port" color="portColors(port.name)" time-nav="timeNav" ng-hide="port.hide">
       </micro-port-chart>
     </div>   
       

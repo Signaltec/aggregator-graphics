@@ -96,7 +96,7 @@ function GenerateFakes(count, deltaTime, port) {
 
 var str = '';
 for(var i = 0; i < 64; i++) {
-  str += array2Lineproto('traffic,port=port' + (i+1), GenerateFakes(24000, 60 * 10));
+  str += array2Lineproto('traffic,port=port' + (i+1), GenerateFakes(2000, 60 * 10));
 }
 
 //console.log(str);

@@ -72,7 +72,7 @@ function portQuery(ports, from, to, aggregate, timegroup) {
   result += ' WHERE time > ' + from;
   result += ' AND time < ' + to;
   result += ' AND (port = \'' + ports.join('\' OR port = \'') + '\')';
-  result += ' GROUP BY time(' + timegroup + ')';
+  result += ' GROUP BY time(' + timegroup + '), port';
   
   return result;
 }
@@ -80,7 +80,16 @@ function portQuery(ports, from, to, aggregate, timegroup) {
 
 function PortsCharts(container, color) {
 
-    function convertHex(hex, opacity) {
+  // Custom tickFormat
+  var customTimeFormat = d3.time.format.multi([
+      ["%H:%M", function(d) { return d.getMinutes(); }],
+      ["%H:%M", function(d) { return d.getHours(); }],
+      ["%e %b", function(d) { return d.getDate() != 1; }],
+      ["%B", function(d) { return d.getMonth(); }],
+      ["%Y", function() { return true; }]
+  ]);
+
+  function convertHex(hex, opacity) {
         hex = hex.replace('#','');
         r = parseInt(hex.substring(0,2), 16);
         g = parseInt(hex.substring(2,4), 16);
@@ -89,7 +98,7 @@ function PortsCharts(container, color) {
         result = 'rgba('+r+','+g+','+b+','+opacity+')';
         return result;
     }
-  
+    
     var self = {
       init: function(container, color) {
           if (typeof container === 'string' ) {
@@ -140,44 +149,135 @@ function PortsCharts(container, color) {
         
         self.x.domain(d3.extent(portData, function(d) { return d[0]; }));
 
-        self.y.domain([
-          0,
-          d3.max(portData, function(d) { return d3.max([d[1],d[2]]); })
-        ]);
-
-        // HARD clear
-        d3.select(self.element).select('svg').remove();
-        self.svg = d3.select(container).append("svg")
-              .attr("width", self.width)
-              .attr("height", self.height)
-              .append("g");
+        var yMax = d3.max(portData, function(d) { return d3.max([d[1],d[2]]); });
         
+        if (yMax > 0) {
+
+          self.y.domain([0,yMax]);
+
+          // HARD clear
+          d3.select(self.element).select('svg').remove();
+          self.svg = d3.select(container).append("svg")
+                .attr("width", self.width)
+                .attr("height", self.height)
+                .append("g");
+
+
+          var elem = self.svg.append("g").attr("class", "elem");
+
+          // Draw RX
+          elem.append("path")
+            .attr("class", "area")
+            .attr("d", function(d) { return self.rx(portData); })
+            .attr("fill", convertHex(self.color, 0.4));
+
+          // Draw TX
+          elem.append("path")
+            .attr("class", "area tx")
+            .attr("d", function(d) { return self.tx(portData); })
+            .attr("fill", convertHex(self.color, 0.4));
+
+          // Draw errors
+          self.svg.selectAll(".dot")
+         .data(portData)
+         .enter().append("circle")
+         .attr("class", "dot")
+         .attr("r", function(d) { return (d[2] + d[3])* self.height * (0.02); })
+         .attr("cx", function(d) { return self.x(d[0]); })
+         .attr("cy", self.height/2 );
         
-        var elem = self.svg.append("g").attr("class", "elem");
+        } else {
+          console.log('Empty data set');
+        }      
+      },
+      multiChart: function(series, names) {
+        
+        console.log('multi', series);
+        
+        if (!series || !series.length) {
+          console.log('Empty data set');
+          return;
+        }
+        
+        self.series = series;
+        
+        // prepare dates
+        series.forEach(function(s) {
+          s.values.forEach(function(d) {
+            d[0] = new Date(d[0]);
+          });
+        });
 
-        // Draw RX
-        elem.append("path")
-          .attr("class", "area")
-          .attr("d", function(d) { return self.rx(portData); })
-          .attr("fill", convertHex(self.color, 0.4));
+        self.x.domain(d3.extent(series[0].values, function(d) { return d[0]; }));
 
-        // Draw TX
-        elem.append("path")
-          .attr("class", "area tx")
-          .attr("d", function(d) { return self.tx(portData); })
-          .attr("fill", convertHex(self.color, 0.4));
+        var yMax = d3.max(series, function(c) { 
+          return d3.max(c.values, function(v) { 
+            return d3.max([v[1],v[2]]); 
+          }); 
+        });
+        
+        if (yMax > 0) {
 
-        // Draw errors
-        self.svg.selectAll(".dot")
-       .data(portData)
-       .enter().append("circle")
-       .attr("class", "dot")
-       .attr("r", function(d) { return (d[2] + d[3])* self.height * (0.02); })
-       .attr("cx", function(d) { return self.x(d[0]); })
-       .attr("cy", self.height/2 );
+          self.y.domain([0, yMax]);
+
+          // HARD clear
+          d3.select(self.element).select('svg').remove();
+          self.svg = d3.select(container).append("svg")
+                .attr("width", self.width)
+                .attr("height", self.height)
+                .append("g");
+
+          var elem;
+          
+          for (var i = 0; i < series.length; i++)  {
+          
+            console.log('--', series.length, i, names[i], self.color(names[i]));
+            
+            elem = self.svg.append("g").attr("class", "elem");
+
+            // Draw RX
+            elem.append("path")
+              .attr("class", "area")
+              .attr("d", function(d) { return self.rx(series[i].values); })
+              .attr("fill", convertHex(self.color(names[i]), 0.3));
+
+            // Draw TX
+            elem.append("path")
+              .attr("class", "area tx")
+              .attr("d", function(d) { return self.tx(series[i].values); })
+              .attr("fill", convertHex(self.color(names[i]), 0.3));
+
+            // Draw errors
+            elem.selectAll(".dot")
+           .data(series[i].values)
+           .enter().append("circle")
+           .attr("class", "dot")
+           .attr("r", function(d) { return (d[2] + d[3])* self.height * (0.02); })
+           .attr("cx", function(d) { return self.x(d[0]); })
+           .attr("cy", self.height/2 );
+            
+          }
+          
+          
+          // Draw axis
+          self.xa = self.svg.append("g").attr("class", "x axis");
+          self.ya = self.svg.append("g").attr("class", "y axis");
+          
+          self.xAxis = d3.svg.axis().scale(self.x).orient("bottom").tickFormat(customTimeFormat).ticks(10);
+          self.xa.attr("transform", "translate(0," + self.height/2 + ")").call(self.xAxis);
+
+          self.yAxis = d3.svg.axis().scale(self.y).orient("left").ticks(8);
+          self.ya.call(self.yAxis);
+
+          
+          
+        } else {
+          console.log('Empty data set');
+        }
         
       
       }
+      
     };    
   
     self.init(container, color);
@@ -232,7 +332,15 @@ app.controller("aggregatorGraphicsCtrl", function($scope, $window, $timeout) {
       }
     });
   };
-    
+
+  $scope.updateBigPortChart = function(what) {
+    if (what == 'summarize') {
+      $scope.$broadcast('updateBigPortChart', {summarize: $scope.summarize});
+    } else {
+      $scope.$broadcast('updateBigPortChart');
+    }
+  };
+  
   $scope.reload = function() {
     $window.location.reload();
   };
@@ -255,13 +363,13 @@ app.controller("aggregatorGraphicsCtrl", function($scope, $window, $timeout) {
     changed: function() {
       console.log('changed timeNav');
       drawSelection();
-      $scope.$broadcast('timeNavChanged', {start: $scope.timeNav.start, end: $scope.timeNav.end});
+      $scope.$broadcast('updateBigPortChart', {start: $scope.timeNav.start, end: $scope.timeNav.end});
     }
   };  
 
   // Init
   $scope.ports = getPorts();
-  $scope.portColors = d3.scale.category20();
+  $scope.portColors = d3.scale.category10();
   $scope.portColors.domain( $scope.ports.map(function(i) {return i.name;}) );
   
   // Wait 500 ms before show selection  
@@ -278,17 +386,22 @@ app.directive("microPortChart", function() {
     restrict: "E",
     scope: {
       port: '=',
+      timeNav: '=',
       color: '='
     },
-    template: '<div class="port-name"><input type="checkbox" ng-model="port.checked" /> {{port.num}}</div>' +
+    template: '<div class="port-name"><input type="checkbox" ng-model="port.checked"' + 
+    ' ng-change="updateBigPortChart()" /> {{port.num}}</div>' +
         '<div class="port-graph"></div>',
     link: function(scope, element, attrs) {
       
       var influx = new Influx('monitoring');
       var chartContainer = element[0].querySelector('.port-graph');
-      
       var chart = new PortsCharts(chartContainer, scope.color);
       var query = portQuery([scope.port.name],'now() - 14d','now()','mean');
+      
+      scope.updateBigPortChart = function() {
+        scope.timeNav.changed();
+      };
       
       influx.query(query, function(result) {
         result = result.series[0].values;
@@ -306,7 +419,8 @@ app.directive("bigPortChart", function() {
   return {
     restrict: "E",
     scope: {
-      port: '=',
+      ports: '=',
+      timeNav: '=',
       color: '='
     },
     template: '<div class="port-graph"></div>',
@@ -315,27 +429,61 @@ app.directive("bigPortChart", function() {
       var influx = new Influx('monitoring');
       var chartContainer = element[0].querySelector('.port-graph');
       var chart = new PortsCharts(chartContainer, scope.color);
+      var names;
       var timegroup;
+      var start, end
+      var len, sum;
       
-      scope.$on('timeNavChanged', function (event, data) {
+      scope.$on('updateBigPortChart', function (event, data) {
         
-        if (Math.abs(+data.start + (+data.end)) > 0) {
+        if (data && Math.abs(+data.start + (+data.end)) > 0) {
+          start = +data.start;
+          end = +data.end;
+        } else {
+          start = +scope.timeNav.start;
+          end = +scope.timeNav.end;
+        }
+                
+        {
+            names = [];  
           
-            console.log('Update --');
+            scope.ports.forEach(function(d) {
+              if (d.checked) names.push(d.name);
+            });
+          
+            console.log('Update --', names);
           
             // calculate timegroup for min 300 points in minutes
-            timegroup = Math.floor(Math.abs(data.end - data.start) * 60 / 200 );
+            timegroup = Math.floor(Math.abs(end - start) * 60 / 200 );
             if (timegroup < 10) {
               timegroup = 10;
             }
             timegroup += 'm';
-          
-            var query = portQuery([scope.port.name],'now() - ' + Math.abs(+data.start) + 'h' ,'now() - ' + Math.abs(+data.end) + 'h', 'mean', timegroup);
+            
+            var query = portQuery(names ,'now() - ' + Math.abs(start) + 'h' ,'now() - ' + Math.abs(end) + 'h', 'mean', timegroup);
             console.log(query, timegroup);
 
             influx.query(query, function(result) {
-              result = result.series[0].values;
-              chart.microChart(result);
+              console.log('-90-', result);
+    
+              // summarize
+              if (data && data.summarize && result.series.length > 1) {
+                
+                len = result.series.length;
+                result.series[0].values.forEach(function(d, index) {
+                  for (var j = 1; j < 4; j++) {
+                    sum = 0;
+                    for(var i = 1; i < len; i++) {
+                      sum += +result.series[i].values[index][j];
+                    }
+                    d[j] += sum;
+                  }
+                });
+                
+                result.series = [result.series[0]];
+              }
+
+              chart.multiChart(result.series, names);
             });
         }
       });

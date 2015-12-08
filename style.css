@@ -35,7 +35,10 @@ big-port-chart .port-graph {
 
 
 .aggregator-graphics .main-graphic {height:500px; width:800px; background:#eee; margin-bottom: 1em;}
-.aggregator-graphics aside {float:right; width: 200px; background: #ffeeee; padding: 15px;}
+
+.aggregator-graphics aside {width: 240px; background: #ffeeee; padding: 15px;}
+.port-navigator {margin-top:5px;}
+.port-navigator .port {width: 77px; margin: 0 3px 5px 0; text-align:left}
 
  .time-axis-container {padding-left:70px; width:810px;}
 
@@ -71,3 +74,7 @@ big-port-chart .port-graph {
         stroke: #ccc;
         shape-rendering: crispEdges;
       }
+
+
+.axis .tick {font-size:0.7em}
+
