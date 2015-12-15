@@ -1,14 +1,14 @@
-  .aggregator-graphics {background: white; padding:3em;}
+  .aggregator-graphics {background: white; position: relative;}
   
   .toolbar {padding-left:70px; margin-bottom:1em}
-  .toolbar span {margin-right: 1em;}
-  .toolbar span a {padding: 0 5px;}
+  .toolbar .taps {float:left; margin-right: 1em;}
+
   
   micro-port-chart {display: block;}
   .port-wrapper {height:60px; line-height: 60px; width:860px; background: white; border-bottom: solid 1px #eee; padding-left: 20px; position:relative}
   .port-wrapper .port-name {position:absolute; width:40px;}
   
-  .port-graph {position:absolute; left: 70px; height:60px; line-height: 30px; width:800px;}
+  micro-port-chart .port-graph {position:absolute; left: 70px; height:60px; line-height: 30px; width:800px;}
 
   .dot {
     fill: rgba(255,0,0,0.4);
@@ -24,21 +24,24 @@
 
 big-port-chart {
   display: block;
-  height: 300px;
-  padding-left: 0px
+  height: 400px;
+  width: 870px;
+  font-size: 0.7em;
 }
 
 big-port-chart .port-graph {
-  height: 300px;
+  height: 400px;
+  width: 870px;
   position: relative;
 }
 
-
 .aggregator-graphics .main-graphic {height:500px; width:800px; background:#eee; margin-bottom: 1em;}
 
-.aggregator-graphics aside {width: 240px; background: #ffeeee; padding: 15px;}
-.port-navigator {margin-top:5px;}
-.port-navigator .port {width: 77px; margin: 0 3px 5px 0; text-align:left}
+.aggregator-graphics aside {min-width: 200px; width: 18%; background: #f8fbe0; padding: 15px; position:absolute; left: 900px; font-size:0.7em;}
+.port-navigator {margin-top:10px;}
+.port-navigator .port {width: 47px; margin: 0 0 10px 0; text-align:left}
+.port-navigator .port .legend {width: 10px; height: 4px;}
+
 
  .time-axis-container {padding-left:70px; width:810px;}
 
@@ -76,5 +79,8 @@ big-port-chart .port-graph {
       }
 
 
-.axis .tick {font-size:0.7em}
+
+.axis path {stroke: #ccc; stroke-width: 0.7px}
+.axis .tick line {stroke: #ccc; }
+
 

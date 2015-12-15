@@ -78,7 +78,7 @@ function portQuery(ports, from, to, aggregate, timegroup) {
 }
 
 
-function PortsCharts(container, color) {
+function PortsCharts(container, color, margin) {
 
   // Custom tickFormat
   var customTimeFormat = d3.time.format.multi([
@@ -88,7 +88,7 @@ function PortsCharts(container, color) {
       ["%B", function(d) { return d.getMonth(); }],
       ["%Y", function() { return true; }]
   ]);
-
+  
   function convertHex(hex, opacity) {
         hex = hex.replace('#','');
         r = parseInt(hex.substring(0,2), 16);
@@ -100,41 +100,44 @@ function PortsCharts(container, color) {
     }
     
     var self = {
-      init: function(container, color) {
+      init: function(container, color, margin) {
           if (typeof container === 'string' ) {
             self.element = document.querySelector(container);
           } else {
             self.element = container;
           }
         
+          self.margin = +margin;
+        
           //console.log(container, self.element);
           self.color = color;
         
-          self.width = self.element.offsetWidth;
+          self.width = self.element.offsetWidth - self.margin;
           self.height = self.element.offsetHeight;
           
           self.x = d3.time.scale().range([0, self.width]);
           self.y = d3.scale.linear().range([self.height/2, 0]);
 
           self.rx = d3.svg.area()
-              .interpolate("basis")
-              .x(function(d) { return self.x(d[0]); })
-              .y0(self.height/2)
-              .y1(function(d) { return self.y(d[1]); });
+            .interpolate("basis")
+            .x(function(d) { return self.x(d[0]); })
+            .y0(self.height/2)
+            .y1(function(d) { return self.y(d[1]); });
 
           self.tx = d3.svg.area()
-              .interpolate("basis")
-              .x(function(d) { return self.x(d[0]); })
-              .y0(self.height/2)
-              .y1(function(d) { return self.y(-d[2]); });
+            .interpolate("basis")
+            .x(function(d) { return self.x(d[0]); })
+            .y0(self.height/2)
+            .y1(function(d) { return self.y(-d[2]); });
         
           // clear
           d3.select(container).select('svg').remove();
         
           self.svg = d3.select(container).append("svg")
-              .attr("width", self.width)
-              .attr("height", self.height)
-              .append("g");
+            .attr("width", self.width + self.margin)
+            .attr("height", self.height)
+            .append("g")
+            .attr("transform", "translate("  + self.margin + ",0)");
 
       },
       microChart: function(portData) {
@@ -157,10 +160,12 @@ function PortsCharts(container, color) {
 
           // HARD clear
           d3.select(self.element).select('svg').remove();
+          
           self.svg = d3.select(container).append("svg")
-                .attr("width", self.width)
+                .attr("width", self.width + self.margin)
                 .attr("height", self.height)
-                .append("g");
+                .append("g")
+                .attr("transform", "translate("  + self.margin + ",0)");
 
 
           var elem = self.svg.append("g").attr("class", "elem");
@@ -191,7 +196,7 @@ function PortsCharts(container, color) {
         }      
       },
       multiChart: function(series, names) {
-        
+                
         console.log('multi', series);
         
         if (!series || !series.length) {
@@ -215,17 +220,29 @@ function PortsCharts(container, color) {
             return d3.max([v[1],v[2]]); 
           }); 
         });
-        
-        if (yMax > 0) {
-
-          self.y.domain([0, yMax]);
-
+                      
           // HARD clear
           d3.select(self.element).select('svg').remove();
           self.svg = d3.select(container).append("svg")
-                .attr("width", self.width)
+                .attr("width", self.width + self.margin)
                 .attr("height", self.height)
-                .append("g");
+                .append("g")
+                .attr("transform", "translate("  + self.margin + ",0)");  
+          
+          self.y.domain([0, yMax]);
+          
+          // Draw axis
+          self.xa = self.svg.append("g").attr("class", "x axis");
+          self.ya = self.svg.append("g").attr("class", "y axis");
+          
+          self.xAxis = d3.svg.axis().scale(self.x).orient("bottom").tickFormat(customTimeFormat).ticks(10);
+          self.xa.attr("transform", "translate(0," + self.height/2 + ")").call(self.xAxis);
+
+          
+          var axisScale = d3.scale.linear().domain([-yMax,yMax]).range([0,self.height]);
+          
+          self.yAxis = d3.svg.axis().scale(axisScale).orient("left").ticks(8).tickFormat(function(d) {return Math.abs(d); });
+          self.ya.attr("transform", "translate(" + 0 + ",0)").call(self.yAxis);          
 
           var elem;
           
@@ -258,29 +275,20 @@ function PortsCharts(container, color) {
             
           }
           
+          self.svg.append("text")
+            .attr("y", 20)
+            .text("RX");
           
-          // Draw axis
-          self.xa = self.svg.append("g").attr("class", "x axis");
-          self.ya = self.svg.append("g").attr("class", "y axis");
+          self.svg.append("text")
+            .attr("y", self.height - 10)
+            .text("TX");          
           
-          self.xAxis = d3.svg.axis().scale(self.x).orient("bottom").tickFormat(customTimeFormat).ticks(10);
-          self.xa.attr("transform", "translate(0," + self.height/2 + ")").call(self.xAxis);
-
-          self.yAxis = d3.svg.axis().scale(self.y).orient("left").ticks(8);
-          self.ya.call(self.yAxis);
-
-          
-          
-        } else {
-          console.log('Empty data set');
-        }
-        
       
       }
       
     };    
   
-    self.init(container, color);
+    self.init(container, color, margin);
     return self;
   }
 
@@ -293,6 +301,8 @@ app.controller("AppCtrl", function($rootScope, $window, $location, $filter, $htt
 });
 
 app.controller("aggregatorGraphicsCtrl", function($scope, $window, $timeout) {
+  
+  var timeoutPromise;
   
   function getPorts() {
     var count = 10;
@@ -322,20 +332,21 @@ app.controller("aggregatorGraphicsCtrl", function($scope, $window, $timeout) {
     }
   }  
   
+  // Show/hide empty ports on ports-nav & micro-ports
   $scope.toggleEmpty = function() {
     $scope.ports.map(function(i) {
-      console.log(i);
       if ($scope.hideEmpty && i.empty) {
         i.hide = true;
+        i.checked = false;
       } else {
         i.hide = false;
       }
     });
   };
 
-  $scope.updateBigPortChart = function(what) {
-    if (what == 'summarize') {
-      $scope.$broadcast('updateBigPortChart', {summarize: $scope.summarize});
+  $scope.updateBigPortChart = function() {
+    if ($scope.summarize) {
+      $scope.$broadcast('updateBigPortChart', {summarize: true});
     } else {
       $scope.$broadcast('updateBigPortChart');
     }
@@ -351,6 +362,7 @@ app.controller("aggregatorGraphicsCtrl", function($scope, $window, $timeout) {
     end: 0,
     floor: -366,
     ceiling: 0,
+    aggregate: 'max',
     /* My own properties */
     now: new Date(),
     hour: 60 * 60 * 1000,
@@ -360,10 +372,25 @@ app.controller("aggregatorGraphicsCtrl", function($scope, $window, $timeout) {
       res = moment(res).format(this.format); 
       return res;
     },
+    changeFloor: function(floor) {
+      $scope.timeNav.floor = floor;
+      
+      if ($scope.timeNav.start < floor) {
+        $scope.timeNav.start = floor;
+      }
+      if ($scope.timeNav.end < floor) {
+        $scope.timeNav.end = floor;
+      }
+
+    },
     changed: function() {
       console.log('changed timeNav');
       drawSelection();
-      $scope.$broadcast('updateBigPortChart', {start: $scope.timeNav.start, end: $scope.timeNav.end});
+      var r = {start: $scope.timeNav.start, end: $scope.timeNav.end};
+      if ($scope.summarize) {
+        r.summarize = true;
+      }
+      $scope.$broadcast('updateBigPortChart', r);
     }
   };  
 
@@ -372,14 +399,17 @@ app.controller("aggregatorGraphicsCtrl", function($scope, $window, $timeout) {
   $scope.portColors = d3.scale.category10();
   $scope.portColors.domain( $scope.ports.map(function(i) {return i.name;}) );
   
-  // Wait 500 ms before show selection  
-  $timeout(function() {
-    $scope.timeNav.changed();
-  }, 500);  
+  $scope.$watch('timeNav.start + timeNav.end + timeNav.floor + timeNav.ceiling', function() {
+     $timeout.cancel(timeoutPromise);
+     timeoutPromise = $timeout(function() {
+        $scope.timeNav.changed();
+     }, 200);
+  });
+
 });
 
 // microPortChart
-app.directive("microPortChart", function() {
+app.directive("microPortChart", function($timeout) {
   'use strict';
 
   return {
@@ -396,18 +426,38 @@ app.directive("microPortChart", function() {
       
       var influx = new Influx('monitoring');
       var chartContainer = element[0].querySelector('.port-graph');
-      var chart = new PortsCharts(chartContainer, scope.color);
-      var query = portQuery([scope.port.name],'now() - 14d','now()','mean');
+      var chart = new PortsCharts(chartContainer, scope.color, 0);
+      var timegroup = '1h';
+      var timeoutPromise, query;
       
-      scope.updateBigPortChart = function() {
-        scope.timeNav.changed();
-      };
+      function drawMicroChart() {
+           $timeout.cancel(timeoutPromise);
+           timeoutPromise = $timeout(function() {
+             
+              timegroup = (scope.timeNav.floor < -1000) ? '10h' : '1h';
+             
+              query = portQuery([scope.port.name],'now() - ' + Math.abs(scope.timeNav.floor) + 'h','now()','mean',timegroup);
+
+              scope.updateBigPortChart = function() {
+                scope.timeNav.changed();
+              };
+
+              influx.query(query, function(result) {
+                result = result.series[0].values;
+                scope.port.empty = result.every(function(i) {return (i[1] + i[2]) === 0;});
+                chart.microChart(result);
+              });
+           }, 10);
+      }
       
-      influx.query(query, function(result) {
-        result = result.series[0].values;
-        scope.port.empty = result.every(function(i) {return (i[1] + i[2]) === 0;});
-        chart.microChart(result);
+      drawMicroChart();
+      
+      scope.$watch('timeNav.floor', function(n, o) {
+         if (n != o) {
+           drawMicroChart();
+         }
       });
+          
     }
   }
 });
@@ -428,7 +478,7 @@ app.directive("bigPortChart", function() {
       
       var influx = new Influx('monitoring');
       var chartContainer = element[0].querySelector('.port-graph');
-      var chart = new PortsCharts(chartContainer, scope.color);
+      var chart = new PortsCharts(chartContainer, scope.color, 70);
       var names;
       var timegroup;
       var start, end
@@ -443,8 +493,7 @@ app.directive("bigPortChart", function() {
           start = +scope.timeNav.start;
           end = +scope.timeNav.end;
         }
-                
-        {
+
             names = [];  
           
             scope.ports.forEach(function(d) {
@@ -485,7 +534,7 @@ app.directive("bigPortChart", function() {
 
               chart.multiChart(result.series, names);
             });
-        }
+
       });
 
     }
@@ -505,20 +554,26 @@ app.directive("timeAxis", function() {
       
       var width = element[0].offsetWidth;
       var height = element[0].offsetHeight;
-      var lastDate = new Date(scope.now - (-scope.floor * hour));
-      
-      var x = d3.time.scale().range([0, width]);
-      x.domain([lastDate, scope.now]);
-
-      var xAxis = d3.svg.axis().scale(x).orient("bottom")
-        .tickFormat(d3.time.format("%e %b"));
-      
       var svg = d3.select(element[0])
         .append("svg")
         .attr("width", width)
         .attr("height", height);
-      
-      svg.append("g").attr("class", "axis").call(xAxis);      
+      var axis = svg.append("g").attr("class", "axis");
+
+      var x = d3.time.scale().range([0, width]);
+      var lastDate, xAxis;
+
+      scope.$watch('floor', function(n,o) {
+        if (n != o) {
+          lastDate = new Date(scope.now - (-scope.floor * hour));
+          x.domain([lastDate, scope.now]);
+
+          xAxis = d3.svg.axis().scale(x).orient("bottom")
+            .tickFormat(d3.time.format("%e %b"));
+
+          axis.call(xAxis);
+        }
+      });
     }
   }
 });

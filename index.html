@@ -116,52 +116,50 @@
       <!-- Aside panel with optional ports navigation -->
       <aside>
         
-        <input type="checkbox" ng-model="summarize" ng-change = "updateBigPortChart('summarize')"> Суммировать
+        <input type="checkbox" ng-model="summarize" ng-change="updateBigPortChart()"> Суммировать
 
         <div class="port-navigator">
-          <label ng-repeat="port in ports track by $index" class="port">
+          <label ng-repeat="port in ports track by $index" class="port" ng-hide="port.hide">
               <input type="checkbox" 
                 ng-model="port.checked" 
                 ng-change="updateBigPortChart()" /> 
 
-              {{port.num}}
-
-              <div class="legend" ng-style="{'background':portColors(port.name)}"></div>
+              <span ng-style="{'color': portColors(port.name)}">{{port.num}}</span>
 
           </label>  
         </div>
-        
       </aside>
-      <br clear="all" />
 
       <!-- Main graphic -->
-      <div class="main-graphic" ng-show="hasSelectedPorts">
-      </div>
-      
       <big-port-chart ports="ports" color="portColors" time-nav="timeNav">
       </big-port-chart>
       
     </div>  
 
+     
+      
     <!-- Toolbar with work modes -->
-    <div class="toolbar shift-left">
-      <span>
-      <a class="pseudo-link">Реалтайм</a>
-      <a class="pseudo-link">Дни</a>
-      <a class="pseudo-link">Месяцы</a>
-      </span>
+    <div class="toolbar shift-left -clearfix">
+      <div class="taps" style="float:left">
+        <span class="tap" ng-class="{'-active': timeNav.floor == -366}" ng-click="timeNav.changeFloor(-366)">Дни</span>
+        <span class="tap" ng-class="{'-active': timeNav.floor == -4400}" ng-click="timeNav.changeFloor(-4400)">Месяцы</span>
+      </div>
 
-      <span>
-      <a class="pseudo-link">Максимальные</a>
-      <a class="pseudo-link">Средние</a>
+      <div class="taps" style="float:left">
+        <span class="tap" ng-class="{'-active': timeNav.aggregate == 'max'}" ng-click="timeNav.aggregate = 'max'">Макс.</span>
+        <span class="tap" ng-class="{'-active': timeNav.aggregate == 'mean'}" ng-click="timeNav.aggregate = 'mean'">Средние</span>
+      </div>
+      
+      <div class="taps">
+      <span class="tap">  
+        <input type="checkbox" ng-model="hideEmpty" ng-change="toggleEmpty()"/> Скрыть порты без трафика
       </span>
-    
-      <input type="checkbox" ng-model="hideEmpty" ng-change="toggleEmpty()"/> Скрыть порты без трафика
+      </div>
     </div>
 
     <!-- Time Slider + Axis -->
     <div class="time-axis-container shift-left">  
-      <slider floor="{{timeNav.floor}}" ceiling="{{timeNav.ceiling}}" step="1" precision="1" ng-model-low="timeNav.start" ng-model-high="timeNav.end" translate="timeNav.formatDate" change="timeNav.changed()"></slider>
+      <slider floor="{{timeNav.floor}}" ceiling="{{timeNav.ceiling}}" step="1" precision="1" ng-model-low="timeNav.start" ng-model-high="timeNav.end" translate="timeNav.formatDate"></slider>
 
       <time-axis now="timeNav.now" floor="timeNav.floor"></time-axis>
     </div>
@@ -169,7 +167,12 @@
     <!-- Ports Microcharts -->
     <div class="ports-microcharts">
       <div class="selection"></div>
-      <micro-port-chart ng-repeat="port in ports track by $index" class="port-wrapper" port="port" color="portColors(port.name)" time-nav="timeNav" ng-hide="port.hide">
+      <micro-port-chart ng-repeat="port in ports track by $index" 
+                        class="port-wrapper" 
+                        port="port" 
+                        color="portColors(port.name)" 
+                        time-nav="timeNav" 
+                        ng-hide="port.hide">
       </micro-port-chart>
     </div>   
       
