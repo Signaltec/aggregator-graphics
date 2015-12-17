@@ -305,7 +305,7 @@ app.controller("aggregatorGraphicsCtrl", function($scope, $window, $timeout) {
   var timeoutPromise;
   
   function getPorts() {
-    var count = 10;
+    var count = 40;
     var result = [], num;
     for(var i = 0; i < count; i++) {
       num = i + 1;
