@@ -47,27 +47,15 @@ function Influx(db, connection) {
 /*
   Function for prepare InfluxDB query
 */
-function portQuery(ports, from, to, aggregate, timegroup) {  
+function portQuery(ports, from, to, timegroup) {  
   
   var measurment = 'traffic';
-  
-  // values to retrive from Databse
-  var values = {
-    mean: ['rx_rate_mean', 'tx_rate_mean', 'drops_rate_mean']
-  };
-  
-  // default aggregation function is mean
-  if (!aggregate) {
-    aggregate = 'mean';
-  }
-
-  if (!(aggregate in values)) throw new Error("Unsupported aggregate function " + aggregate);
   
   // calculate timegroup
   if (!timegroup) timegroup = '1h';
   
   var result = '';
-  result += ' SELECT ' + aggregate + '(' + values[aggregate].join('), ' + aggregate + '(') + ') ';
+  result += ' SELECT mean(rx_rate_mean), mean(tx_rate_mean), max(rx_rate_max), max(tx_rate_max), sum(drops_rate), sum(crc_rate)';
   result += ' FROM ' + measurment;
   result += ' WHERE time > ' + from;
   result += ' AND time < ' + to;
@@ -89,18 +77,28 @@ function PortsCharts(container, color, margin) {
       ["%Y", function() { return true; }]
   ]);
   
+  // Position value inside returned from Influx dataset
+  var valuePosition = {
+    rx: {mean: 1, max: 3},
+    tx: {mean: 2, max: 4},
+    drops: 5,
+    crc: 6,
+  };
+  
   function convertHex(hex, opacity) {
-        hex = hex.replace('#','');
-        r = parseInt(hex.substring(0,2), 16);
-        g = parseInt(hex.substring(2,4), 16);
-        b = parseInt(hex.substring(4,6), 16);
+    hex = hex.replace('#','');
+    r = parseInt(hex.substring(0,2), 16);
+    g = parseInt(hex.substring(2,4), 16);
+    b = parseInt(hex.substring(4,6), 16);
 
-        result = 'rgba('+r+','+g+','+b+','+opacity+')';
-        return result;
-    }
+    result = 'rgba('+r+','+g+','+b+','+opacity+')';
+    return result;
+  }
+  
     
     var self = {
       init: function(container, color, margin) {
+        
           if (typeof container === 'string' ) {
             self.element = document.querySelector(container);
           } else {
@@ -109,6 +107,9 @@ function PortsCharts(container, color, margin) {
         
           self.margin = +margin;
         
+          self.aggregate = 'max';
+          self.oldAggregate = 'max';
+
           //console.log(container, self.element);
           self.color = color;
         
@@ -122,13 +123,37 @@ function PortsCharts(container, color, margin) {
             .interpolate("basis")
             .x(function(d) { return self.x(d[0]); })
             .y0(self.height/2)
-            .y1(function(d) { return self.y(d[1]); });
+            .y1(function(d) { return self.y(d[valuePosition.rx[self.aggregate]]); });
 
+          self.rx_mean = d3.svg.area()
+            .interpolate("basis")
+            .x(function(d) { return self.x(d[0]); })
+            .y0(self.height/2).y1(function(d) { return self.y(d[valuePosition.rx.mean]); });
+          
+          self.rx_max = d3.svg.area()
+            .interpolate("basis")
+            .x(function(d) { return self.x(d[0]); })
+            .y0(self.height/2).y1(function(d) { return self.y(d[valuePosition.rx.max]); });
+
+        
           self.tx = d3.svg.area()
             .interpolate("basis")
             .x(function(d) { return self.x(d[0]); })
             .y0(self.height/2)
-            .y1(function(d) { return self.y(-d[2]); });
+            .y1(function(d) { return self.y(-d[valuePosition.tx[self.aggregate]]); });
+
+          self.tx_mean = d3.svg.area()
+            .interpolate("basis")
+            .x(function(d) { return self.x(d[0]); })
+            .y0(self.height/2)
+            .y1(function(d) { return self.y(-d[valuePosition.tx.mean]); });
+
+          self.tx_max = d3.svg.area()
+            .interpolate("basis")
+            .x(function(d) { return self.x(d[0]); })
+            .y0(self.height/2)
+            .y1(function(d) { return self.y(-d[valuePosition.tx.max]); });
+        
         
           // clear
           d3.select(container).select('svg').remove();
@@ -140,8 +165,10 @@ function PortsCharts(container, color, margin) {
             .attr("transform", "translate("  + self.margin + ",0)");
 
       },
-      microChart: function(portData) {
-
+      microChart: function(portData, aggregate) {
+        
+        self.aggregate = aggregate;
+        
         if (!portData || !portData.length) return;
         self.portData = portData;
         //console.log('1----', portData);
@@ -152,7 +179,7 @@ function PortsCharts(container, color, margin) {
         
         self.x.domain(d3.extent(portData, function(d) { return d[0]; }));
 
-        var yMax = d3.max(portData, function(d) { return d3.max([d[1],d[2]]); });
+        var yMax = d3.max(portData, function(d) { return d3.max([d[valuePosition.rx.max],d[valuePosition.tx.max]]); });
         
         if (yMax > 0) {
 
@@ -170,18 +197,19 @@ function PortsCharts(container, color, margin) {
 
           var elem = self.svg.append("g").attr("class", "elem");
 
-          // Draw RX
-          elem.append("path")
-            .attr("class", "area")
-            .attr("d", function(d) { return self.rx(portData); })
-            .attr("fill", convertHex(self.color, 0.4));
+              // Draw RX
+              elem.append("path")
+                .attr("class", "area")
+                .attr("d", function(d) { return self.rx(portData); })
+                .attr("fill", convertHex(self.color, 0.4));
 
-          // Draw TX
-          elem.append("path")
-            .attr("class", "area tx")
-            .attr("d", function(d) { return self.tx(portData); })
-            .attr("fill", convertHex(self.color, 0.4));
+              // Draw TX
+              elem.append("path")
+                .attr("class", "area tx")
+                .attr("d", function(d) { return self.tx(portData); })
+                .attr("fill", convertHex(self.color, 0.4));
 
+          
           // Draw errors
           self.svg.selectAll(".dot")
          .data(portData)
@@ -190,14 +218,17 @@ function PortsCharts(container, color, margin) {
          .attr("r", function(d) { return (d[2] + d[3])* self.height * (0.02); })
          .attr("cx", function(d) { return self.x(d[0]); })
          .attr("cy", self.height/2 );
+          
         
         } else {
           console.log('Empty data set');
         }      
       },
-      multiChart: function(series, names) {
+      multiChart: function(series, names, aggregate) {
                 
-        console.log('multi', series);
+        console.log('multiChart', series, names, aggregate);
+        
+        self.aggregate = aggregate;
         
         if (!series || !series.length) {
           console.log('Empty data set');
@@ -217,10 +248,11 @@ function PortsCharts(container, color, margin) {
 
         var yMax = d3.max(series, function(c) { 
           return d3.max(c.values, function(v) { 
-            return d3.max([v[1],v[2]]); 
+            return d3.max([v[valuePosition.rx.max],v[valuePosition.tx.max]]); 
           }); 
         });
-                      
+
+        
           // HARD clear
           d3.select(self.element).select('svg').remove();
           self.svg = d3.select(container).append("svg")
@@ -237,7 +269,6 @@ function PortsCharts(container, color, margin) {
           
           self.xAxis = d3.svg.axis().scale(self.x).orient("bottom").tickFormat(customTimeFormat).ticks(10);
           self.xa.attr("transform", "translate(0," + self.height/2 + ")").call(self.xAxis);
-
           
           var axisScale = d3.scale.linear().domain([-yMax,yMax]).range([0,self.height]);
           
@@ -245,24 +276,27 @@ function PortsCharts(container, color, margin) {
           self.ya.attr("transform", "translate(" + 0 + ",0)").call(self.yAxis);          
 
           var elem;
-          
+          // For thru ports
           for (var i = 0; i < series.length; i++)  {
           
-            console.log('--', series.length, i, names[i], self.color(names[i]));
+            console.log(names);
+            console.log('--', names, series.length, i, names[i], self.color(names[i]));
             
             elem = self.svg.append("g").attr("class", "elem");
 
             // Draw RX
             elem.append("path")
-              .attr("class", "area")
-              .attr("d", function(d) { return self.rx(series[i].values); })
-              .attr("fill", convertHex(self.color(names[i]), 0.3));
+                .attr("class", "area")
+                .attr("d", function(d) { return self.rx(series[i].values); })
+                .attr("fill", convertHex(self.color(names[i]), 0.3))
 
             // Draw TX
             elem.append("path")
-              .attr("class", "area tx")
-              .attr("d", function(d) { return self.tx(series[i].values); })
-              .attr("fill", convertHex(self.color(names[i]), 0.3));
+                .attr("class", "area tx")
+                .attr("d", function(d) { return self.tx(series[i].values); })
+                .attr("fill", convertHex(self.color(names[i]), 0.3));
+            
+
 
             // Draw errors
             elem.selectAll(".dot")
@@ -283,6 +317,9 @@ function PortsCharts(container, color, margin) {
             .attr("y", self.height - 10)
             .text("TX");          
           
+        
+          self.oldAggregate = aggregate;
+
       
       }
       
@@ -303,9 +340,10 @@ app.controller("AppCtrl", function($rootScope, $window, $location, $filter, $htt
 app.controller("aggregatorGraphicsCtrl", function($scope, $window, $timeout) {
   
   var timeoutPromise;
+  var emptyPortsSelection;
   
   function getPorts() {
-    var count = 40;
+    var count = 4;
     var result = [], num;
     for(var i = 0; i < count; i++) {
       num = i + 1;
@@ -315,6 +353,10 @@ app.controller("aggregatorGraphicsCtrl", function($scope, $window, $timeout) {
         checked: false
       });
     }
+    
+    emptyPortsSelection = result.every(function(i) {return !i.cheked});
+    if (emptyPortsSelection) result[0].checked = true;
+
     return result;
   }
   
@@ -345,6 +387,7 @@ app.controller("aggregatorGraphicsCtrl", function($scope, $window, $timeout) {
   };
 
   $scope.updateBigPortChart = function() {
+    console.log('scope.method Update');
     if ($scope.summarize) {
       $scope.$broadcast('updateBigPortChart', {summarize: true});
     } else {
@@ -386,6 +429,7 @@ app.controller("aggregatorGraphicsCtrl", function($scope, $window, $timeout) {
     changed: function() {
       console.log('changed timeNav');
       drawSelection();
+            
       var r = {start: $scope.timeNav.start, end: $scope.timeNav.end};
       if ($scope.summarize) {
         r.summarize = true;
@@ -396,6 +440,7 @@ app.controller("aggregatorGraphicsCtrl", function($scope, $window, $timeout) {
 
   // Init
   $scope.ports = getPorts();
+  
   $scope.portColors = d3.scale.category10();
   $scope.portColors.domain( $scope.ports.map(function(i) {return i.name;}) );
   
@@ -405,6 +450,17 @@ app.controller("aggregatorGraphicsCtrl", function($scope, $window, $timeout) {
         $scope.timeNav.changed();
      }, 200);
   });
+
+  $scope.$watch('timeNav.aggregate', function(n, o) {
+    if (n!=o && o) {
+      var r = {};
+      if ($scope.summarize) {
+        r.summarize = true;
+      }
+      $scope.$broadcast('updateBigPortChart', r);
+      
+    }
+  });  
 
 });
 
@@ -420,47 +476,60 @@ app.directive("microPortChart", function($timeout) {
       color: '='
     },
     template: '<div class="port-name"><input type="checkbox" ng-model="port.checked"' + 
-    ' ng-change="updateBigPortChart()" /> {{port.num}}</div>' +
-        '<div class="port-graph"></div>',
+    ' ng-change="portChecked()" /> {{port.num}}</div>' +
+    '<div class="port-graph"></div>',
     link: function(scope, element, attrs) {
       
       var influx = new Influx('monitoring');
       var chartContainer = element[0].querySelector('.port-graph');
       var chart = new PortsCharts(chartContainer, scope.color, 0);
-      var timegroup = '1h';
-      var timeoutPromise, query;
-      
-      function drawMicroChart() {
-           $timeout.cancel(timeoutPromise);
-           timeoutPromise = $timeout(function() {
-             
-              timegroup = (scope.timeNav.floor < -1000) ? '10h' : '1h';
-             
-              query = portQuery([scope.port.name],'now() - ' + Math.abs(scope.timeNav.floor) + 'h','now()','mean',timegroup);
 
-              scope.updateBigPortChart = function() {
-                scope.timeNav.changed();
-              };
-
-              influx.query(query, function(result) {
-                result = result.series[0].values;
-                scope.port.empty = result.every(function(i) {return (i[1] + i[2]) === 0;});
-                chart.microChart(result);
-              });
-           }, 10);
+      // Render microChart
+      function render() {
+        chart.microChart(scope.state, scope.timeNav.aggregate);
       }
       
-      drawMicroChart();
+      // Fetch data from InfluxDB
+      function fetch() {
+        console.log('fetch micro Chart data');
+        var timegroup = (scope.timeNav.floor < -1000) ? '10h' : '1h';
+        var query = portQuery([scope.port.name],'now() - ' + Math.abs(scope.timeNav.floor) + 'h','now()',timegroup);
+
+        influx.query(query, function(result) {
+          scope.state = result.series[0].values;
+          scope.port.empty = scope.state.every(function(i) {return (i[3] + i[4]) === 0;});
+          render();
+        });
+      }
+      
+      // Callback to update Big Chart when checkbox clicked
+      scope.portChecked = function() {
+        scope.timeNav.changed();
+      };
+      
+      fetch();
       
       scope.$watch('timeNav.floor', function(n, o) {
          if (n != o) {
-           drawMicroChart();
+           fetch();
          }
       });
-          
+
+      scope.$watch('timeNav.aggregate', function(n, o) {
+         if (n != o) {
+           render();
+         }
+      });
+      
+      
     }
   }
 });
+
+
+
+
+
 
 // bigPortChart
 app.directive("bigPortChart", function() {
@@ -471,7 +540,9 @@ app.directive("bigPortChart", function() {
     scope: {
       ports: '=',
       timeNav: '=',
+      summarize: '=',
       color: '='
+      
     },
     template: '<div class="port-graph"></div>',
     link: function(scope, element, attrs) {
@@ -484,6 +555,84 @@ app.directive("bigPortChart", function() {
       var start, end
       var len, sum;
       
+      // summarize
+      function summarize(data) {
+        var len = data.length;
+        var res = [];
+        console.log('DATA 1', data);
+        
+        if (len > 1) {
+          res = data[0].values.map(function(s, index) {
+            for (var j = 1; j < 7; j++) {
+              row = [s[0]];
+              sum = 0;
+              for (var i = 1; i < len; i++) {
+                sum += +data[i].values[index][j];
+              }
+              row += sum;
+            }
+            return row;
+          });
+          
+          /*
+                data[0].values.forEach(function(d, index) {
+                  for (var j = 1; j < 7; j++) {
+                    sum = 0;
+                    for(var i = 1; i < len; i++) {
+                      sum += +data[i].values[index][j];
+                    }
+                    d[j] += sum;
+                  }
+                });
+                
+                data = [data[0]];
+          */
+         
+        }
+         
+        console.log('DATA 2', res);
+        return [res];
+        
+      }
+      
+      // Render Big Chart
+      function render() {
+        var data;
+        
+        if (scope.summarize) {
+          data = summarize(scope.state);
+        } else {
+          data = scope.state;
+        }
+        
+        chart.multiChart(data, scope.names, scope.timeNav.aggregate);
+      }
+      
+      // Fetch data from InfluxDB
+      function fetch() {
+        console.log('fetch Big Chart data');
+        var start = +scope.timeNav.start;
+        var end = +scope.timeNav.end;
+        var names = scope.ports.filter(function(d) {return d.checked;})
+        .map(function(d) {return d.name;});
+            
+        // calculate timegroup for min 300 points in minutes
+        timegroup = Math.floor(Math.abs(end - start) * 60 / 200 );
+        if (timegroup < 10) {
+          timegroup = 10;
+        }
+        timegroup += 'm';
+
+        var query = portQuery(names ,'now() - ' + Math.abs(start) + 'h' ,'now() - ' + Math.abs(end) + 'h', timegroup);
+        //console.log('**************', query, names);
+        
+        influx.query(query, function(result) {
+            scope.state = result.series;
+            render();
+        });      
+      }
+      
+      /*
       scope.$on('updateBigPortChart', function (event, data) {
         
         if (data && Math.abs(+data.start + (+data.end)) > 0) {
@@ -502,41 +651,47 @@ app.directive("bigPortChart", function() {
           
             console.log('Update --', names);
           
-            // calculate timegroup for min 300 points in minutes
-            timegroup = Math.floor(Math.abs(end - start) * 60 / 200 );
-            if (timegroup < 10) {
-              timegroup = 10;
+        
+            if (data && data.start) {
+              influx.query(query, function(result) {
+                cachedData = result;
+                if (data && data.summarize) summarize(result);
+                chart.multiChart(result.series, names, scope.timeNav.aggregate);
+              });
+            } else {
+              console.log('cahedData', cachedData)
+              if (data && data.summarize) summarize(cachedData);
+              chart.multiChart(cachedData.series, names, scope.timeNav.aggregate);
             }
-            timegroup += 'm';
-            
-            var query = portQuery(names ,'now() - ' + Math.abs(start) + 'h' ,'now() - ' + Math.abs(end) + 'h', 'mean', timegroup);
-            console.log(query, timegroup);
-
-            influx.query(query, function(result) {
-              console.log('-90-', result);
-    
-              // summarize
-              if (data && data.summarize && result.series.length > 1) {
-                
-                len = result.series.length;
-                result.series[0].values.forEach(function(d, index) {
-                  for (var j = 1; j < 4; j++) {
-                    sum = 0;
-                    for(var i = 1; i < len; i++) {
-                      sum += +result.series[i].values[index][j];
-                    }
-                    d[j] += sum;
-                  }
-                });
-                
-                result.series = [result.series[0]];
-              }
-
-              chart.multiChart(result.series, names);
-            });
-
+        
+      
+      });
+      */
+      
+      // Init
+      scope.names = scope.ports.map(function(d) {return d.name;});
+      
+      fetch();
+      
+      scope.$watch('timeNav.start + timeNav.end', function(n, o) {
+        // Add debounce 
+        if (n != o) {
+           fetch();
+         }
+      });
+      
+      // Not worked!
+      scope.$watchCollection('ports', function(n, o) {
+        fetch();
       });
 
+      scope.$watch('timeNav.aggregate + summarize', function(n, o) {
+        if (n != o) {
+          console.log('WATCH 3');
+          render();
+        }
+      });
+      
     }
   }
 });

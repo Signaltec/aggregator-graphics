@@ -79,8 +79,11 @@ function GenerateFakes(count, deltaTime, port) {
 
       point.rx_rate_mean = (point.rx - res[i-1].rx)/deltaTime;
       point.tx_rate_mean = (point.tx - res[i-1].tx)/deltaTime;
-      point.drops_rate_mean = (point.drops - res[i-1].drops)/deltaTime;
-      point.crc_rate_mean = (point.crc - res[i-1].crc)/deltaTime;
+      point.rx_rate_max = (point.rx - res[i-1].rx)/deltaTime*1.3;
+      point.tx_rate_max = (point.tx - res[i-1].tx)/deltaTime*1.3;
+
+      point.drops_rate = (point.drops - res[i-1].drops)/deltaTime;
+      point.crc_rate = (point.crc - res[i-1].crc)/deltaTime;
     }
     
     // fix negatives
