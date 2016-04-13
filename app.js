@@ -65,7 +65,6 @@ function portQuery(ports, from, to, timegroup) {
   return result;
 }
 
-
 function PortsCharts(container, color, margin) {
 
   // Custom tickFormat
@@ -95,7 +94,6 @@ function PortsCharts(container, color, margin) {
     return result;
   }
   
-    
     var self = {
       init: function(container, color, margin) {
         
@@ -709,10 +707,12 @@ app.directive("timeAxis", function() {
       
       var width = element[0].offsetWidth;
       var height = element[0].offsetHeight;
+      
       var svg = d3.select(element[0])
         .append("svg")
         .attr("width", width)
         .attr("height", height);
+      
       var axis = svg.append("g").attr("class", "axis");
 
       var x = d3.time.scale().range([0, width]);
@@ -732,4 +732,6 @@ app.directive("timeAxis", function() {
     }
   }
 });
+
+
 
