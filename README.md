@@ -31,6 +31,7 @@ gulp
 ```
 
 ---
+docker run --name alpine-influxdb -p 8083:8083 -p 8086:8086 evild/alpine-influxdb:0.11
 
 
 **Signaltech**, 2015

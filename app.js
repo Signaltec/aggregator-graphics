@@ -1,3 +1,5 @@
+var influxConnection = 'http://192.168.99.100:8086';
+
 /* 
   Module for retrive data from InfluxDB 0.9.x
   dependencies: d3js method d3.json
@@ -341,7 +343,8 @@ app.controller("aggregatorGraphicsCtrl", function($scope, $window, $timeout) {
   var emptyPortsSelection;
   
   function getPorts() {
-    var count = 4;
+    // default 64
+    var count = 64;
     var result = [], num;
     for(var i = 0; i < count; i++) {
       num = i + 1;
@@ -478,7 +481,7 @@ app.directive("microPortChart", function($timeout) {
     '<div class="port-graph"></div>',
     link: function(scope, element, attrs) {
       
-      var influx = new Influx('monitoring');
+      var influx = new Influx('monitoring', influxConnection);
       var chartContainer = element[0].querySelector('.port-graph');
       var chart = new PortsCharts(chartContainer, scope.color, 0);
 
@@ -545,7 +548,7 @@ app.directive("bigPortChart", function() {
     template: '<div class="port-graph"></div>',
     link: function(scope, element, attrs) {
       
-      var influx = new Influx('monitoring');
+      var influx = new Influx('monitoring',influxConnection);
       var chartContainer = element[0].querySelector('.port-graph');
       var chart = new PortsCharts(chartContainer, scope.color, 70);
       var names;

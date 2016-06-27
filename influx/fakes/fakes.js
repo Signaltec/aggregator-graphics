@@ -97,14 +97,12 @@ function GenerateFakes(count, deltaTime, port) {
   return res;
 }
 
-
-var str, fname;
+var str = '';
 for(var i = 0; i < 64; i++) {
-  fname = 'port' + (i+1) + '.txt';
-  str = array2Lineproto('traffic,port=port' + (i+1), GenerateFakes(2000, 60 * 10));
-  fs.writeFileSync('fakes/' + fname, str, 'utf-8');
-  console.log('File ' + fname + ' generated');
+  str += array2Lineproto('traffic,port=port' + (i+1), GenerateFakes(2000, 60 * 10));
 }
 
 //console.log(str);
 
+fs.writeFileSync('fakes.txt', str, 'utf-8');
+console.log('File fakes.txt generated');
