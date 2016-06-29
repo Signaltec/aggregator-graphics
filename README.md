@@ -8,6 +8,8 @@
 ./install.sh
 ```
 
+## Добавление пользователя в группу к докеру
+sudo usermod -aG docker $(whoami)
 
 ## Генерация фейковых данных для портов
 
@@ -31,7 +33,16 @@ gulp
 ```
 
 ---
+*Создание контейнера*
 docker run --name alpine-influxdb -p 8083:8083 -p 8086:8086 evild/alpine-influxdb:0.11
 
+*Список контейнеров*
+sudo docker ps -a
+
+**Перезапуск контейнера**
+__запуск контейнера__
+sudo docker start **hash**
+__подцепить контейнер к консоли__
+sudo docker attach **hash**
 
 **Signaltech**, 2015

@@ -1,0 +1,22 @@
+sg-micro-port-chart {
+  display: block;
+}
+
+sg-micro-port-chart .port-graph {
+  position:absolute;
+  left: 70px;
+  width:800px;
+  height:60px;
+  line-height: 30px;
+}
+
+sg-micro-port-chart .port-name {
+  position: absolute;
+  width: 40px;
+}
+
+sg-micro-port-chart .max {
+  position: absolute;
+  right: -50px;
+  font-size: 0.7em;
+}
