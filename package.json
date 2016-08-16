@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "## Установка зависимостей",
   "main": "app.js",
-  "dependencies": {},
+  "dependencies": {
+    "angularjs-slider": "^5.4.3"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

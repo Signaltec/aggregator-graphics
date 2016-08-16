@@ -15,8 +15,12 @@ sg-micro-port-chart .port-name {
   width: 40px;
 }
 
-sg-micro-port-chart .max {
+sg-micro-port-chart .peaks {
   position: absolute;
-  right: -50px;
+  right: -110px;
   font-size: 0.7em;
+}
+
+sg-micro-port-chart .peaks .peak {
+  line-height: 30px;
 }

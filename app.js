@@ -1,20 +1,13 @@
-// Position value inside returned from Influx dataset
-var valuePosition = {
-  rx: {mean: 7, max: 6},
-  tx: {mean: 9, max: 8},
-  drops: {mean: 4, max: 3},
-  crc: {mean: 2, max: 1}
-};
-
-var dataRatio = {
-  errors: 0.2
-};
-
 var CONST = {
   pointsPerGraph: 300,
   hWeek: 24 * 14,
   hHalfYear: 183 * 24,
-  msHalfYear: 183 * 24 * 60 * 60 * 1000
+  msHour: 60 * 60 * 1000,
+  msHalfYear: 183 * 24 * 60 * 60 * 1000,
+  slider: {
+    start: -48,
+    end: 0
+  }
 };
 
 /* ----------------------------------------------------- */
@@ -30,6 +23,10 @@ app.controller('aggregatorGraphicsCtrl', function($scope, $window, $timeout) {
 
   $scope.CONST = CONST;
 
+  function toPx(value) {
+    return value + 'px';
+  }
+
   function getPorts() {
     // default 64
     var count = 64;
@@ -44,7 +41,7 @@ app.controller('aggregatorGraphicsCtrl', function($scope, $window, $timeout) {
     }
 
     emptyPortsSelection = result.every(function(i) {
-      return !i.cheked
+      return !i.cheked;
     });
 
     if (emptyPortsSelection) result[0].checked = true;
@@ -61,9 +58,9 @@ app.controller('aggregatorGraphicsCtrl', function($scope, $window, $timeout) {
     var minPointer = slider.querySelector('.rz-pointer-min');
     var maxPointer = slider.querySelector('.rz-pointer-max');
     var leftOffset = minPointer.offsetLeft;
-    var width = (maxPointer.offsetLeft - leftOffset) + 'px';
+    var width = toPx(maxPointer.offsetLeft - leftOffset);
 
-    selection.style.left = (leftOffset + 70) + 'px';
+    selection.style.left = toPx(leftOffset + 70);
     selection.style.width = width;
   }
 
@@ -73,8 +70,7 @@ app.controller('aggregatorGraphicsCtrl', function($scope, $window, $timeout) {
     $scope.$broadcast('PortsCharts.portToggled', port, $scope.ports);
   };
 
-  $scope.timeNav = {
-    types: {},
+  $scope.config = {
     start: -48,
     end: 0,
     floor: -CONST.hHalfYear,
@@ -82,21 +78,20 @@ app.controller('aggregatorGraphicsCtrl', function($scope, $window, $timeout) {
     aggregate: 'mean',
     /* My own properties */
     now: new Date(),
-    hour: 60 * 60 * 1000,
-    format: 'D MMM',
+    format: d3.time.format('%e %b'),
 
     _isHalfYear: function() {
       return -CONST.hHalfYear === this.floor;
     },
 
     init: function() {
-      $scope.$watch('timeNav.aggregate', function(n, o) {
+      $scope.$watch('config.aggregate', function(n, o) {
         if (o !== n) {
-          $scope.$broadcast('PortsCharts.timeNav.aggregateChanged', n);
+          $scope.$broadcast('PortsCharts.config.aggregateChanged', n);
         }
       });
 
-      $scope.$watch('::timeNav.start', drawSelection);
+      $scope.$watch('::config.start', drawSelection);
     },
 
     getFloorMeasurement: function() {
@@ -116,23 +111,22 @@ app.controller('aggregatorGraphicsCtrl', function($scope, $window, $timeout) {
     },
 
     formatDate: function(delta) {
-      var res = new Date(this.now - (-delta * this.hour));
-      return moment(res).format(this.format);
+      return this.format(new Date(this.now - (-delta * CONST.msHour)));
     },
 
     changeFloor: function(floor) {
-      $scope.timeNav.floor = $scope.slider.options.floor = floor;
+      $scope.config.floor = $scope.slider.options.floor = floor;
 
-      if ($scope.timeNav.start < floor) {
-        $scope.timeNav.start = $scope.slider.minValue = floor;
+      if ($scope.config.start < floor) {
+        $scope.config.start = $scope.slider.minValue = floor;
       }
 
-      if ($scope.timeNav.end < floor) {
-        $scope.timeNav.end = $scope.slider.maxValue = floor;
+      if ($scope.config.end < floor) {
+        $scope.config.end = $scope.slider.maxValue = floor;
       }
 
       $timeout(drawSelection, 0);
-      $scope.$broadcast('PortsCharts.timeNav.floorChanged', $scope.timeNav.floor);
+      $scope.$broadcast('PortsCharts.config.floorChanged', $scope.config.floor);
     }
   };
 
@@ -140,11 +134,11 @@ app.controller('aggregatorGraphicsCtrl', function($scope, $window, $timeout) {
    * Объект слайдера
    */
   $scope.slider = {
-    minValue: $scope.timeNav.start,
-    maxValue: $scope.timeNav.end,
+    minValue: $scope.config.start,
+    maxValue: $scope.config.end,
     options: {
-      floor: $scope.timeNav.floor,
-      ceil: $scope.timeNav.ceiling,
+      floor: $scope.config.floor,
+      ceil: $scope.config.ceiling,
       precision: 1,
       onChange: function(sliderId, modelValue, highValue) {
         var data = {
@@ -152,14 +146,14 @@ app.controller('aggregatorGraphicsCtrl', function($scope, $window, $timeout) {
           end: highValue
         };
 
-        $scope.timeNav.start = modelValue;
-        $scope.timeNav.end = highValue;
+        $scope.config.start = modelValue;
+        $scope.config.end = highValue;
 
         drawSelection();
-        $scope.$broadcast('PortsCharts.timeNav.changed', data);
+        $scope.$broadcast('PortsCharts.config.changed', data);
       },
       translate: function(value) {
-        return $scope.timeNav.formatDate(value);
+        return $scope.config.formatDate(value);
       }
     }
   };
@@ -170,8 +164,8 @@ app.controller('aggregatorGraphicsCtrl', function($scope, $window, $timeout) {
     }
   });
 
-  $scope.timeNav.init();
   // Init
+  $scope.config.init();
   $scope.ports = getPorts();
   $scope.portColors = d3.scale.category10();
   $scope.portColors.domain($scope.ports.map(function(i) {

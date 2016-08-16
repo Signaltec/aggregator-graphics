@@ -163,7 +163,7 @@
             <sg-big-port-chart
                 ports="ports"
                 color="portColors"
-                time-nav="timeNav"
+                config="config"
                 summarize="summarize">
 
             </sg-big-port-chart>
@@ -173,17 +173,17 @@
           <!-- Toolbar with work modes -->
           <div class="toolbar shift-left -clearfix">
             <div class="taps" style="float:left">
-              <span class="tap" ng-class="{'-active': timeNav.floor == -CONST.hWeek}"
-                    ng-click="timeNav.changeFloor(-CONST.hWeek)">Часы</span>
-              <span class="tap" ng-class="{'-active': timeNav.floor == -CONST.hHalfYear}"
-                    ng-click="timeNav.changeFloor(-CONST.hHalfYear)">Дни</span>
+              <span class="tap" ng-class="{'-active': config.floor == -CONST.hWeek}"
+                    ng-click="config.changeFloor(-CONST.hWeek)">Часы</span>
+              <span class="tap" ng-class="{'-active': config.floor == -CONST.hHalfYear}"
+                    ng-click="config.changeFloor(-CONST.hHalfYear)">Дни</span>
             </div>
 
             <div class="taps" style="float:left">
-              <span class="tap" ng-class="{'-active': timeNav.aggregate == 'max'}"
-                    ng-click="timeNav.setAggregate('max')">Макс.</span>
-              <span class="tap" ng-class="{'-active': timeNav.aggregate == 'mean'}"
-                    ng-click="timeNav.setAggregate('mean')">Средние</span>
+              <span class="tap" ng-class="{'-active': config.aggregate == 'max'}"
+                    ng-click="config.setAggregate('max')">Макс.</span>
+              <span class="tap" ng-class="{'-active': config.aggregate == 'mean'}"
+                    ng-click="config.setAggregate('mean')">Средние</span>
             </div>
 
             <div class="taps">
@@ -202,7 +202,7 @@
                       rz-slider-options="slider.options">
             </rzslider>
 
-            <sg-time-axis now="timeNav.now" floor="timeNav.floor"></sg-time-axis>
+            <sg-time-axis now="config.now" floor="config.floor"></sg-time-axis>
           </div>
 
           <!-- Ports Microcharts -->
@@ -214,7 +214,7 @@
                                 class="port-wrapper"
                                 port="port"
                                 color="portColors(port.name)"
-                                time-nav="timeNav">
+                                config="config">
             </sg-micro-port-chart>
           </div>
         </div>
@@ -228,7 +228,6 @@
         <script src="./index_files/lib/angular-translate/angular-translate.js"></script>
         <script src="./index_files/roundProgress.min.js"></script>
 
-        <script src="./index_files/lib/moment/moment.js"></script>
         <script src="./index_files/configuration.js"></script>
         <script src="app.js"></script>
         <script src="filters/rateformat.js"></script>

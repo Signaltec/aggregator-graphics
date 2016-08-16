@@ -24,7 +24,7 @@ app.directive('sgBigPortChart', ['$timeout', 'charts.InfluxConnection', 'charts.
       restrict: 'E',
       scope: {
         ports: '=',
-        timeNav: '=',
+        config: '=',
         summarize: '=',
         color: '='
       },
@@ -40,7 +40,7 @@ app.directive('sgBigPortChart', ['$timeout', 'charts.InfluxConnection', 'charts.
 
         // Render Big Chart
         function render() {
-          chart.multiChart(scope.state, scope.columns, scope.names, scope.timeNav.aggregate);
+          chart.multiChart(scope.state, scope.columns, scope.names, scope.config.aggregate);
           scope.afterRender && scope.afterRender();
         }
 
@@ -57,8 +57,8 @@ app.directive('sgBigPortChart', ['$timeout', 'charts.InfluxConnection', 'charts.
             return;
           }
 
-          start = Math.abs(scope.timeNav.start);
-          end = Math.abs(scope.timeNav.end);
+          start = Math.abs(scope.config.start);
+          end = Math.abs(scope.config.end);
           query = connection.query();
           timeGroup = Math.max(1, Math.round((start - end) / 300)) + 'h';
 
@@ -105,13 +105,13 @@ app.directive('sgBigPortChart', ['$timeout', 'charts.InfluxConnection', 'charts.
           fetch();
         });
 
-        scope.$on('PortsCharts.timeNav.changed', function() {
+        scope.$on('PortsCharts.config.changed', function() {
           $timeout.cancel(timeout);
           timeout = $timeout(fetch, 300);
         });
 
-        scope.$on('PortsCharts.timeNav.aggregateChanged', render);
-        scope.$on('PortsCharts.timeNav.floorChanged', fetch);
+        scope.$on('PortsCharts.config.aggregateChanged', render);
+        scope.$on('PortsCharts.config.floorChanged', fetch);
 
         fetch();
       }
