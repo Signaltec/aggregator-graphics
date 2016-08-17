@@ -31,10 +31,12 @@ app.directive('sgBigPortChart', [
       },
       template: '<div class="port-graph"></div>',
       link: function(scope, element) {
+        // TODO: Refactor It .querySelector('.port-graph');
         var chartContainer = element[0].querySelector('.port-graph');
         var chart = new PortsCharts(chartContainer, scope.color, 70);
         var timeout;
 
+        // TODO: function getPortNames…
         scope.names = scope.ports.map(function(d) {
           return d.name;
         });
@@ -42,6 +44,7 @@ app.directive('sgBigPortChart', [
         // Render Big Chart
         function render() {
           chart.multiChart(scope.state, scope.columns, scope.names, scope.config.aggregate);
+          // TODO: что за afterRender
           scope.afterRender && scope.afterRender();
         }
 
@@ -63,6 +66,7 @@ app.directive('sgBigPortChart', [
           query = connection.query();
           timeGroup = Math.max(1, Math.round((start - end) / 300)) + 'h';
 
+          // TODO: Можно в функцию вынести 'now() - ' + start + 'h' причем добавить ее в influx
           selectConf = {
             measurement: 'h1',
             ports: names,
@@ -78,6 +82,7 @@ app.directive('sgBigPortChart', [
 
           query.groupByTime(timeGroup);
 
+          
           if (!scope.summarize) {
             query.groupBy(['port'], true)
           }
@@ -95,6 +100,7 @@ app.directive('sgBigPortChart', [
         }
 
         scope.$on('PortsCharts.portToggled', function($event, port, ports) {
+          // TODO: make greatest comment 
           /* См. описание баги сверху */
           scope.ports = ports;
           fetch();

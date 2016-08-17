@@ -44,6 +44,7 @@ app.controller('aggregatorGraphicsCtrl', ['$scope', '$window', '$timeout', 'char
       selection.style.width = width;
     }
 
+    // TODO: move inside scope.config && summarize тоже
     $scope.hideEmpty = false;
 
     $scope.togglePort = function(port) {
