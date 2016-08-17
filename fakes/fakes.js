@@ -23,7 +23,7 @@ function array2Lineproto(prefix, arr) {
     }
       
     if (line[line.length-1] == ',') line = line.substr(0,line.length-1);
-    if ('time' in i) line += " " + i.time*1e6;
+    // if ('time' in i) line += " " + i.time;
   
     line += "\n";
     res += line;
@@ -36,17 +36,13 @@ function Rand(max) {
   return Math.floor(Math.random(1)*max);
 }
 
-function rate(val,deltaTime) {
-  return val
-}
-
 function negative2zero(val) {
   return (val > 0) ? val : 0;
 }
 
 
 // Generate fakes array for one port/ DeltaTime in seconds
-function GenerateFakes(count, deltaTime, port) {
+function GenerateFakes(count, deltaTime) {
   var res = [];
   var point;
   var start = new Date();
@@ -59,7 +55,7 @@ function GenerateFakes(count, deltaTime, port) {
       tx: Rand(300),
       drops: Rand(3)*Rand(3),
       crc: Rand(2)*Rand(2),
-      time: start - (count-i)*deltaTime*1000
+      time: new Date(start - (count-i)*deltaTime).getTime()
     };
     
     if (type == 'input') point.tx = 0;
@@ -77,20 +73,26 @@ function GenerateFakes(count, deltaTime, port) {
       point.drops += res[i-1].drops;
       point.crc += res[i-1].crc;
 
-      point.rx_rate_mean = (point.rx - res[i-1].rx)/deltaTime;
+      point.rx_speed = (point.rx - res[i-1].rx)/deltaTime;
+      point.tx_speed = (point.tx - res[i-1].tx)/deltaTime;
+
+      /*point.rx_rate_mean = (point.rx - res[i-1].rx)/deltaTime;
       point.tx_rate_mean = (point.tx - res[i-1].tx)/deltaTime;
       point.rx_rate_max = (point.rx - res[i-1].rx)/deltaTime*1.3;
       point.tx_rate_max = (point.tx - res[i-1].tx)/deltaTime*1.3;
 
       point.drops_rate = (point.drops - res[i-1].drops)/deltaTime;
-      point.crc_rate = (point.crc - res[i-1].crc)/deltaTime;
+      point.crc_rate = (point.crc - res[i-1].crc)/deltaTime;*/
     }
-    
+
     // fix negatives
-    point.rx_rate_mean = negative2zero(point.rx_rate_mean);
+    point.rx_speed = negative2zero(point.rx_speed);
+    point.tx_speed = negative2zero(point.tx_speed);
+
+    /*point.rx_rate_mean = negative2zero(point.rx_rate_mean);
     point.tx_rate_mean = negative2zero(point.tx_rate_mean);
     point.drops_rate_mean = negative2zero(point.drops_rate_mean);
-    point.crc_rate_mean = negative2zero(point.crc_rate_mean);
+    point.crc_rate_mean = negative2zero(point.crc_rate_mean);*/
     
     res.push(point);
   }

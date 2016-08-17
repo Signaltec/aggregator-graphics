@@ -1,0 +1,16 @@
+sg-time-axis {
+  display: block;
+  height: 24px;
+  font-size: 0.7em;
+}
+
+sg-time-axis .axis path {
+  fill: none;
+  stroke: none;
+}
+
+sg-time-axis .axis line {
+  fill: none;
+  stroke: #ccc;
+  shape-rendering: crispEdges;
+}

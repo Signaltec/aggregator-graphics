@@ -1,2 +1,4 @@
-fakes/fakes.txt
-fakes/fakes/*.*
+.idea
+node_modules
+fakes/fakes/*
+fakes/backup/data/*
