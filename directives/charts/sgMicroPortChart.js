@@ -1,5 +1,5 @@
-app.directive('sgMicroPortChart', ['charts.InfluxConnection', 'charts.PortsCharts',
-  function(InfluxConnection, PortsCharts) {
+app.directive('sgMicroPortChart', ['charts.InfluxConnection', 'charts.PortsCharts', 'charts.Const',
+  function(InfluxConnection, PortsCharts, Const) {
     'use strict';
 
     function isInDateRange() {
@@ -131,7 +131,7 @@ app.directive('sgMicroPortChart', ['charts.InfluxConnection', 'charts.PortsChart
 
         scope.$on('PortsCharts.config.aggregateChanged', render);
 
-        fetch(CONST.hHalfYear);
+        fetch(Const.hHalfYear);
       }
     }
   }]

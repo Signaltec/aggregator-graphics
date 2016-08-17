@@ -89,10 +89,6 @@ app.factory('charts.PortsCharts', [function() {
     return cols;
   };
 
-  PortsCharts.getBitRates = function(translate) {
-
-  }
-
   PortsCharts.prototype = {
     aggregate: null,
     oldAggregate: null,

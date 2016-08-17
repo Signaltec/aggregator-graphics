@@ -29,9 +29,9 @@
   <link href="styles/style.css" rel="stylesheet" type="text/css"/>
   <link href="styles/slider-override.css" rel="stylesheet" type="text/css"/>
 
-  <link href="directives/sgBigPortChart.css" rel="stylesheet" />
-  <link href="directives/sgMicroPortChart.css" rel="stylesheet" />
-  <link href="directives/sgTimeAxis.css" rel="stylesheet" />
+  <link href="directives/charts/sgBigPortChart.css" rel="stylesheet" />
+  <link href="directives/charts/sgMicroPortChart.css" rel="stylesheet" />
+  <link href="directives/charts/sgTimeAxis.css" rel="stylesheet" />
 
   <script src="./index_files/d3.min.js" charset="utf-8"></script>
   <script src="./index_files/tsg.js"></script>
@@ -173,10 +173,10 @@
           <!-- Toolbar with work modes -->
           <div class="toolbar shift-left -clearfix">
             <div class="taps" style="float:left">
-              <span class="tap" ng-class="{'-active': config.floor == -CONST.hWeek}"
-                    ng-click="config.changeFloor(-CONST.hWeek)">Часы</span>
-              <span class="tap" ng-class="{'-active': config.floor == -CONST.hHalfYear}"
-                    ng-click="config.changeFloor(-CONST.hHalfYear)">Дни</span>
+              <span class="tap" ng-class="{'-active': config.floor == -Const.hWeek}"
+                    ng-click="config.changeFloor(-Const.hWeek)">Часы</span>
+              <span class="tap" ng-class="{'-active': config.floor == -Const.hHalfYear}"
+                    ng-click="config.changeFloor(-Const.hHalfYear)">Дни</span>
             </div>
 
             <div class="taps" style="float:left">
@@ -233,9 +233,10 @@
         <script src="filters/rateformat.js"></script>
         <script src="services/charts/InfluxConnection.js"></script>
         <script src="services/charts/PortsCharts.js"></script>
-        <script src="directives/sgBigPortChart.js"></script>
-        <script src="directives/sgMicroPortChart.js"></script>
-        <script src="directives/sgTimeAxis.js"></script>
+        <script src="services/charts/Const.js"></script>
+        <script src="directives/charts/sgBigPortChart.js"></script>
+        <script src="directives/charts/sgMicroPortChart.js"></script>
+        <script src="directives/charts/sgTimeAxis.js"></script>
 
         <script src="./node_modules/angularjs-slider/dist/rzslider.js"></script>
 

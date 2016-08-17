@@ -1,14 +1,15 @@
 /* Бага в ангуляре: когда ловится ивент с измененеим в наружном скоупе,
  внутренний скоуп не успевает обновится до этого состояния */
 
-app.directive('sgBigPortChart', ['$timeout', 'charts.InfluxConnection', 'charts.PortsCharts',
-  function($timeout, InfluxConnection, PortsCharts) {
+app.directive('sgBigPortChart', [
+  '$timeout', 'charts.InfluxConnection', 'charts.PortsCharts', 'charts.Const',
+  function($timeout, InfluxConnection, PortsCharts, Const) {
     'use strict';
 
     var connection = new InfluxConnection(null, 'monitoring');
     var measurements = {};
-    measurements[CONST.hHalfYear] = 'd1';
-    measurements[CONST.hWeek] = 's10';
+    measurements[Const.hHalfYear] = 'd1';
+    measurements[Const.hWeek] = 's10';
 
     function getCheckedPortNames(ports) {
       return ports
