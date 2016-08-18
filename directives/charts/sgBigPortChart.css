@@ -3,10 +3,5 @@ sg-big-port-chart {
   height: 400px;
   width: 870px;
   font-size: 0.7em;
-}
-
-sg-big-port-chart .port-graph {
-  height: 400px;
-  width: 870px;
   position: relative;
 }

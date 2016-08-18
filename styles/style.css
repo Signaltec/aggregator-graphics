@@ -127,4 +127,10 @@
   stroke: #ccc;
 }
 
+.axis path,
+.axis line {
+  fill: none;
+  shape-rendering: crispEdges;
+}
+
 

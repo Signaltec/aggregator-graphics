@@ -1,5 +1,6 @@
-app.directive('sgTimeAxis', function() {
+app.directive('sgTimeAxis', [function() {
   var hour = 60 * 60 * 1000;
+  var tickFormat = d3.time.format('%e %b');
 
   return {
     restrict: 'E',
@@ -21,19 +22,26 @@ app.directive('sgTimeAxis', function() {
       var axis = svg.append('g').attr('class', 'axis');
       var x = d3.time.scale().range([0, width]);
 
+      function updateAxis() {
+        var xAxis;
+        var lastDate = new Date(scope.now.getTime() + scope.floor * hour);
+
+        x.domain([lastDate, scope.now]);
+
+        xAxis = d3.svg.axis().scale(x).orient('bottom')
+          .ticks(10)
+          .tickFormat(tickFormat);
+
+        axis.call(xAxis);
+      }
+
       scope.$watch('floor', function(n, o) {
-        var lastDate, xAxis;
-
         if (n != o) {
-          lastDate = new Date(scope.now + scope.floor * hour);
-          x.domain([lastDate, scope.now]);
-
-          xAxis = d3.svg.axis().scale(x).orient('bottom')
-            .tickFormat(d3.time.format('%e %b'));
-
-          axis.call(xAxis);
+          updateAxis();
         }
       });
+
+      updateAxis();
     }
   }
-});
+}]);

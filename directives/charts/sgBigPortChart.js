@@ -1,5 +1,3 @@
-/* Бага в ангуляре: когда ловится ивент с измененеим в наружном скоупе,
- внутренний скоуп не успевает обновится до этого состояния */
 
 app.directive('sgBigPortChart', [
   '$timeout', 'charts.InfluxConnection', 'charts.PortsCharts', 'charts.Const',
@@ -10,6 +8,12 @@ app.directive('sgBigPortChart', [
     var measurements = {};
     measurements[Const.hHalfYear] = 'd1';
     measurements[Const.hWeek] = 's10';
+
+    function getPortNames(ports) {
+      return ports.map(function(d) {
+        return d.name;
+      });
+    }
 
     function getCheckedPortNames(ports) {
       return ports
@@ -31,32 +35,25 @@ app.directive('sgBigPortChart', [
       },
       template: '<div class="port-graph"></div>',
       link: function(scope, element) {
-        // TODO: Refactor It .querySelector('.port-graph');
-        var chartContainer = element[0].querySelector('.port-graph');
-        var chart = new PortsCharts(chartContainer, scope.color, 70);
+        var chart = new PortsCharts(element[0], scope.color, 70);
         var timeout;
 
-        // TODO: function getPortNames…
-        scope.names = scope.ports.map(function(d) {
-          return d.name;
-        });
+        scope.names = getPortNames(scope.ports);
 
         // Render Big Chart
         function render() {
           chart.multiChart(scope.state, scope.columns, scope.names, scope.config.aggregate);
-          // TODO: что за afterRender
-          scope.afterRender && scope.afterRender();
         }
 
         // Fetch data from InfluxDB
         function fetch() {
-          var names = getCheckedPortNames(scope.ports);
+          var checkedNames = getCheckedPortNames(scope.ports);
           var start, end, selectConf, query, timeGroup;
 
           scope.state = null;
           scope.columns = null;
 
-          if (!names.length) {
+          if (!checkedNames.length) {
             render();
             return;
           }
@@ -66,10 +63,9 @@ app.directive('sgBigPortChart', [
           query = connection.query();
           timeGroup = Math.max(1, Math.round((start - end) / 300)) + 'h';
 
-          // TODO: Можно в функцию вынести 'now() - ' + start + 'h' причем добавить ее в influx
           selectConf = {
             measurement: 'h1',
-            ports: names,
+            ports: checkedNames,
             timeFrom: 'now() - ' + start + 'h',
             timeTo: 'now() - ' + end + 'h'
           };
@@ -82,7 +78,6 @@ app.directive('sgBigPortChart', [
 
           query.groupByTime(timeGroup);
 
-          
           if (!scope.summarize) {
             query.groupBy(['port'], true)
           }
@@ -100,14 +95,16 @@ app.directive('sgBigPortChart', [
         }
 
         scope.$on('PortsCharts.portToggled', function($event, port, ports) {
-          // TODO: make greatest comment 
-          /* См. описание баги сверху */
+
+          /* Порты переприсваиваются из-за баги в ангуляре:
+           когда ловится ивент с измененеим в наружном скоупе,
+           внутренний скоуп не успевает обновится до этого состояния. */
           scope.ports = ports;
           fetch();
         });
 
         scope.$on('PortsCharts.summarizeChanged', function($event, value) {
-          /* См. описание баги сверху */
+          /* См. описание баги выше */
           scope.summarize = value;
           fetch();
         });

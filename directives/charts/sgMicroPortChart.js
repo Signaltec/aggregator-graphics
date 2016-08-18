@@ -19,8 +19,8 @@ app.directive('sgMicroPortChart', ['charts.InfluxConnection', 'charts.PortsChart
         '</div>' +
         '<div class="port-graph"></div>' +
         '<div class="peaks">' +
-        '  <div class="peak">{{min.rx | rateformat}} / {{max.rx | rateformat}}</div>' +
-        '  <div class="peak">{{min.tx | rateformat}} / {{max.tx | rateformat}}</div>' +
+        '  <div class="peak">{{values.rx | rateformat}}</div>' +
+        '  <div class="peak">{{values.tx | rateformat}}</div>' +
         '</div>',
 
       link: function(scope, element) {
@@ -30,11 +30,7 @@ app.directive('sgMicroPortChart', ['charts.InfluxConnection', 'charts.PortsChart
         var chart = new PortsCharts(chartContainer, scope.color, 0);
         var period;
 
-        scope.max = {
-          rx: 0, tx: 0
-        };
-
-        scope.min = {
+        scope.values = {
           rx: 0, tx: 0
         };
 
@@ -64,19 +60,11 @@ app.directive('sgMicroPortChart', ['charts.InfluxConnection', 'charts.PortsChart
             return d[0] >= start && d[0] <= end;
           });
 
-          scope.max.rx = d3.max(range, function(d) {
+          scope.values.rx = d3[scope.config.aggregate](range, function(d) {
             return d[rxIndex];
           }) || 0;
 
-          scope.max.tx = d3.max(range, function(d) {
-            return d[txIndex];
-          }) || 0;
-
-          scope.min.rx = d3.min(range, function(d) {
-            return d[rxIndex];
-          }) || 0;
-
-          scope.min.tx = d3.min(range, function(d) {
+          scope.values.tx = d3[scope.config.aggregate](range, function(d) {
             return d[txIndex];
           }) || 0;
         }

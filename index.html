@@ -24,7 +24,6 @@
 
   <link href="./index_files/sega2.css" rel="stylesheet" type="text/css">
   <link href="./node_modules/angularjs-slider/dist/rzslider.min.css" rel="stylesheet" type="text/css" />
-  <link href="./index_files/tsg.css" rel="stylesheet">
   <link href="./index_files/all.css" rel="stylesheet">
   <link href="styles/style.css" rel="stylesheet" type="text/css"/>
   <link href="styles/slider-override.css" rel="stylesheet" type="text/css"/>
@@ -34,7 +33,6 @@
   <link href="directives/charts/sgTimeAxis.css" rel="stylesheet" />
 
   <script src="./index_files/d3.min.js" charset="utf-8"></script>
-  <script src="./index_files/tsg.js"></script>
 
   <title ng-bind="this_page.title" class="ng-binding">Статистика</title>
 </head>
@@ -143,12 +141,12 @@
             <aside>
 
               <label>
-                <input type="checkbox" ng-model="summarize">
+                <input type="checkbox" ng-model="config.summarize">
                 Суммировать
               </label>
 
               <div class="port-navigator">
-                <label ng-repeat="port in ports track by $index" class="port" ng-hide="hideEmpty && port.empty">
+                <label ng-repeat="port in ports track by $index" class="port" ng-hide="config.hideEmpty && port.empty">
                   <input type="checkbox"
                          ng-model="port.checked"
                          ng-change="togglePort(port)"/>
@@ -189,7 +187,7 @@
             <div class="taps">
               <span class="tap">
                 <label>
-                  <input type="checkbox" ng-model="hideEmpty" /> Скрыть порты без трафика
+                  <input type="checkbox" ng-model="config.hideEmpty" /> Скрыть порты без трафика
                 </label>
               </span>
             </div>
@@ -209,7 +207,7 @@
           <div class="ports-microcharts">
             <div class="selection"></div>
             <sg-micro-port-chart ng-repeat="port in ports track by $index"
-                                ng-hide="port.empty && hideEmpty"
+                                ng-hide="port.empty && config.hideEmpty"
                                 toggle-port="togglePort(port)"
                                 class="port-wrapper"
                                 port="port"
