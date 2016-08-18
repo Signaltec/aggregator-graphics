@@ -35,8 +35,7 @@ app.directive('sgBigPortChart', [
       },
       template: '<div class="port-graph"></div>',
       link: function(scope, element) {
-        var chartContainer = element[0].querySelector('.port-graph');
-        var chart = new PortsCharts(chartContainer, scope.color, 70);
+        var chart = new PortsCharts(element[0], scope.color, 70);
         var timeout;
 
         scope.names = getPortNames(scope.ports);
