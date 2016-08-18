@@ -148,7 +148,7 @@
               </label>
 
               <div class="port-navigator">
-                <label ng-repeat="port in ports track by $index" class="port" ng-hide="hideEmpty && port.empty">
+                <label ng-repeat="port in ports track by $index" class="port" ng-hide="config.hideEmpty && port.empty">
                   <input type="checkbox"
                          ng-model="port.checked"
                          ng-change="togglePort(port)"/>
@@ -189,7 +189,7 @@
             <div class="taps">
               <span class="tap">
                 <label>
-                  <input type="checkbox" ng-model="hideEmpty" /> Скрыть порты без трафика
+                  <input type="checkbox" ng-model="config.hideEmpty" /> Скрыть порты без трафика
                 </label>
               </span>
             </div>
@@ -209,7 +209,7 @@
           <div class="ports-microcharts">
             <div class="selection"></div>
             <sg-micro-port-chart ng-repeat="port in ports track by $index"
-                                ng-hide="port.empty && hideEmpty"
+                                ng-hide="port.empty && config.hideEmpty"
                                 toggle-port="togglePort(port)"
                                 class="port-wrapper"
                                 port="port"

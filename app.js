@@ -44,8 +44,6 @@ app.controller('aggregatorGraphicsCtrl', ['$scope', '$window', '$timeout', 'char
       selection.style.width = width;
     }
 
-    $scope.hideEmpty = false;
-
     $scope.togglePort = function(port) {
       $scope.$broadcast('PortsCharts.portToggled', port, $scope.ports);
     };
@@ -59,6 +57,7 @@ app.controller('aggregatorGraphicsCtrl', ['$scope', '$window', '$timeout', 'char
       /* My own properties */
       now: new Date(),
       format: d3.time.format('%e %b'),
+      hideEmpty: false,
 
       _isHalfYear: function() {
         return -Const.hHalfYear === this.floor;
@@ -85,7 +84,7 @@ app.controller('aggregatorGraphicsCtrl', ['$scope', '$window', '$timeout', 'char
       setAggregate: function(aggregate) {
         this.aggregate = aggregate;
 
-        if ($scope.hideEmpty) {
+        if ($scope.config.hideEmpty) {
           $timeout(drawSelection, 0);
         }
       },
