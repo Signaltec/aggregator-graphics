@@ -58,6 +58,7 @@ app.controller('aggregatorGraphicsCtrl', ['$scope', '$window', '$timeout', 'char
       now: new Date(),
       format: d3.time.format('%e %b'),
       hideEmpty: false,
+      summarize: false,
 
       _isHalfYear: function() {
         return -Const.hHalfYear === this.floor;
@@ -137,7 +138,7 @@ app.controller('aggregatorGraphicsCtrl', ['$scope', '$window', '$timeout', 'char
       }
     };
 
-    $scope.$watch('summarize', function(n, o) {
+    $scope.$watch('config.summarize', function(n, o) {
       if (o !== n) {
         $scope.$broadcast('PortsCharts.summarizeChanged', n);
       }
