@@ -21,10 +21,11 @@ app.directive('sgTimeAxis', [function() {
 
       var axis = svg.append('g').attr('class', 'axis');
       var x = d3.time.scale().range([0, width]);
-      var lastDate, xAxis;
 
       function updateAxis() {
-        lastDate = new Date(scope.now.getTime() + scope.floor * hour);
+        var xAxis;
+        var lastDate = new Date(scope.now.getTime() + scope.floor * hour);
+
         x.domain([lastDate, scope.now]);
 
         xAxis = d3.svg.axis().scale(x).orient('bottom')

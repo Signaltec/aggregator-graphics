@@ -78,7 +78,6 @@ app.directive('sgBigPortChart', [
 
           query.groupByTime(timeGroup);
 
-
           if (!scope.summarize) {
             query.groupBy(['port'], true)
           }
