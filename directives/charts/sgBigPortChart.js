@@ -1,5 +1,3 @@
-/* Бага в ангуляре: когда ловится ивент с измененеим в наружном скоупе,
- внутренний скоуп не успевает обновится до этого состояния */
 
 app.directive('sgBigPortChart', [
   '$timeout', 'charts.InfluxConnection', 'charts.PortsCharts', 'charts.Const',
@@ -95,13 +93,16 @@ app.directive('sgBigPortChart', [
         }
 
         scope.$on('PortsCharts.portToggled', function($event, port, ports) {
-          /* См. описание баги сверху */
+
+          /* Порты переприсваиваются из-за баги в ангуляре:
+           когда ловится ивент с измененеим в наружном скоупе,
+           внутренний скоуп не успевает обновится до этого состояния. */
           scope.ports = ports;
           fetch();
         });
 
         scope.$on('PortsCharts.summarizeChanged', function($event, value) {
-          /* См. описание баги сверху */
+          /* См. описание баги выше */
           scope.summarize = value;
           fetch();
         });
@@ -119,3 +120,5 @@ app.directive('sgBigPortChart', [
     }
   }]
 );
+
+
