@@ -9,7 +9,7 @@ node fakes.js
 
 # write data
 for filename in fakes/*.txt; do
-  curl -i -XPOST 'http://192.168.99.100:8086/write?db=monitoring' -H 'Content-Type: text/plain' --data-binary @$filename
+  curl -i -XPOST 'http://192.168.0.187:8086/write?u=root&p=pussy-root&db=monitoring' -H 'Content-Type: text/plain' --data-binary @$filename
 done
 
 
